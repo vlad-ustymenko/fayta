@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_components_form_inputs",
+  "info": {
+    "displayName": "formInput"
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "phone",
+        "name"
+      ]
+    },
+    "placeholder": {
+      "type": "string",
+      "required": true
+    },
+    "emptyDataErr": {
+      "type": "string",
+      "required": true
+    },
+    "unvalidDataErr": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}

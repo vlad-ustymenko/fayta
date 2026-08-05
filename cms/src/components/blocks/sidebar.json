@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_blocks_sidebars",
+  "info": {
+    "displayName": "Sidebar"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "form": {
+      "type": "component",
+      "component": "components.form-input",
+      "repeatable": true
+    },
+    "button": {
+      "type": "string",
+      "required": true
+    },
+    "confidentialText": {
+      "type": "richtext",
+      "required": true
+    }
+  },
+  "config": {}
+}

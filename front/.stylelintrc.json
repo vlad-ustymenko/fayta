@@ -1,0 +1,119 @@
+{
+  "extends": "stylelint-config-standard",
+  "plugins": ["stylelint-order"],
+  "rules": {
+    "selector-class-pattern": null,
+    "custom-property-pattern": null,
+    "no-empty-source": null,
+    "comment-empty-line-before": null,
+    "block-no-empty": null,
+    "selector-pseudo-class-no-unknown": null,
+    "order/properties-order": [
+      [
+        {
+          "groupName": "Display & Box Model",
+          "properties": [
+            "display",
+            "flex",
+            "flex-direction",
+            "flex-wrap",
+            "align-items",
+            "justify-content",
+            "grid",
+            "grid-template-columns",
+            "grid-template-rows",
+            "gap",
+            "width",
+            "min-width",
+            "max-width",
+            "height",
+            "min-height",
+            "max-height",
+            "padding",
+            "padding-top",
+            "padding-right",
+            "padding-bottom",
+            "padding-left",
+            "margin",
+            "margin-top",
+            "margin-right",
+            "margin-bottom",
+            "margin-left",
+            "border",
+            "border-top",
+            "border-right",
+            "border-bottom",
+            "border-left",
+            "border-radius",
+            "border-top-left-radius",
+            "border-top-right-radius",
+            "border-bottom-left-radius",
+            "border-bottom-right-radius"
+          ]
+        },
+        {
+          "groupName": "Positioning",
+          "properties": [
+            "position",
+            "top",
+            "right",
+            "bottom",
+            "left",
+            "transform",
+            "z-index"
+          ]
+        },
+
+        {
+          "groupName": "Typography",
+          "properties": [
+            "font",
+            "font-family",
+            "font-size",
+            "font-weight",
+            "line-height",
+            "text-align",
+            "text-transform",
+            "text-decoration",
+            "letter-spacing",
+            "word-spacing",
+            "white-space",
+            "text-overflow",
+            "text-shadow",
+            "vertical-align",
+            "word-wrap",
+            "word-break",
+            "color"
+          ]
+        },
+        {
+          "groupName": "Visual",
+          "properties": [
+            "background",
+            "background-color",
+            "background-image",
+            "background-size",
+            "background-position",
+            "background-repeat",
+            "background-attachment",
+            "background-clip",
+            "background-origin",
+            "background-blend-mode",
+            "object-fit",
+            "object-position",
+            "filter",
+            "box-shadow",
+            "opacity"
+          ]
+        },
+        {
+          "groupName": "Animation & Other",
+          "properties": ["transition", "animation", "cursor", "visibility"]
+        }
+      ],
+      {
+        "unspecified": "bottomAlphabetical"
+      }
+    ]
+  }
+}

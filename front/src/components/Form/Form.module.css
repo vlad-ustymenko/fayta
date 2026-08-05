@@ -1,0 +1,126 @@
+.title {
+  margin-bottom: 4vw;
+  font-family: var(--font-sofia), sans-serif;
+  font-size: 2vw;
+  color: var(--secondary);
+}
+
+.inputWrapper {
+  margin-bottom: 1vw;
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  padding: 1vw 0 0.5vw;
+  border-bottom: 0.15vw solid #ccc;
+  font-family: Roboto, sans-serif;
+  font-size: 1vw;
+  color: var(--background);
+  box-sizing: border-box;
+}
+
+.floatingLabel {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-family: Roboto, sans-serif;
+  font-size: 1vw;
+  color: #999;
+  transition: all 0.2s ease;
+  pointer-events: none;
+}
+
+.input:focus + .floatingLabel,
+.input:not(:placeholder-shown) + .floatingLabel {
+  top: -0.1vw;
+  transform: translateY(0);
+  font-size: 0.8vw;
+  color: #999;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.errorMessage {
+  font-family: Roboto, sans-serif;
+  font-size: 0.8vw;
+  color: rgb(250 53 53);
+}
+
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:focus,
+.input:-webkit-autofill:active {
+  /* "фон" через inset box-shadow, бо background-color браузер ігнорує */
+
+  box-shadow: 0 0 0 1000px var(--black) inset;
+
+  /* прибираємо затримку переходу, щоб не блимало жовтим на долю секунди */
+  transition: background-color 5000s ease-in-out 0s;
+
+  /* колір тексту теж треба міняти через -webkit-text-fill-color */
+  -webkit-text-fill-color: var(--background);
+}
+
+.button {
+  margin: 2vw 0 0.8vw;
+}
+
+.subtitle {
+  font-family: Roboto, sans-serif;
+  font-size: 0.8vw;
+}
+
+.link {
+  border-bottom: 0.1vw solid var(--background);
+}
+
+@media (width >= 768px) and (width <= 1024px) {
+}
+
+@media (width <= 767px) {
+  .title {
+    margin-bottom: 10vw;
+    font-size: 8vw;
+  }
+
+  .inputWrapper {
+    margin-bottom: 4vw;
+  }
+
+  .input {
+    padding: 2vw 0 1vw;
+    border-bottom: 2px solid #ccc;
+    font-size: 5vw;
+  }
+
+  .floatingLabel {
+    font-size: 5vw;
+    transition: all 0.2s ease;
+  }
+
+  .input:focus + .floatingLabel,
+  .input:not(:placeholder-shown) + .floatingLabel {
+    top: -2vw;
+    font-size: 3vw;
+  }
+
+  .input:focus {
+    outline: none;
+  }
+
+  .errorMessage {
+    font-size: 3vw;
+  }
+
+  .button {
+    margin: 6vw 0 5vw;
+  }
+
+  .subtitle {
+    font-size: 3vw;
+  }
+}

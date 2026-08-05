@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_blocks_headers",
+  "info": {
+    "displayName": "Header"
+  },
+  "options": {},
+  "attributes": {
+    "menuLinks": {
+      "type": "component",
+      "component": "components.link",
+      "repeatable": true,
+      "required": true
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "button": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}

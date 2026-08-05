@@ -1,0 +1,30 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 0.5vw 1vw;
+  border-radius: 5vw;
+  font-family: Roboto, sans-serif;
+  font-size: 1vw;
+  font-weight: 500;
+  color: var(--background);
+  background-color: var(--accent);
+  cursor: pointer;
+}
+
+@media (width >= 768px) and (width <= 1024px) {
+}
+
+@media (width <= 767px) {
+  .button {
+    width: fit-content;
+    padding: 1.5vw 4vw;
+    border-radius: 5vw;
+    font-size: 5vw;
+    font-weight: 500;
+    color: var(--background);
+    background-color: var(--accent);
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_components_links",
+  "info": {
+    "displayName": "link"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}

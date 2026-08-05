@@ -1,0 +1,51 @@
+.sidebar {
+  width: 40vw;
+  height: 100vh;
+  /* transition: all 0.3s ease-in; */
+  padding: 4vw;
+  position: fixed;
+  top: 0;
+  right: 0;
+  transform: translateX(100%);
+  z-index: 20;
+  color: var(--background);
+  background-color: var(--black);
+  transition: transform 0.5s ease-out;
+}
+
+.open {
+  transform: translateX(0);
+}
+
+.close {
+  width: 2.5vw;
+  height: 2.5vw;
+  margin-bottom: 2vw;
+  color: var(--background);
+  transition: transform 0.2s ease-out;
+  cursor: pointer;
+}
+
+.close:hover {
+  transform: rotate(-90deg);
+}
+
+@media (width >= 768px) and (width <= 1024px) {
+}
+
+@media (width <= 767px) {
+  .sidebar {
+    width: 100vw;
+    padding: 5vw;
+  }
+
+  .close {
+    width: 10vw;
+    height: 10vw;
+    margin-bottom: 5vw;
+  }
+
+  .close:hover {
+    transform: unset;
+  }
+}

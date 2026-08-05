@@ -1,0 +1,33 @@
+.langSwitcher {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5vw 0.7vw;
+  border-radius: 5vw;
+  font-size: 1vw;
+  font-weight: 500;
+  color: var(--background);
+  background-color: var(--accent);
+  transition: all 0.1s ease-in;
+  cursor: pointer;
+}
+
+.langSwitcher:hover {
+  background-color: var(--accentHover);
+  transition: all 0.1s ease-in;
+}
+
+@media (width >= 768px) and (width <= 1024px) {
+}
+
+@media (width <= 767px) {
+  .langSwitcher {
+    padding: 1.5vw 2vw;
+    border-radius: 15vw;
+    font-size: 4vw;
+  }
+
+  .langSwitcher:hover {
+    background-color: var(--accent);
+  }
+}

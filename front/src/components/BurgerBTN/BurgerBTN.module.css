@@ -1,0 +1,66 @@
+.bar {
+  display: none;
+  width: 28px;
+  height: 21px;
+  position: relative;
+  cursor: pointer;
+}
+
+.bar input {
+  display: none;
+  visibility: hidden;
+  appearance: none;
+  appearance: none;
+}
+
+.line {
+  display: inline-block;
+  width: 26px;
+  height: 3px;
+  border-radius: 100px;
+  position: absolute;
+  left: 0;
+  background: #f1faee;
+  transition: 0.3s ease;
+}
+
+.top {
+  top: 0;
+}
+
+.middle {
+  top: 9;
+}
+
+.bottom {
+  bottom: 0;
+}
+
+.bar input:checked ~ .top {
+  width: 27px;
+  left: 2px;
+  transform: rotate(45deg);
+  transform-origin: top left;
+}
+
+.bar input:checked ~ .bottom {
+  width: 27px;
+  bottom: -1px;
+  transform: rotate(-45deg);
+  box-shadow: 0 0 10px #495057;
+  transform-origin: top left;
+}
+
+.bar input:checked ~ .middle {
+  transform: translateX(-20px);
+  opacity: 0;
+}
+
+@media (width >= 768px) and (width <= 1024px) {
+}
+
+@media (width <= 767px) {
+  .bar {
+    display: block;
+  }
+}

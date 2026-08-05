@@ -1,0 +1,96 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100svh;
+  padding: 10vw;
+  text-align: center;
+  color: white;
+  background: var(--backgroundGradient);
+}
+
+.title {
+  font-family: MontserratBold, sans-serif;
+  font-size: 3.5vw;
+}
+
+.subtitle {
+  margin-bottom: 2vw;
+  font-family: MontserratBold, sans-serif;
+  font-size: 3vw;
+}
+
+.textTitle {
+  margin-bottom: 2vw;
+  font-family: MontserratMedium, sans-serif;
+  font-size: 2vw;
+  font-weight: 600;
+}
+
+.text {
+  font-family: MontserratRegular, sans-serif;
+  font-size: 2vw;
+}
+
+.text:last-of-type {
+  margin-bottom: 2vw;
+}
+
+@media (width >= 768px) and (width <= 1279px) {
+  .title {
+    margin-bottom: 3vw;
+    font-size: 7vw;
+  }
+
+  .subtitle {
+    margin-bottom: 3vw;
+    font-size: 5vw;
+  }
+
+  .text {
+    margin-bottom: 1vw;
+    font-size: 3vw;
+  }
+
+  .textTitle {
+    margin-bottom: 2vw;
+    font-size: 4vw;
+    font-weight: 600;
+  }
+
+  .text:last-of-type {
+    margin-bottom: 7vw;
+  }
+}
+
+@media (width <= 767px) {
+  .main {
+    padding: 5vw;
+  }
+
+  .title {
+    margin-bottom: 5vw;
+    font-size: 8vw;
+  }
+
+  .subtitle {
+    margin-bottom: 5vw;
+    font-size: 5vw;
+  }
+
+  .textTitle {
+    margin-bottom: 3vw;
+    font-size: 5vw;
+    font-weight: 600;
+  }
+
+  .text {
+    margin-bottom: 1vw;
+    font-size: 4vw;
+  }
+
+  .text:last-of-type {
+    margin-bottom: 7vw;
+  }
+}
