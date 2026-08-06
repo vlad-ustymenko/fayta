@@ -10,7 +10,6 @@
   display: none;
   visibility: hidden;
   appearance: none;
-  appearance: none;
 }
 
 .line {
@@ -29,7 +28,7 @@
 }
 
 .middle {
-  top: 9;
+  top: 9px;
 }
 
 .bottom {
