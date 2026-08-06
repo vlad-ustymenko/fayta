@@ -55,15 +55,6 @@
   justify-self: end;
 }
 
-.button {
-  transition: all 0.1s ease-in;
-}
-
-.button:hover {
-  background-color: var(--accentHover);
-  transition: all 0.1s ease-in;
-}
-
 .burger {
   display: none;
 }
@@ -102,10 +93,6 @@
 
   .button {
     order: 2;
-  }
-
-  .button:hover {
-    background-color: var(--accent);
   }
 
   .burger {

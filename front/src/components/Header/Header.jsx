@@ -7,9 +7,12 @@ import LangSwicher from "../LangSwitcher/LangSwitcher";
 import Button from "../Button/Button";
 import BurgerBTN from "../BurgerBTN/BurgerBTN";
 import { useSidebarContext } from "@/context/SidebarContext";
+import { useMenuContext } from "@/context/MenuContext";
 
 const Header = ({ data }) => {
   const { setOpenSidebar } = useSidebarContext();
+  const { activeMenu, setActiveMenu } = useMenuContext();
+
   return (
     <header className={styles.header}>
       <nav className={styles.menu}>
@@ -25,6 +28,7 @@ const Header = ({ data }) => {
           fill
           alt="logo"
           className={styles.image}
+          onClick={() => setActiveMenu(false)}
         />
       </a>
       <div className={styles.buttonsWrapper}>
@@ -36,7 +40,10 @@ const Header = ({ data }) => {
           onClick={() => setOpenSidebar(true)}
         ></Button>
       </div>
-      <BurgerBTN></BurgerBTN>
+      <BurgerBTN
+        checked={activeMenu}
+        onClick={() => setActiveMenu(!activeMenu)}
+      ></BurgerBTN>
     </header>
   );
 };
