@@ -10,7 +10,13 @@
   font-weight: 500;
   color: var(--background);
   background-color: var(--accent);
+  transition: all 0.1s ease-in;
   cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--accentHover);
+  transition: all 0.1s ease-in;
 }
 
 @media (width >= 768px) and (width <= 1024px) {
@@ -26,5 +32,9 @@
     color: var(--background);
     background-color: var(--accent);
     cursor: pointer;
+  }
+
+  .button:hover {
+    background-color: var(--accent);
   }
 }
