@@ -8,6 +8,7 @@
     "comment-empty-line-before": null,
     "block-no-empty": null,
     "selector-pseudo-class-no-unknown": null,
+    "property-no-vendor-prefix": null,
     "order/properties-order": [
       [
         {
