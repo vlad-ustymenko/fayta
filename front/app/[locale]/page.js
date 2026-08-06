@@ -1,8 +1,9 @@
 import Image from "next/image";
 import qs from "qs";
-import HomeMainScreen from "@/src/sections/HomeMainScreen/HomeMainScreen";
+import MainScreen from "@/src/sections/Home/MainScreen/MainScreen";
 import Header from "@/src/components/Header/Header";
 import Sidebar from "@/src/components/Sidebar/Sidebar";
+import Menu from "@/src/components/Menu/Menu";
 import styles from "./page.module.css";
 
 async function getData(path, locale) {
@@ -14,6 +15,7 @@ async function getData(path, locale) {
       populate: {
         blocks: {
           on: {
+            "blocks.menu": { populate: "*" },
             "blocks.sidebar": { populate: "*" },
             "blocks.header": {
               populate: {
@@ -60,7 +62,7 @@ async function getData(path, locale) {
 function blockRendered(block, faqCategories, projectCategories) {
   switch (block.__component) {
     case "blocks.home-main-screen":
-      return <HomeMainScreen key={block.id} data={block} />;
+      return <MainScreen key={block.id} data={block} />;
     // case "blocks.about":
     //   return <About key={block.id} data={block} />;
     // case "blocks.developer":
@@ -89,6 +91,9 @@ export default async function Home({ params }) {
     (block) => block.__component === "blocks.sidebar",
   );
 
+  const menu = strapiData.blocks.find(
+    (block) => block.__component === "blocks.menu",
+  );
   if (!strapiData) {
     notFound();
   }
@@ -104,6 +109,7 @@ export default async function Home({ params }) {
         ))}
       </main>
       <Sidebar data={sidebar}></Sidebar>
+      <Menu data={menu.menuLinks} />
     </>
   );
 }
