@@ -1,0 +1,48 @@
+.menu {
+  width: 100%;
+  height: 100vh;
+  padding: 40vw 6vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translateX(100%);
+  z-index: 5;
+  color: var(--background);
+  background-color: var(--black);
+  opacity: 100;
+  transition: transform 0.3s ease-in;
+}
+
+.open {
+  transform: translateX(0);
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2vw;
+  font-family: Roboto, sans-serif;
+  font-size: 8vw;
+  font-weight: 500;
+}
+
+.link {
+  margin-bottom: 5vw;
+}
+
+.imageContainer {
+  width: 100%;
+  height: 50vh;
+  position: absolute;
+  bottom: 0;
+  left: 30vw;
+  z-index: -1;
+  opacity: 0.2;
+  transition: opacity 0.3s ease-in;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
