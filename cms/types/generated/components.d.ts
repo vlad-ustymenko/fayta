@@ -25,6 +25,16 @@ export interface BlocksHomeMainScreen extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksMenu extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_menus';
+  info: {
+    displayName: 'Menu';
+  };
+  attributes: {
+    menuLinks: Schema.Attribute.Component<'components.link', true>;
+  };
+}
+
 export interface BlocksSidebar extends Struct.ComponentSchema {
   collectionName: 'components_blocks_sidebars';
   info: {
@@ -33,7 +43,13 @@ export interface BlocksSidebar extends Struct.ComponentSchema {
   attributes: {
     button: Schema.Attribute.String & Schema.Attribute.Required;
     confidentialText: Schema.Attribute.RichText & Schema.Attribute.Required;
-    form: Schema.Attribute.Component<'components.form-input', true>;
+    form: Schema.Attribute.Component<'components.form-input', true> &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 2;
+        },
+        number
+      >;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
@@ -68,6 +84,7 @@ declare module '@strapi/strapi' {
     export interface ComponentSchemas {
       'blocks.header': BlocksHeader;
       'blocks.home-main-screen': BlocksHomeMainScreen;
+      'blocks.menu': BlocksMenu;
       'blocks.sidebar': BlocksSidebar;
       'components.form-input': ComponentsFormInput;
       'components.link': ComponentsLink;

@@ -25,7 +25,8 @@
       "components": [
         "blocks.header",
         "blocks.home-main-screen",
-        "blocks.sidebar"
+        "blocks.sidebar",
+        "blocks.menu"
       ]
     }
   }

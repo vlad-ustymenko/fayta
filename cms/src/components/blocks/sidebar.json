@@ -12,7 +12,8 @@
     "form": {
       "type": "component",
       "component": "components.form-input",
-      "repeatable": true
+      "repeatable": true,
+      "max": 2
     },
     "button": {
       "type": "string",
