@@ -1,5 +1,23 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface BlocksConcept extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_concepts';
+  info: {
+    displayName: 'Concept';
+  };
+  attributes: {
+    blockTitle: Schema.Attribute.Component<'components.block-title', false> &
+      Schema.Attribute.Required;
+    button: Schema.Attribute.Component<'components.button', false>;
+    description: Schema.Attribute.RichText & Schema.Attribute.Required;
+    maskedImage: Schema.Attribute.Component<'components.masked-image', false> &
+      Schema.Attribute.Required;
+    stats: Schema.Attribute.Component<'components.stats', true> &
+      Schema.Attribute.Required;
+    title: Schema.Attribute.RichText & Schema.Attribute.Required;
+  };
+}
+
 export interface BlocksHeader extends Struct.ComponentSchema {
   collectionName: 'components_blocks_headers';
   info: {
@@ -54,6 +72,29 @@ export interface BlocksSidebar extends Struct.ComponentSchema {
   };
 }
 
+export interface ComponentsBlockTitle extends Struct.ComponentSchema {
+  collectionName: 'components_components_block_titles';
+  info: {
+    displayName: 'blockTitle';
+  };
+  attributes: {
+    image: Schema.Attribute.Media<'images'>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface ComponentsButton extends Struct.ComponentSchema {
+  collectionName: 'components_components_buttons';
+  info: {
+    displayName: 'button';
+  };
+  attributes: {
+    href: Schema.Attribute.String;
+    icon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface ComponentsFormInput extends Struct.ComponentSchema {
   collectionName: 'components_components_form_inputs';
   info: {
@@ -79,15 +120,42 @@ export interface ComponentsLink extends Struct.ComponentSchema {
   };
 }
 
+export interface ComponentsMaskedImage extends Struct.ComponentSchema {
+  collectionName: 'components_components_masked_images';
+  info: {
+    displayName: 'maskedImage';
+  };
+  attributes: {
+    backgroundImage: Schema.Attribute.Media<'images' | 'videos'>;
+    maskImage: Schema.Attribute.Media<'images'>;
+  };
+}
+
+export interface ComponentsStats extends Struct.ComponentSchema {
+  collectionName: 'components_components_stats';
+  info: {
+    displayName: 'stats';
+  };
+  attributes: {
+    bigText: Schema.Attribute.String & Schema.Attribute.Required;
+    smallText: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export namespace Public {
     export interface ComponentSchemas {
+      'blocks.concept': BlocksConcept;
       'blocks.header': BlocksHeader;
       'blocks.home-main-screen': BlocksHomeMainScreen;
       'blocks.menu': BlocksMenu;
       'blocks.sidebar': BlocksSidebar;
+      'components.block-title': ComponentsBlockTitle;
+      'components.button': ComponentsButton;
       'components.form-input': ComponentsFormInput;
       'components.link': ComponentsLink;
+      'components.masked-image': ComponentsMaskedImage;
+      'components.stats': ComponentsStats;
     }
   }
 }

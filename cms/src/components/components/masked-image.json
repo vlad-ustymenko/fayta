@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_components_masked_images",
+  "info": {
+    "displayName": "maskedImage"
+  },
+  "options": {},
+  "attributes": {
+    "maskImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "backgroundImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "videos"
+      ]
+    }
+  },
+  "config": {}
+}

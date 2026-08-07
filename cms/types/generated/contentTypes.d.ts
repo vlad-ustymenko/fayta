@@ -465,6 +465,7 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
         'blocks.home-main-screen',
         'blocks.sidebar',
         'blocks.menu',
+        'blocks.concept',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{

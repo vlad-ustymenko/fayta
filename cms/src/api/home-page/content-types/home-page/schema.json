@@ -26,7 +26,8 @@
         "blocks.header",
         "blocks.home-main-screen",
         "blocks.sidebar",
-        "blocks.menu"
+        "blocks.menu",
+        "blocks.concept"
       ]
     }
   }

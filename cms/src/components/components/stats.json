@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_components_stats",
+  "info": {
+    "displayName": "stats"
+  },
+  "options": {},
+  "attributes": {
+    "bigText": {
+      "type": "string",
+      "required": true
+    },
+    "smallText": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}

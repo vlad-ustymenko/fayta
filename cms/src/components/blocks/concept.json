@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_blocks_concepts",
+  "info": {
+    "displayName": "Concept"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "richtext",
+      "required": true
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "button": {
+      "type": "component",
+      "component": "components.button",
+      "repeatable": false
+    },
+    "stats": {
+      "type": "component",
+      "component": "components.stats",
+      "repeatable": true,
+      "required": true
+    },
+    "maskedImage": {
+      "type": "component",
+      "component": "components.masked-image",
+      "repeatable": false,
+      "required": true
+    },
+    "blockTitle": {
+      "type": "component",
+      "component": "components.block-title",
+      "repeatable": false,
+      "required": true
+    }
+  },
+  "config": {}
+}

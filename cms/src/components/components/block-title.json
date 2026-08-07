@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_components_block_titles",
+  "info": {
+    "displayName": "blockTitle"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  },
+  "config": {}
+}
