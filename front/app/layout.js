@@ -23,7 +23,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html className={`${roboto.variable} ${sofia.variable}`}>
-      <head></head>
       <MenuProvider>
         <SidebarProvider>
           {/* <UTMCookieSaver /> */}
