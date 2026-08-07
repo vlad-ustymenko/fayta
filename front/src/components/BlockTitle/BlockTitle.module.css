@@ -1,0 +1,34 @@
+.blokTitleWrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+}
+
+.blokTitle {
+  text-align: center;
+  font-family: var(--font-roboto), sans-serif;
+  font-size: 1.3vw;
+  color: var(--black);
+}
+
+.iconWrapper {
+  width: 2vw;
+  height: 2vw;
+  position: relative;
+}
+
+.icon {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: contain;
+}
+
+.line {
+  width: 100%;
+  height: 0.1vw;
+  background-color: var(--black);
+}
