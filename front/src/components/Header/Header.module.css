@@ -21,25 +21,25 @@
 }
 
 .link {
-  transition: all 0.1s ease-in;
+  transition: all 0.2s ease-out;
 }
 
 .link:hover {
   transform: scale(1.02);
   color: var(--accent);
-  transition: all 0.1s ease-in;
+  transition: all 0.2s ease-out;
 }
 
 .logo {
   width: 4vw;
   height: 3vw;
   position: relative;
-  transition: all 0.1s ease-in;
+  transition: all 0.2s ease-out;
 }
 
 .logo:hover {
   transform: scale(1.02);
-  transition: all 0.1s ease-in;
+  transition: all 0.2s ease-out;
 }
 
 .image {
