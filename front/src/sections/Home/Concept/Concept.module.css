@@ -1,0 +1,45 @@
+.concept {
+  width: 100%;
+  position: relative;
+  padding: 4vw 7.4vw;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2vw;
+  margin-bottom: 8vw;
+}
+
+.title {
+  font-family: var(--font-roboto), sans-serif;
+  font-size: 3.3vw;
+  line-height: 1;
+  margin-top: 2vw;
+  font-weight: 700;
+  margin-bottom: 3vw;
+}
+
+.description {
+  font-family: var(--font-roboto), sans-serif;
+  font-size: 1.1vw;
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: 1vw;
+}
+
+.strong {
+  font-family: var(--font-sofia), sans-serif;
+  color: var(--secondary);
+}
+
+.maskedMedia {
+  width: 160%;
+  height: 150%;
+}
+
+.button {
+  margin-top: 6vw;
+
+  font-size: 1.5vw;
+}
