@@ -1,14 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import { AiFillInstagram } from "react-icons/ai";
-import { IoLogoYoutube } from "react-icons/io";
 import { BsFacebook } from "react-icons/bs";
-import { AiFillFacebook } from "react-icons/ai";
 import { AiFillYoutube } from "react-icons/ai";
-import { BsYoutube } from "react-icons/bs";
-import { BsInstagram } from "react-icons/bs";
-import { FaFacebookSquare } from "react-icons/fa";
-import { BiLogoInstagramAlt } from "react-icons/bi";
+
 import styles from "./MainScreen.module.css";
 
 const MainScreen = ({ data }) => {
