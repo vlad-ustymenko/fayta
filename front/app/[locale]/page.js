@@ -4,6 +4,8 @@ import MainScreen from "@/src/sections/Home/MainScreen/MainScreen";
 import Header from "@/src/components/Header/Header";
 import Sidebar from "@/src/components/Sidebar/Sidebar";
 import Menu from "@/src/components/Menu/Menu";
+import { notFound } from "next/navigation";
+import Concept from "@/src/sections/Home/Concept/Concept";
 import styles from "./page.module.css";
 
 async function getData(path, locale) {
@@ -35,6 +37,31 @@ async function getData(path, locale) {
                 },
               },
             },
+            "blocks.concept": {
+              populate: {
+                blockTitle: { populate: { image: { fields: ["url"] } } },
+                button: {
+                  populate: {
+                    icon: {
+                      fields: ["url"],
+                    },
+                  },
+                },
+                stats: {
+                  populate: "*",
+                },
+                maskedImage: {
+                  populate: {
+                    maskImage: {
+                      fields: ["url"],
+                    },
+                    backgroundImage: {
+                      fields: ["url"],
+                    },
+                  },
+                },
+              },
+            },
           },
         },
       },
@@ -63,8 +90,8 @@ function blockRendered(block, faqCategories, projectCategories) {
   switch (block.__component) {
     case "blocks.home-main-screen":
       return <MainScreen key={block.id} data={block} />;
-    // case "blocks.about":
-    //   return <About key={block.id} data={block} />;
+    case "blocks.concept":
+      return <Concept key={block.id} data={block} />;
     // case "blocks.developer":
     //   return <Developer key={block.id} data={block} />;
     // case "blocks.advantages":
@@ -83,6 +110,11 @@ function blockRendered(block, faqCategories, projectCategories) {
 export default async function Home({ params }) {
   const { locale } = await params;
   const strapiData = await getData(process.env.HOME_URL, locale);
+
+  if (!strapiData) {
+    notFound();
+  }
+
   const header = strapiData.blocks.find(
     (block) => block.__component === "blocks.header",
   );
@@ -94,15 +126,12 @@ export default async function Home({ params }) {
   const menu = strapiData.blocks.find(
     (block) => block.__component === "blocks.menu",
   );
-  if (!strapiData) {
-    notFound();
-  }
 
   const { blocks } = strapiData;
   return (
     <>
       <Header data={header}></Header>
-      <main>
+      <main className={styles.main}>
         {blocks.map((block) => blockRendered(block))}
         {header.menuLinks.map((item) => (
           <div key={item.id}>{item.title}</div>
