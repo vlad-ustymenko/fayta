@@ -20,9 +20,11 @@ export default function MaskedMedia({
   className = "",
 }) {
   const maskStyle = {
-    WebkitMaskImage: `url(${logoSrc})`,
-    maskImage: `url(${logoSrc})`,
+    WebkitMaskImage: `url(process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${logoSrc})`,
+    maskImage: `url(${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${logoSrc})`,
   };
+
+  console.log(src);
 
   return (
     <div className={`${styles.container} ${className}`}>
@@ -30,7 +32,7 @@ export default function MaskedMedia({
         <video
           className={styles.maskedMedia}
           style={maskStyle}
-          src={src}
+          src={`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${src}`}
           // poster={poster}
           autoPlay
           muted
@@ -39,12 +41,12 @@ export default function MaskedMedia({
         />
       ) : (
         <Image
-          src={src}
+          src={`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${src}`}
           alt={alt}
           fill
+          sizes="(max-width: 768px) 100vw, (min-width: 768px) and (max-width: 1023px) 100vw, 100vw"
           className={styles.maskedMedia}
           style={maskStyle}
-          unoptimized={src.startsWith("http")}
         />
       )}
     </div>
