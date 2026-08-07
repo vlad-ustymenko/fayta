@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   width: fit-content;
-  padding: 0.5vw 1vw;
+  padding: 0.5vw 1.5vw;
   border-radius: 5vw;
   font-family: Roboto, sans-serif;
   font-size: 1vw;
@@ -12,6 +12,19 @@
   background-color: var(--accent);
   transition: all 0.1s ease-in;
   cursor: pointer;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2vw;
+}
+
+.icon {
+  width: 2vw;
+  height: 2vw;
+  object-fit: contain;
 }
 
 .button:hover {
