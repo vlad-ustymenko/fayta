@@ -20,7 +20,7 @@ export default function MaskedMedia({
   className = "",
 }) {
   const maskStyle = {
-    WebkitMaskImage: `url(process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${logoSrc})`,
+    WebkitMaskImage: `url(${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${logoSrc})`,
     maskImage: `url(${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${logoSrc})`,
   };
 
