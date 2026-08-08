@@ -8,7 +8,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "http",
-        hostname: "localhost", // заміни на реальний домен з STRAPI_BASE_URL
+        hostname: "192.168.31.239", // заміни на реальний домен з STRAPI_BASE_URL
         port: "1337",
         pathname: "/uploads/**/*",
       },
