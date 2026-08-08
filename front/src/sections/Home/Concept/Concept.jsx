@@ -11,6 +11,7 @@ import ReactMarkdown from "react-markdown";
 
 const Concept = ({ data }) => {
   const { setOpenSidebar } = useSidebarContext();
+
   return (
     <div className={styles.concept}>
       <BlockTitle
@@ -46,6 +47,16 @@ const Concept = ({ data }) => {
             className={styles.button}
             onClick={() => setOpenSidebar(true)}
           ></Button>
+          <div className={styles.statsWrapper}>
+            {data.stats.map((item) => {
+              return (
+                <div className={styles.statWrapper} key={item.id}>
+                  <p className={styles.bigText}>{item.bigText}</p>
+                  <p className={styles.smallText}>{item.smallText}</p>
+                </div>
+              );
+            })}
+          </div>
         </div>
         <MaskedMedia
           src={data.maskedImage.backgroundImage.url}
