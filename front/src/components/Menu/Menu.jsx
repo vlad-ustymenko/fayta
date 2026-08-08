@@ -6,18 +6,18 @@ import {
 } from "body-scroll-lock";
 import React from "react";
 import Image from "next/image";
-import MaskedMedia from "../MaskedMedia/MaskedMedia";
 import { useMenuContext } from "@/context/MenuContext";
+import { useLenis } from "@/context/LenisContext";
 import { useRef, useState, useEffect } from "react";
 import styles from "./Menu.module.css";
 
 const Menu = ({ data }) => {
   const { activeMenu, setActiveMenu } = useMenuContext();
   const [isMounted, setIsMounted] = useState(activeMenu);
+  // ДОДАНО: спільний інстанс Lenis з контексту
+  const lenis = useLenis();
 
   const menuRef = useRef(null);
-
-  console.log(data);
 
   useEffect(() => {
     if (activeMenu) {
@@ -31,6 +31,8 @@ const Menu = ({ data }) => {
         if (target) {
           disableBodyScroll(target);
         }
+        // ДОДАНО: зупиняємо Lenis - той самий фікс, що й у Sidebar
+        lenis?.stop();
       }, 100);
 
       return () => clearTimeout(timer);
@@ -39,6 +41,7 @@ const Menu = ({ data }) => {
 
       menuRef.current?.classList.remove(styles.open);
       if (target) enableBodyScroll(target);
+      lenis?.start();
 
       const timer = setTimeout(() => {
         setIsMounted(false);
@@ -46,12 +49,15 @@ const Menu = ({ data }) => {
 
       return () => clearTimeout(timer);
     }
-  }, [activeMenu]);
+  }, [activeMenu, lenis]);
 
   useEffect(() => {
     return () => {
       clearAllBodyScrollLocks();
+      // ДОДАНО: підстраховка на випадок розмонтування, поки меню відкрите
+      lenis?.start();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!isMounted) return null;
@@ -70,14 +76,7 @@ const Menu = ({ data }) => {
           </a>
         ))}
       </nav>
-      <MaskedMedia
-        src="/preloader2.mp4"
-        type="video" // "image" або "video", теж з CMS
-        logoSrc="/logo.svg"
-        width={400}
-        height={400}
-        alt="ew"
-      ></MaskedMedia>
+
       <div className={styles.imageContainer}>
         <Image src="/1.png" fill alt="ew" className={styles.image}></Image>
       </div>
