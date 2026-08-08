@@ -1,0 +1,14 @@
+.title {
+  margin-top: 5vw;
+  margin-bottom: 3vw;
+  margin-left: 7vw;
+  font-family: var(--font-roboto), sans-serif;
+  font-size: var(--titleFontSize);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.strong {
+  font-family: var(--font-sofia), sans-serif;
+  color: var(--secondary);
+}
