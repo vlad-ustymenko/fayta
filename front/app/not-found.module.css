@@ -6,30 +6,30 @@
   height: 100svh;
   padding: 10vw;
   text-align: center;
-  color: white;
-  background: var(--backgroundGradient);
+  color: var(--black);
+  background: var(--background);
 }
 
 .title {
-  font-family: MontserratBold, sans-serif;
+  font-family: var(--font-sofia), sans-serif;
   font-size: 3.5vw;
 }
 
 .subtitle {
   margin-bottom: 2vw;
-  font-family: MontserratBold, sans-serif;
+  font-family: var(--font-sofia), sans-serif;
   font-size: 3vw;
 }
 
 .textTitle {
   margin-bottom: 2vw;
-  font-family: MontserratMedium, sans-serif;
+  font-family: var(--font-sofia), sans-serif;
   font-size: 2vw;
   font-weight: 600;
 }
 
 .text {
-  font-family: MontserratRegular, sans-serif;
+  font-family: var(--font-roboto), sans-serif;
   font-size: 2vw;
 }
 
