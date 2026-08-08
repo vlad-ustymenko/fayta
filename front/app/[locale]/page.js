@@ -5,7 +5,9 @@ import Header from "@/src/components/Header/Header";
 import Sidebar from "@/src/components/Sidebar/Sidebar";
 import Menu from "@/src/components/Menu/Menu";
 import { notFound } from "next/navigation";
+import ImageSlider from "@/src/components/ImageSlider/ImageSlider";
 import Concept from "@/src/sections/Home/Concept/Concept";
+import Galery from "@/src/sections/Home/Galery/Galery";
 import styles from "./page.module.css";
 
 async function getData(path, locale) {
@@ -62,6 +64,13 @@ async function getData(path, locale) {
                 },
               },
             },
+            "blocks.galery": {
+              populate: {
+                images: {
+                  fields: ["url"],
+                },
+              },
+            },
           },
         },
       },
@@ -92,8 +101,8 @@ function blockRendered(block, faqCategories, projectCategories) {
       return <MainScreen key={block.id} data={block} />;
     case "blocks.concept":
       return <Concept key={block.id} data={block} />;
-    // case "blocks.developer":
-    //   return <Developer key={block.id} data={block} />;
+    case "blocks.galery":
+      return <Galery key={block.id} data={block} />;
     // case "blocks.advantages":
     //   return <Advantages key={block.id} data={block} />;
     // case "blocks.faq":
@@ -106,6 +115,17 @@ function blockRendered(block, faqCategories, projectCategories) {
     //   return <Footer key={block.id} data={block} />;
   }
 }
+
+const slides = [
+  {
+    title:
+      "йцуакцуепйцукепцуіпмявчапиівка йцуакцуепйцукепцуіпмявчапиівка йцуакцуепйцукепцуіпмявчапиівка",
+    description: "wefwfwe",
+    image: "/image.png",
+  },
+  { title: "werwrwerqwerqwer", description: "wefwfwe", image: "/image.png" },
+  { title: "werwrwerqwerqwer", description: "wefwfwe", image: "/image.png" },
+];
 
 export default async function Home({ params }) {
   const { locale } = await params;
@@ -133,6 +153,7 @@ export default async function Home({ params }) {
       <Header data={header}></Header>
       <main className={styles.main}>
         {blocks.map((block) => blockRendered(block))}
+        {/* <ImageSlider slides={slides}></ImageSlider> */}
         {header.menuLinks.map((item) => (
           <div key={item.id}>{item.title}</div>
         ))}
