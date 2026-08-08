@@ -5,13 +5,20 @@
   width: fit-content;
   padding: 0.5vw 1.5vw;
   border-radius: 5vw;
-  font-family: Roboto, sans-serif;
-  font-size: 1vw;
-  font-weight: 500;
   color: var(--background);
   background-color: var(--accent);
   transition: all 0.1s ease-in;
   cursor: pointer;
+}
+
+.title {
+  font-family: Roboto, sans-serif;
+  font-size: 1.5vw;
+  font-weight: 500;
+}
+
+.smallTitle {
+  font-size: 1vw;
 }
 
 .wrapper {
@@ -27,6 +34,9 @@
   object-fit: contain;
 }
 
+.smallIcon {
+}
+
 .button:hover {
   background-color: var(--accentHover);
   transition: all 0.1s ease-in;
@@ -38,16 +48,31 @@
 @media (width <= 767px) {
   .button {
     width: fit-content;
-    padding: 1.5vw 4vw;
+    padding: 2vw 6vw;
     border-radius: 5vw;
-    font-size: 5vw;
-    font-weight: 500;
     color: var(--background);
     background-color: var(--accent);
     cursor: pointer;
   }
 
+  .title {
+    font-size: 4vw;
+  }
+
+  .smallTitle {
+    font-size: 4vw;
+  }
+
+  .wrapper {
+    gap: 4vw;
+  }
+
   .button:hover {
     background-color: var(--accent);
+  }
+
+  .icon {
+    width: 7vw;
+    height: 7vw;
   }
 }

@@ -7,19 +7,15 @@ const Button = ({
   title,
   link,
   href,
-  icon = false,
   small,
+  icon = false,
   logo,
   className,
   onClick,
 }) => {
   if (link) {
     return (
-      <a
-        href={href}
-        className={`${styles.button} ${className}`}
-        onClick={onClick}
-      >
+      <a href={href} className={`${styles.button} ${className}`}>
         {title}
       </a>
     );
@@ -32,14 +28,16 @@ const Button = ({
       onClick={onClick}
     >
       <div className={styles.wrapper}>
-        <p className={styles.title}>{title}</p>
+        <p className={`${styles.title} ${small && styles.smallTitle}`}>
+          {title}
+        </p>
         {icon && (
           <Image
             src={`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${icon}`}
             alt="icon"
             width={53}
             height={38}
-            className={styles.icon}
+            className={`${styles.icon} ${small && styles.smallIcon}`}
           />
         )}
       </div>

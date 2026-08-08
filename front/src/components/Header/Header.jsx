@@ -32,12 +32,12 @@ const Header = ({ data }) => {
         />
       </a>
       <div className={styles.buttonsWrapper}>
-        <LangSwicher />
+        <LangSwicher className={styles.langSwitcher} />
         <Button
           className={styles.button}
           title={data.button}
-          link
           onClick={() => setOpenSidebar(true)}
+          small
         ></Button>
       </div>
       <BurgerBTN
