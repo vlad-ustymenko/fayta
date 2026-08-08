@@ -1,6 +1,7 @@
 import { Roboto, Sofia_Sans } from "next/font/google";
 import { SidebarProvider } from "@/context/SidebarContext";
 import { MenuProvider } from "@/context/MenuContext";
+import { LenisProvider } from "@/context/LenisContext";
 import "./globals.css";
 
 const roboto = Roboto({
@@ -23,13 +24,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html className={`${roboto.variable} ${sofia.variable}`}>
-      <MenuProvider>
-        <SidebarProvider>
-          {/* <UTMCookieSaver /> */}
-          {children}
-          {/* <Modal /> */}
-        </SidebarProvider>
-      </MenuProvider>
+      <LenisProvider>
+        <MenuProvider>
+          <SidebarProvider>
+            {/* <UTMCookieSaver /> */}
+            {children}
+            {/* <Modal /> */}
+          </SidebarProvider>
+        </MenuProvider>
+      </LenisProvider>
     </html>
   );
 }
