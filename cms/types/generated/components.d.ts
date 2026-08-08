@@ -10,7 +10,6 @@ export interface BlocksConcept extends Struct.ComponentSchema {
       Schema.Attribute.Required;
     button: Schema.Attribute.Component<'components.button', false>;
     description: Schema.Attribute.RichText & Schema.Attribute.Required;
-    images: Schema.Attribute.Media<'images', true>;
     maskedImage: Schema.Attribute.Component<'components.masked-image', false> &
       Schema.Attribute.Required;
     stats: Schema.Attribute.Component<'components.stats', true> &
