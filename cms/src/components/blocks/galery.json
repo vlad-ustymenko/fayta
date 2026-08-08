@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_blocks_galeries",
+  "info": {
+    "displayName": "Galery"
+  },
+  "options": {},
+  "attributes": {
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "title": {
+      "type": "richtext",
+      "required": true
+    }
+  },
+  "config": {}
+}

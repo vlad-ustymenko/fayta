@@ -27,7 +27,8 @@
         "blocks.home-main-screen",
         "blocks.sidebar",
         "blocks.menu",
-        "blocks.concept"
+        "blocks.concept",
+        "blocks.galery"
       ]
     }
   }

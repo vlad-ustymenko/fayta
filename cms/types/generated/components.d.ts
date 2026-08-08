@@ -10,10 +10,22 @@ export interface BlocksConcept extends Struct.ComponentSchema {
       Schema.Attribute.Required;
     button: Schema.Attribute.Component<'components.button', false>;
     description: Schema.Attribute.RichText & Schema.Attribute.Required;
+    images: Schema.Attribute.Media<'images', true>;
     maskedImage: Schema.Attribute.Component<'components.masked-image', false> &
       Schema.Attribute.Required;
     stats: Schema.Attribute.Component<'components.stats', true> &
       Schema.Attribute.Required;
+    title: Schema.Attribute.RichText & Schema.Attribute.Required;
+  };
+}
+
+export interface BlocksGalery extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_galeries';
+  info: {
+    displayName: 'Galery';
+  };
+  attributes: {
+    images: Schema.Attribute.Media<'images', true> & Schema.Attribute.Required;
     title: Schema.Attribute.RichText & Schema.Attribute.Required;
   };
 }
@@ -109,6 +121,18 @@ export interface ComponentsFormInput extends Struct.ComponentSchema {
   };
 }
 
+export interface ComponentsImageSlider extends Struct.ComponentSchema {
+  collectionName: 'components_components_image_sliders';
+  info: {
+    displayName: 'imageSlider';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    images: Schema.Attribute.Media<'images', true> & Schema.Attribute.Required;
+    title: Schema.Attribute.Text;
+  };
+}
+
 export interface ComponentsLink extends Struct.ComponentSchema {
   collectionName: 'components_components_links';
   info: {
@@ -146,6 +170,7 @@ declare module '@strapi/strapi' {
   export namespace Public {
     export interface ComponentSchemas {
       'blocks.concept': BlocksConcept;
+      'blocks.galery': BlocksGalery;
       'blocks.header': BlocksHeader;
       'blocks.home-main-screen': BlocksHomeMainScreen;
       'blocks.menu': BlocksMenu;
@@ -153,6 +178,7 @@ declare module '@strapi/strapi' {
       'components.block-title': ComponentsBlockTitle;
       'components.button': ComponentsButton;
       'components.form-input': ComponentsFormInput;
+      'components.image-slider': ComponentsImageSlider;
       'components.link': ComponentsLink;
       'components.masked-image': ComponentsMaskedImage;
       'components.stats': ComponentsStats;

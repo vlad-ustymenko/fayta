@@ -35,6 +35,13 @@
       "component": "components.block-title",
       "repeatable": false,
       "required": true
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images"
+      ]
     }
   },
   "config": {}
