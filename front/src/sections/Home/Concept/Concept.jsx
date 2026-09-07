@@ -13,7 +13,7 @@ const Concept = ({ data }) => {
   const { setOpenSidebar } = useSidebarContext();
 
   return (
-    <div className={styles.concept}>
+    <div className={styles.concept} id={data.blockID}>
       <BlockTitle
         title={data.blockTitle.title}
         image={data.blockTitle.image.url}

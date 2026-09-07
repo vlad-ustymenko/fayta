@@ -467,6 +467,11 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
         'blocks.menu',
         'blocks.concept',
         'blocks.galery',
+        'blocks.investment',
+        'blocks.footer',
+        'blocks.feedback',
+        'blocks.genplan',
+        'blocks.infrastructure',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{

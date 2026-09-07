@@ -1,0 +1,225 @@
+import Image from "next/image";
+import qs from "qs";
+import MainScreen from "@/src/sections/Home/MainScreen/MainScreen";
+import Header from "@/src/components/Header/Header";
+import Sidebar from "@/src/components/Sidebar/Sidebar";
+import Menu from "@/src/components/Menu/Menu";
+import { notFound } from "next/navigation";
+import ImageSlider from "@/src/components/ImageSlider/ImageSlider";
+import Concept from "@/src/sections/Home/Concept/Concept";
+import Galery from "@/src/sections/Home/Galery/Galery";
+import Investment from "@/src/sections/Home/Investment/Investment";
+import Footer from "@/src/components/Footer/Footer";
+import Feedback from "@/src/sections/Home/Feedback/Feedback";
+import Genplan from "@/src/sections/Home/Genplan/Genplan";
+import Infrastructure from "@/src/sections/Home/Infrastructure/Infrastructure";
+import Apartments from "@/src/sections/Home/Apartments/Apartments";
+import styles from "./page.module.css";
+
+async function getData(path) {
+  const baseUrl = process.env.STRAPI_BASE_URL;
+
+  const query = qs.stringify(
+    {
+      locale: "uk",
+      populate: {
+        blocks: {
+          on: {
+            "blocks.menu": { populate: "*" },
+            "blocks.sidebar": { populate: "*" },
+            "blocks.header": {
+              populate: {
+                menuLinks: {
+                  populate: "*",
+                },
+                logo: {
+                  fields: ["url"],
+                },
+              },
+            },
+            "blocks.home-main-screen": {
+              fields: ["title", "subTitle"],
+
+              populate: {
+                socialLinks: {
+                  populate: "*",
+                },
+                image: {
+                  fields: ["url"],
+                },
+              },
+            },
+            "blocks.concept": {
+              populate: {
+                blockTitle: { populate: { image: { fields: ["url"] } } },
+                button: {
+                  populate: {
+                    icon: {
+                      fields: ["url"],
+                    },
+                  },
+                },
+                stats: {
+                  populate: "*",
+                },
+                maskedImage: {
+                  populate: {
+                    maskImage: {
+                      fields: ["url"],
+                    },
+                    backgroundImage: {
+                      fields: ["url"],
+                    },
+                  },
+                },
+              },
+            },
+            "blocks.galery": {
+              populate: {
+                images: {
+                  fields: ["url"],
+                },
+              },
+            },
+            "blocks.investment": {
+              populate: {
+                blockTitle: { populate: { image: { fields: ["url"] } } },
+                investmentList: {
+                  populate: {
+                    leftBlockIcon: {
+                      fields: ["url"],
+                    },
+                  },
+                },
+              },
+            },
+            "blocks.genplan": {
+              populate: {
+                image: {
+                  fields: ["url"],
+                },
+              },
+            },
+            "blocks.feedback": {
+              populate: "*",
+            },
+            "blocks.infrastructure": {
+              populate: {
+                blockTitle: { populate: { image: { fields: ["url"] } } },
+                mapCategoris: {
+                  populate: {
+                    places: true,
+                  },
+                },
+                homePlace: {
+                  populate: "*",
+                },
+              },
+            },
+            "blocks.footer": {
+              populate: {
+                leftBlock: {
+                  populate: "*",
+                },
+                rightBlock: {
+                  populate: "*",
+                },
+                icon: {
+                  fields: ["url"],
+                },
+                socialLinks: {
+                  populate: "*",
+                },
+                policy: {
+                  populate: "*",
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+    { encodeValuesOnly: true },
+  );
+
+  const url = new URL(path, baseUrl);
+
+  url.search = query;
+
+  try {
+    const res = await fetch(url.href, { cache: "no-store" });
+
+    if (!res.ok) {
+      console.error(`Strapi error: ${res.status} ${res.statusText}`);
+      return;
+    }
+
+    const data = await res.json();
+    return data.data;
+  } catch {}
+}
+
+function blockRendered(block, faqCategories, projectCategories) {
+  switch (block.__component) {
+    case "blocks.home-main-screen":
+      return <MainScreen key={block.id} data={block} />;
+    case "blocks.concept":
+      return <Concept key={block.id} data={block} />;
+    case "blocks.galery":
+      return <Galery key={block.id} data={block} />;
+    case "blocks.investment":
+      return <Investment key={block.id} data={block} />;
+    case "blocks.genplan":
+      return <Genplan key={block.id} data={block} />;
+    case "blocks.feedback":
+      return <Feedback key={block.id} data={block} />;
+    case "blocks.infrastructure":
+      return <Infrastructure key={block.id} data={block} />;
+    // case "blocks.advantages":
+    //   return <Advantages key={block.id} data={block} />;
+    // case "blocks.faq":
+    //   return <FAQ key={block.id} data={block} categories={faqCategories} />;
+    // case "blocks.news":
+    //   return <News key={block.id} data={block} />;
+    // case "blocks.contacts":
+    //   return <Contacts key={block.id} data={block} />;
+    case "blocks.footer":
+      return <Footer key={block.id} data={block} />;
+  }
+}
+
+export default async function Home() {
+  const strapiData = await getData(process.env.HOME_URL);
+
+  if (!strapiData) {
+    notFound();
+  }
+
+  const header = strapiData.blocks.find(
+    (block) => block.__component === "blocks.header",
+  );
+
+  const sidebar = strapiData.blocks.find(
+    (block) => block.__component === "blocks.sidebar",
+  );
+
+  const menu = strapiData.blocks.find(
+    (block) => block.__component === "blocks.menu",
+  );
+
+  const { blocks } = strapiData;
+  return (
+    <body>
+      <Header data={header}></Header>
+      <main className={styles.main}>
+        {blocks.map((block) => blockRendered(block))}
+        {header.menuLinks.map((item) => (
+          <div key={item.id}>{item.title}</div>
+        ))}
+        <Apartments />
+      </main>
+      <Sidebar data={sidebar}></Sidebar>
+      <Menu data={menu.menuLinks} />
+    </body>
+  );
+}

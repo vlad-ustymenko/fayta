@@ -1,0 +1,105 @@
+/* [project]/src/components/Footer/Footer.module.css [app-client] (css) */
+.Footer-module__Grjkva__footer {
+  background-color: var(--black);
+  color: var(--background);
+  padding: 2vw 7.4vw;
+}
+
+.Footer-module__Grjkva__grid {
+  grid-template-columns: 1fr 15vw 1fr;
+  display: grid;
+}
+
+.Footer-module__Grjkva__leftBlock, .Footer-module__Grjkva__rightBlock {
+  flex-direction: column;
+  gap: 1vw;
+  display: flex;
+}
+
+.Footer-module__Grjkva__rightBlock {
+  align-items: flex-end;
+}
+
+.Footer-module__Grjkva__socialWrapper {
+  justify-content: center;
+  gap: .5vw;
+  margin-top: 1vw;
+  display: flex;
+}
+
+.Footer-module__Grjkva__socialLink {
+  background-color: var(--background);
+  width: 2.5vw;
+  height: 2.5vw;
+  color: var(--black);
+  cursor: pointer;
+  border-radius: 20vw;
+  justify-content: center;
+  align-items: center;
+  padding: .2vw;
+  transition: all .2s ease-out;
+  display: flex;
+}
+
+.Footer-module__Grjkva__icon {
+  width: 100%;
+  height: 100%;
+}
+
+.Footer-module__Grjkva__iconfacebook {
+  width: 90%;
+  height: 90%;
+}
+
+.Footer-module__Grjkva__socialLink:hover {
+  color: var(--accent);
+  transition: all .2s ease-out;
+  transform: scale(1.1);
+}
+
+.Footer-module__Grjkva__link {
+  font-family: var(--font-roboto), sans-serif;
+  color: var(--background);
+  font-size: 2vw;
+}
+
+.Footer-module__Grjkva__iconWrapper {
+  width: 15vw;
+  height: 10vw;
+  position: relative;
+}
+
+.Footer-module__Grjkva__logo {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.Footer-module__Grjkva__socialText {
+  font-family: var(--font-roboto), sans-serif;
+  color: var(--background);
+  text-align: center;
+  margin-top: 1.5vw;
+  font-size: 1.2vw;
+}
+
+.Footer-module__Grjkva__line {
+  background-color: var(--background);
+  width: 100%;
+  height: 1px;
+  margin-top: 1vw;
+}
+
+.Footer-module__Grjkva__copyrightWrapper {
+  font-family: var(--font-roboto), sans-serif;
+  color: var(--background);
+  justify-content: space-between;
+  margin-top: 1vw;
+  font-size: .8vw;
+  display: flex;
+}
+
+/*# sourceMappingURL=src_components_Footer_Footer_module_css_1igg3k2._.single.css.map*/

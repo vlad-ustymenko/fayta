@@ -1,0 +1,71 @@
+/* [project]/src/components/Button/Button.module.css [app-client] (css) */
+.Button-module__e7WGRa__button {
+  width: fit-content;
+  color: var(--background);
+  background-color: var(--accent);
+  cursor: pointer;
+  border-radius: 5vw;
+  justify-content: center;
+  align-items: center;
+  padding: .5vw 1.5vw;
+  transition: all .1s ease-in;
+  display: flex;
+}
+
+.Button-module__e7WGRa__title {
+  font-family: Roboto, sans-serif;
+  font-size: 1.5vw;
+  font-weight: 500;
+}
+
+.Button-module__e7WGRa__smallTitle {
+  font-size: 1vw;
+}
+
+.Button-module__e7WGRa__wrapper {
+  justify-content: center;
+  align-items: center;
+  gap: 2vw;
+  display: flex;
+}
+
+.Button-module__e7WGRa__icon {
+  object-fit: contain;
+  width: 2vw;
+  height: 2vw;
+}
+
+.Button-module__e7WGRa__button:hover {
+  background-color: var(--accentHover);
+  transition: all .1s ease-in;
+}
+
+@media (max-width: 767px) {
+  .Button-module__e7WGRa__button {
+    width: fit-content;
+    color: var(--background);
+    background-color: var(--accent);
+    cursor: pointer;
+    border-radius: 5vw;
+    padding: 2vw 6vw;
+  }
+
+  .Button-module__e7WGRa__title, .Button-module__e7WGRa__smallTitle {
+    font-size: 4vw;
+  }
+
+  .Button-module__e7WGRa__wrapper {
+    gap: 4vw;
+  }
+
+  .Button-module__e7WGRa__button:hover {
+    background-color: var(--accent);
+  }
+
+  .Button-module__e7WGRa__icon {
+    width: 7vw;
+    height: 7vw;
+  }
+}
+
+/*# sourceMappingURL=src_components_Button_Button_module_css_1igg3k2._.single.css.map*/

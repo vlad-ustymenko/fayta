@@ -21,6 +21,31 @@ const Button = ({
     );
   }
 
+  if (form) {
+    return (
+      <button
+        type={form ? "submit" : "button"}
+        className={`${styles.button} ${className}`}
+        onClick={onClick}
+      >
+        <div className={styles.wrapper}>
+          <p className={`${styles.title} ${small && styles.smallTitle}`}>
+            {title}
+          </p>
+          {icon && (
+            <Image
+              src={`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${icon}`}
+              alt="icon"
+              width={53}
+              height={38}
+              className={`${styles.icon} ${small && styles.smallIcon}`}
+            />
+          )}
+        </div>
+      </button>
+    );
+  }
+
   return (
     <button
       type={form ? "submit" : "button"}

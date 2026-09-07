@@ -1,0 +1,58 @@
+/* [project]/src/components/BlockTitle/BlockTitle.module.css [app-client] (css) */
+.BlockTitle-module__YMXk8q__blokTitleWrapper {
+  align-items: center;
+  gap: 1vw;
+  width: 100%;
+  display: flex;
+}
+
+.BlockTitle-module__YMXk8q__blokTitle {
+  width: fit-content;
+  font-family: var(--font-roboto), sans-serif;
+  text-align: center;
+  white-space: nowrap;
+  color: var(--black);
+  font-size: 1.3vw;
+}
+
+.BlockTitle-module__YMXk8q__iconWrapper {
+  width: 2vw;
+  height: 2vw;
+  position: relative;
+}
+
+.BlockTitle-module__YMXk8q__icon {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.BlockTitle-module__YMXk8q__line {
+  background-color: var(--black);
+  flex: 1;
+  height: .1vw;
+}
+
+@media (max-width: 767px) {
+  .BlockTitle-module__YMXk8q__blokTitleWrapper {
+    gap: 3vw;
+  }
+
+  .BlockTitle-module__YMXk8q__blokTitle {
+    font-size: 4vw;
+  }
+
+  .BlockTitle-module__YMXk8q__iconWrapper {
+    width: 8vw;
+    height: 8vw;
+  }
+
+  .BlockTitle-module__YMXk8q__line {
+    height: .3vw;
+  }
+}
+
+/*# sourceMappingURL=src_components_BlockTitle_BlockTitle_module_css_1igg3k2._.single.css.map*/

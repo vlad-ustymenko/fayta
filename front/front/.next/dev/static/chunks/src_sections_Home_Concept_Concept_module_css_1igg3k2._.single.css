@@ -1,0 +1,126 @@
+/* [project]/src/sections/Home/Concept/Concept.module.css [app-client] (css) */
+.Concept-module__DHlBxa__concept {
+  width: 100%;
+  padding: var(--pbd);
+  position: relative;
+}
+
+.Concept-module__DHlBxa__grid {
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: 2vw;
+  display: grid;
+}
+
+.Concept-module__DHlBxa__title {
+  font-family: var(--font-roboto), sans-serif;
+  font-size: var(--titleDesc);
+  margin-top: 5vw;
+  margin-bottom: 3vw;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.Concept-module__DHlBxa__description {
+  font-family: var(--font-roboto), sans-serif;
+  margin-bottom: 1vw;
+  font-size: 1.1vw;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.Concept-module__DHlBxa__strong {
+  font-family: var(--font-sofia), sans-serif;
+  color: var(--secondary);
+}
+
+.Concept-module__DHlBxa__maskedMedia {
+  width: 170%;
+  height: 120%;
+  margin-top: 4vw;
+}
+
+.Concept-module__DHlBxa__button {
+  font-size: 1.5vw;
+}
+
+.Concept-module__DHlBxa__statsWrapper {
+  gap: 2vw;
+  margin-top: 6vw;
+  display: flex;
+}
+
+.Concept-module__DHlBxa__statWrapper {
+  border-top: .15vw solid var(--black);
+  padding-top: 1vw;
+}
+
+.Concept-module__DHlBxa__bigText {
+  font-family: var(--font-sofia), sans-serif;
+  color: var(--secondary);
+  font-size: 5vw;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.Concept-module__DHlBxa__smallText {
+  font-family: var(--font-roboto), sans-serif;
+  margin-top: -.5vw;
+  font-size: 1vw;
+  font-weight: 400;
+  line-height: 1;
+}
+
+@media (max-width: 767px) {
+  .Concept-module__DHlBxa__concept {
+    padding: var(--pbm);
+  }
+
+  .Concept-module__DHlBxa__grid {
+    grid-template-columns: 1fr;
+    gap: 2vw;
+  }
+
+  .Concept-module__DHlBxa__title {
+    font-size: var(--titleMob);
+    margin-top: 7vw;
+    margin-bottom: 7vw;
+  }
+
+  .Concept-module__DHlBxa__description {
+    margin-bottom: 5vw;
+    font-size: 3.5vw;
+  }
+
+  .Concept-module__DHlBxa__button {
+    font-size: 5vw;
+  }
+
+  .Concept-module__DHlBxa__statsWrapper {
+    gap: 7vw;
+    margin-top: 6vw;
+  }
+
+  .Concept-module__DHlBxa__statWrapper {
+    border-top: .4vw solid var(--black);
+    padding-top: 1vw;
+  }
+
+  .Concept-module__DHlBxa__bigText {
+    font-size: 12vw;
+  }
+
+  .Concept-module__DHlBxa__smallText {
+    margin-top: -.5vw;
+    font-size: 3vw;
+  }
+
+  .Concept-module__DHlBxa__maskedMedia {
+    width: 140%;
+    height: 43vh;
+    margin-top: 4vw;
+    margin-left: -20%;
+  }
+}
+
+/*# sourceMappingURL=src_sections_Home_Concept_Concept_module_css_1igg3k2._.single.css.map*/

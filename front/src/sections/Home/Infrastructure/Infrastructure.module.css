@@ -1,0 +1,319 @@
+.infrastructure {
+  width: 100%;
+}
+
+.blockTitle {
+  padding: 6vw 7.4vw 0 7.4vw;
+}
+
+.title {
+  margin-top: 5vw;
+  margin-bottom: 3vw;
+  font-family: var(--font-roboto), sans-serif;
+  font-size: var(--titleDesc);
+  font-weight: 700;
+  line-height: 1;
+  padding: 0 7.4vw 0 7.4vw;
+}
+
+.strong {
+  font-family: var(--font-sofia), sans-serif;
+  color: var(--secondary);
+}
+
+.widget {
+  margin: 0 auto;
+  background: var(--background);
+  font-family: var(--font-roboto), sans-serif;
+  color: var(--black);
+}
+
+.tabs {
+  display: flex;
+  gap: 2vw;
+  padding-bottom: 24px;
+  margin-bottom: 16px;
+  padding: 0 7.4vw 1vw 7.4vw;
+}
+
+.tab {
+  background: none;
+  font-family: inherit;
+  font-size: 1.2vw;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--black);
+  cursor: pointer;
+  padding: 0.5vw 0;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.tab:hover {
+  color: var(--accent);
+}
+
+.tabActive {
+  color: var(--accent);
+}
+
+.tabActive::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  height: 2px;
+  background: var(--accent);
+}
+
+.content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 8vw;
+  align-items: center;
+  padding-bottom: 6vw;
+}
+
+.mapWrap {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid #e1d8c7;
+  height: 25vw;
+  background: var(--background);
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+}
+
+.placeList {
+  display: flex;
+  flex-direction: column;
+  margin-right: 7.4vw;
+}
+
+.placeRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 4px;
+  border-bottom: 1px solid #e1d8c7;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.placeRow:first-child {
+  padding-top: 4px;
+}
+
+.placeName {
+  font-size: 1.2vw;
+  font-weight: 400;
+  color: var(--black);
+  transition: color 0.15s ease;
+}
+
+.placeRow:hover .placeName {
+  color: var(--accent);
+}
+
+.placeNameSelected {
+  color: var(--accent);
+}
+
+.placeTime {
+  font-size: 1.2vw;
+  color: #55504a;
+  white-space: nowrap;
+  margin-left: 16px;
+}
+
+.pinDot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--background);
+  transform: rotate(-45deg);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.pinDotMuted {
+  background: var(--black);
+}
+
+.placeLabel {
+  width: max-content;
+  max-width: 160px;
+  background: var(--black);
+  color: #f5f0e6;
+  border-radius: 6px;
+  padding: 8px 12px 9px;
+  font-size: 12px;
+  line-height: 1.35;
+  white-space: normal;
+  text-align: center;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  transform: translate(-50%, -120%);
+  position: relative;
+  z-index: 2;
+}
+
+.placeLabel::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  transform: translateX(-50%);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #24211d;
+}
+
+.placeLabelName {
+  font-weight: 700;
+}
+
+.placeLabelTime {
+  color: #c9c2b4;
+  font-weight: 400;
+}
+
+.homePin {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--black);
+  border: 3px solid var(--background);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.homeLabel {
+  width: max-content;
+  max-width: 160px;
+  background: var(--black);
+  color: var(--background);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: normal;
+  text-align: center;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  transform: translate(-50%, -100%);
+  position: relative;
+  margin-bottom: 6px;
+}
+
+.homeLabel::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  transform: translateX(-50%);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #1e1b16;
+}
+
+@media (width >= 768px) and (width <= 1024px) {
+  .tabs {
+    gap: 24px;
+    padding-bottom: 20px;
+    margin-bottom: 14px;
+  }
+
+  .content {
+    gap: 50px;
+  }
+
+  .mapWrap {
+    height: 350px;
+  }
+
+  .placeList {
+    margin-right: 30px;
+  }
+
+  .placeRow {
+    padding: 14px 4px;
+  }
+
+  .placeName {
+    font-size: 14px;
+  }
+
+  .placeTime {
+    font-size: 13px;
+    margin-left: 12px;
+  }
+}
+
+@media (width < 768px) {
+  .tabs {
+    gap: 20px;
+    padding-bottom: 16px;
+    margin-bottom: 12px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab {
+    flex: 0 0 auto;
+    font-size: 14px;
+  }
+
+  .tabActive::after {
+    bottom: -6px;
+    height: 2px;
+  }
+
+  .content {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .mapWrap {
+    height: 300px;
+  }
+
+  .placeList {
+    margin-right: 0;
+  }
+
+  .placeRow {
+    padding: 14px 4px;
+  }
+
+  .placeRow:first-child {
+    padding-top: 4px;
+  }
+
+  .placeName {
+    font-size: 14px;
+  }
+
+  .placeTime {
+    font-size: 13px;
+    margin-left: 12px;
+  }
+
+  .placeLabel {
+    max-width: 140px;
+    padding: 7px 10px 8px;
+    font-size: 11px;
+  }
+
+  .homeLabel {
+    max-width: 140px;
+    padding: 5px 9px;
+    font-size: 11px;
+  }
+}

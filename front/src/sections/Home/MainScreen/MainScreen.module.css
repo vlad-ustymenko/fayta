@@ -25,28 +25,30 @@
 }
 
 .content {
-  width: 80vw;
+  width: 100vw;
+  padding-left: 4vw;
   position: absolute;
   bottom: 4vw;
-  left: 3vw;
+  left: 0;
   color: var(--background);
 }
 
 .title {
-  margin-bottom: 3vw;
+  margin-bottom: 1vw;
   font-family: var(--font-sofia), sans-serif;
-  font-size: 13vw;
-  font-weight: 700;
+  font-size: 17vw;
+  font-weight: 800;
   line-height: 0.75;
   text-transform: uppercase;
 }
 
-.description {
+.subTitle {
   width: 45vw;
   padding-left: 0.8vw;
-  font-family: var(--font-roboto), sans-serif;
-  font-size: 1.7vw;
+  font-family: var(--font-sofia), sans-serif;
+  font-size: 3vw;
   font-weight: 400;
+  margin-bottom: 1vw;
 }
 
 .socialWrapper {
@@ -91,14 +93,24 @@
 
 @media (width <= 767px) {
   .content {
-    width: 90vw;
+    width: 95vw;
     top: 50vw;
-    left: 5vw;
+    left: 0;
   }
 
   .title {
     margin-bottom: 6vw;
-    font-size: 16.5vw;
+    font-size: 16.2vw;
+  }
+
+  .subTitle {
+    width: 45vw;
+    padding-left: 0.8vw;
+
+    font-family: var(--font-sofia), sans-serif;
+    font-size: 5vw;
+    font-weight: 400;
+    margin-bottom: 1vw;
   }
 
   .description {

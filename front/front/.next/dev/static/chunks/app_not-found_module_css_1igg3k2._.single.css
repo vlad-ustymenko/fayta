@@ -1,0 +1,99 @@
+/* [project]/app/not-found.module.css [app-client] (css) */
+.not-found-module__sxuMuG__main {
+  text-align: center;
+  height: 100svh;
+  color: var(--black);
+  background: var(--background);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10vw;
+  display: flex;
+}
+
+.not-found-module__sxuMuG__title {
+  font-family: var(--font-sofia), sans-serif;
+  font-size: 3.5vw;
+}
+
+.not-found-module__sxuMuG__subtitle {
+  font-family: var(--font-sofia), sans-serif;
+  margin-bottom: 2vw;
+  font-size: 3vw;
+}
+
+.not-found-module__sxuMuG__textTitle {
+  font-family: var(--font-sofia), sans-serif;
+  margin-bottom: 2vw;
+  font-size: 2vw;
+  font-weight: 600;
+}
+
+.not-found-module__sxuMuG__text {
+  font-family: var(--font-roboto), sans-serif;
+  font-size: 2vw;
+}
+
+.not-found-module__sxuMuG__text:last-of-type {
+  margin-bottom: 2vw;
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .not-found-module__sxuMuG__title {
+    margin-bottom: 3vw;
+    font-size: 7vw;
+  }
+
+  .not-found-module__sxuMuG__subtitle {
+    margin-bottom: 3vw;
+    font-size: 5vw;
+  }
+
+  .not-found-module__sxuMuG__text {
+    margin-bottom: 1vw;
+    font-size: 3vw;
+  }
+
+  .not-found-module__sxuMuG__textTitle {
+    margin-bottom: 2vw;
+    font-size: 4vw;
+    font-weight: 600;
+  }
+
+  .not-found-module__sxuMuG__text:last-of-type {
+    margin-bottom: 7vw;
+  }
+}
+
+@media (max-width: 767px) {
+  .not-found-module__sxuMuG__main {
+    padding: 5vw;
+  }
+
+  .not-found-module__sxuMuG__title {
+    margin-bottom: 5vw;
+    font-size: 8vw;
+  }
+
+  .not-found-module__sxuMuG__subtitle {
+    margin-bottom: 5vw;
+    font-size: 5vw;
+  }
+
+  .not-found-module__sxuMuG__textTitle {
+    margin-bottom: 3vw;
+    font-size: 5vw;
+    font-weight: 600;
+  }
+
+  .not-found-module__sxuMuG__text {
+    margin-bottom: 1vw;
+    font-size: 4vw;
+  }
+
+  .not-found-module__sxuMuG__text:last-of-type {
+    margin-bottom: 7vw;
+  }
+}
+
+/*# sourceMappingURL=app_not-found_module_css_1igg3k2._.single.css.map*/

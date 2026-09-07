@@ -6,6 +6,7 @@ export interface BlocksConcept extends Struct.ComponentSchema {
     displayName: 'Concept';
   };
   attributes: {
+    blockID: Schema.Attribute.String & Schema.Attribute.Required;
     blockTitle: Schema.Attribute.Component<'components.block-title', false> &
       Schema.Attribute.Required;
     button: Schema.Attribute.Component<'components.button', false>;
@@ -18,6 +19,50 @@ export interface BlocksConcept extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksFeedback extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_feedbacks';
+  info: {
+    displayName: 'Feedback';
+  };
+  attributes: {
+    button: Schema.Attribute.String & Schema.Attribute.Required;
+    confidentialText: Schema.Attribute.RichText & Schema.Attribute.Required;
+    form: Schema.Attribute.Component<'components.form-input', true> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 2;
+        },
+        number
+      >;
+    leftBlockName: Schema.Attribute.String & Schema.Attribute.Required;
+    leftBlockText: Schema.Attribute.String & Schema.Attribute.Required;
+    leftBlockTitle: Schema.Attribute.RichText & Schema.Attribute.Required;
+    phone: Schema.Attribute.String & Schema.Attribute.Required;
+    phoneTitle: Schema.Attribute.String & Schema.Attribute.Required;
+    rightBlockName: Schema.Attribute.String & Schema.Attribute.Required;
+    rightBlockTitle: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface BlocksFooter extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_footers';
+  info: {
+    displayName: 'Footer';
+  };
+  attributes: {
+    copyright: Schema.Attribute.String & Schema.Attribute.Required;
+    icon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    leftBlock: Schema.Attribute.Component<'components.link', true> &
+      Schema.Attribute.Required;
+    policy: Schema.Attribute.Component<'components.link', false>;
+    rightBlock: Schema.Attribute.Component<'components.link', true> &
+      Schema.Attribute.Required;
+    socialLinks: Schema.Attribute.Component<'components.social-links', false>;
+    socialText: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface BlocksGalery extends Struct.ComponentSchema {
   collectionName: 'components_blocks_galeries';
   info: {
@@ -26,6 +71,16 @@ export interface BlocksGalery extends Struct.ComponentSchema {
   attributes: {
     images: Schema.Attribute.Media<'images', true> & Schema.Attribute.Required;
     title: Schema.Attribute.RichText & Schema.Attribute.Required;
+  };
+}
+
+export interface BlocksGenplan extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_genplans';
+  info: {
+    displayName: 'Genplan';
+  };
+  attributes: {
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
   };
 }
 
@@ -48,9 +103,41 @@ export interface BlocksHomeMainScreen extends Struct.ComponentSchema {
     displayName: 'HomeMainScreen';
   };
   attributes: {
-    description: Schema.Attribute.Text & Schema.Attribute.Required;
     image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    socialLinks: Schema.Attribute.Component<'components.social-links', false>;
+    subTitle: Schema.Attribute.String & Schema.Attribute.Required;
     title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface BlocksInfrastructure extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_infrastructures';
+  info: {
+    displayName: 'Infrastructure';
+  };
+  attributes: {
+    blockTitle: Schema.Attribute.Component<'components.block-title', false> &
+      Schema.Attribute.Required;
+    homePlace: Schema.Attribute.Component<'components.home-place', false>;
+    mapCategoris: Schema.Attribute.Component<'components.categories', true>;
+    title: Schema.Attribute.RichText & Schema.Attribute.Required;
+  };
+}
+
+export interface BlocksInvestment extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_investments';
+  info: {
+    displayName: 'Investment';
+  };
+  attributes: {
+    blockTitle: Schema.Attribute.Component<'components.block-title', false>;
+    description: Schema.Attribute.RichText & Schema.Attribute.Required;
+    investmentList: Schema.Attribute.Component<
+      'components.investment-list',
+      true
+    > &
+      Schema.Attribute.Required;
+    title: Schema.Attribute.RichText & Schema.Attribute.Required;
   };
 }
 
@@ -106,6 +193,17 @@ export interface ComponentsButton extends Struct.ComponentSchema {
   };
 }
 
+export interface ComponentsCategories extends Struct.ComponentSchema {
+  collectionName: 'components_components_categories';
+  info: {
+    displayName: 'mapCategories';
+  };
+  attributes: {
+    name: Schema.Attribute.String;
+    places: Schema.Attribute.Component<'components.places', true>;
+  };
+}
+
 export interface ComponentsFormInput extends Struct.ComponentSchema {
   collectionName: 'components_components_form_inputs';
   info: {
@@ -120,6 +218,18 @@ export interface ComponentsFormInput extends Struct.ComponentSchema {
   };
 }
 
+export interface ComponentsHomePlace extends Struct.ComponentSchema {
+  collectionName: 'components_components_home_places';
+  info: {
+    displayName: 'homePlace';
+  };
+  attributes: {
+    lat: Schema.Attribute.Decimal;
+    lng: Schema.Attribute.Decimal;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface ComponentsImageSlider extends Struct.ComponentSchema {
   collectionName: 'components_components_image_sliders';
   info: {
@@ -129,6 +239,19 @@ export interface ComponentsImageSlider extends Struct.ComponentSchema {
     description: Schema.Attribute.Text;
     images: Schema.Attribute.Media<'images', true> & Schema.Attribute.Required;
     title: Schema.Attribute.Text;
+  };
+}
+
+export interface ComponentsInvestmentList extends Struct.ComponentSchema {
+  collectionName: 'components_components_investment_lists';
+  info: {
+    displayName: 'investmentList';
+  };
+  attributes: {
+    leftBlockIcon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    leftBlockTitle: Schema.Attribute.String & Schema.Attribute.Required;
+    rightBlockDescription: Schema.Attribute.Text & Schema.Attribute.Required;
+    rightBlockTitle: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -154,6 +277,31 @@ export interface ComponentsMaskedImage extends Struct.ComponentSchema {
   };
 }
 
+export interface ComponentsPlaces extends Struct.ComponentSchema {
+  collectionName: 'components_components_places';
+  info: {
+    displayName: 'places';
+  };
+  attributes: {
+    lat: Schema.Attribute.Decimal;
+    lng: Schema.Attribute.Decimal;
+    name: Schema.Attribute.String;
+    time: Schema.Attribute.String;
+  };
+}
+
+export interface ComponentsSocialLinks extends Struct.ComponentSchema {
+  collectionName: 'components_components_social_links';
+  info: {
+    displayName: 'socialLinks';
+  };
+  attributes: {
+    fbLink: Schema.Attribute.String & Schema.Attribute.Required;
+    instaLink: Schema.Attribute.String & Schema.Attribute.Required;
+    youtubeLink: Schema.Attribute.String;
+  };
+}
+
 export interface ComponentsStats extends Struct.ComponentSchema {
   collectionName: 'components_components_stats';
   info: {
@@ -169,17 +317,27 @@ declare module '@strapi/strapi' {
   export namespace Public {
     export interface ComponentSchemas {
       'blocks.concept': BlocksConcept;
+      'blocks.feedback': BlocksFeedback;
+      'blocks.footer': BlocksFooter;
       'blocks.galery': BlocksGalery;
+      'blocks.genplan': BlocksGenplan;
       'blocks.header': BlocksHeader;
       'blocks.home-main-screen': BlocksHomeMainScreen;
+      'blocks.infrastructure': BlocksInfrastructure;
+      'blocks.investment': BlocksInvestment;
       'blocks.menu': BlocksMenu;
       'blocks.sidebar': BlocksSidebar;
       'components.block-title': ComponentsBlockTitle;
       'components.button': ComponentsButton;
+      'components.categories': ComponentsCategories;
       'components.form-input': ComponentsFormInput;
+      'components.home-place': ComponentsHomePlace;
       'components.image-slider': ComponentsImageSlider;
+      'components.investment-list': ComponentsInvestmentList;
       'components.link': ComponentsLink;
       'components.masked-image': ComponentsMaskedImage;
+      'components.places': ComponentsPlaces;
+      'components.social-links': ComponentsSocialLinks;
       'components.stats': ComponentsStats;
     }
   }

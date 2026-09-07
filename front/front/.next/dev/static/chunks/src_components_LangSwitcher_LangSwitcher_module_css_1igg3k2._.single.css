@@ -1,0 +1,33 @@
+/* [project]/src/components/LangSwitcher/LangSwitcher.module.css [app-client] (css) */
+.LangSwitcher-module__n3SFqa__langSwitcher {
+  color: var(--background);
+  background-color: var(--accent);
+  cursor: pointer;
+  border-radius: 5vw;
+  justify-content: center;
+  align-items: center;
+  padding: .5vw .7vw;
+  font-size: 1vw;
+  font-weight: 500;
+  transition: all .1s ease-in;
+  display: flex;
+}
+
+.LangSwitcher-module__n3SFqa__langSwitcher:hover {
+  background-color: var(--accentHover);
+  transition: all .1s ease-in;
+}
+
+@media (max-width: 767px) {
+  .LangSwitcher-module__n3SFqa__langSwitcher {
+    border-radius: 15vw;
+    padding: 1.5vw 2vw;
+    font-size: 4vw;
+  }
+
+  .LangSwitcher-module__n3SFqa__langSwitcher:hover {
+    background-color: var(--accent);
+  }
+}
+
+/*# sourceMappingURL=src_components_LangSwitcher_LangSwitcher_module_css_1igg3k2._.single.css.map*/

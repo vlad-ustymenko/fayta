@@ -1,0 +1,295 @@
+/* [project]/src/sections/Home/Apartments/Apartments.module.css [app-client] (css) */
+.Apartments-module__BYk6cG__section {
+  --coral: #d8794f;
+  --coral-dark: #c26538;
+  --cream: #f7f2e9;
+  --ink: #2c2a26;
+  --ink-soft: #6b675f;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+  position: relative;
+}
+
+.Apartments-module__BYk6cG__header {
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2.5rem clamp(1.25rem, 5vw, 4rem) 1.5rem;
+  display: flex;
+}
+
+.Apartments-module__BYk6cG__title {
+  margin: 0;
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.Apartments-module__BYk6cG__titleAccent {
+  color: var(--coral);
+}
+
+.Apartments-module__BYk6cG__moreButton {
+  background: var(--coral);
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  border-radius: 999px;
+  flex-shrink: 0;
+  align-items: center;
+  gap: .5rem;
+  padding: .75rem 1.5rem;
+  font-size: .9rem;
+  font-weight: 500;
+  transition: background .2s;
+  display: inline-flex;
+}
+
+.Apartments-module__BYk6cG__moreButton:hover {
+  background: var(--coral-dark);
+}
+
+.Apartments-module__BYk6cG__tabs {
+  border-bottom: 1px solid #2c2a2614;
+  gap: 2rem;
+  padding: 0 clamp(1.25rem, 5vw, 4rem) 1.5rem;
+  display: flex;
+}
+
+.Apartments-module__BYk6cG__tab {
+  color: var(--ink-soft);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: .5rem 0 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  position: relative;
+}
+
+.Apartments-module__BYk6cG__tab:after {
+  content: "";
+  background: var(--coral);
+  opacity: 0;
+  height: 2px;
+  transition: opacity .2s;
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+}
+
+.Apartments-module__BYk6cG__tabActive {
+  color: var(--coral);
+}
+
+.Apartments-module__BYk6cG__tabActive:after {
+  opacity: 1;
+}
+
+.Apartments-module__BYk6cG__stage {
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  padding: 2vw;
+  display: flex;
+  position: relative;
+}
+
+.Apartments-module__BYk6cG__stageBackground {
+  z-index: 0;
+  position: absolute;
+  inset: 0;
+}
+
+.Apartments-module__BYk6cG__stageBackgroundImage {
+  object-fit: cover;
+}
+
+.Apartments-module__BYk6cG__stageBackground:after {
+  content: "";
+  background: linear-gradient(#f7f2e926 0%, #f7f2e900 30%, #141e1426 100%);
+  position: absolute;
+  inset: 0;
+}
+
+.Apartments-module__BYk6cG__carousel {
+  z-index: 1;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 90vw;
+  padding: 2rem clamp(1rem, 4vw, 3rem);
+  display: flex;
+  position: relative;
+}
+
+.Apartments-module__BYk6cG__navButton {
+  width: 2.75rem;
+  height: 2.75rem;
+  color: var(--ink);
+  cursor: pointer;
+  background: #ffffffb3;
+  border: none;
+  border-radius: 50%;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+  transition: background .2s;
+  display: none;
+}
+
+.Apartments-module__BYk6cG__navButton:hover {
+  background: #fff;
+}
+
+.Apartments-module__BYk6cG__cardsTrack {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 940px;
+  height: 460px;
+  display: flex;
+  position: relative;
+}
+
+.Apartments-module__BYk6cG__card {
+  background: #fff;
+  border-radius: 28px;
+  flex-direction: column;
+  width: min(88vw, 340px);
+  padding: 1.5rem;
+  transition: transform .35s, opacity .35s, filter .35s;
+  display: flex;
+  position: absolute;
+  box-shadow: 0 24px 48px #14140f2e;
+}
+
+.Apartments-module__BYk6cG__card--active {
+  z-index: 3;
+  opacity: 1;
+  filter: none;
+  transform: translateX(0)scale(1);
+}
+
+.Apartments-module__BYk6cG__card--prev {
+  z-index: 2;
+  opacity: .55;
+  filter: saturate(.7);
+  transform: translateX(-78%)scale(.86);
+}
+
+.Apartments-module__BYk6cG__card--next {
+  z-index: 2;
+  opacity: .55;
+  filter: saturate(.7);
+  transform: translateX(78%)scale(.86);
+}
+
+.Apartments-module__BYk6cG__cardPlan {
+  aspect-ratio: 1;
+  background: #ece7dd;
+  border-radius: 18px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.Apartments-module__BYk6cG__cardPlanImage {
+  object-fit: contain;
+}
+
+.Apartments-module__BYk6cG__cardInfo {
+  padding-top: 1.25rem;
+}
+
+.Apartments-module__BYk6cG__cardInfoRow {
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: .35rem 0;
+  display: flex;
+}
+
+.Apartments-module__BYk6cG__cardInfoRow:first-child {
+  border-bottom: 1px solid #2c2a2614;
+  margin-bottom: .2rem;
+  padding-bottom: .6rem;
+}
+
+.Apartments-module__BYk6cG__cardLabel {
+  color: var(--ink-soft);
+  font-size: .85rem;
+}
+
+.Apartments-module__BYk6cG__cardValue {
+  font-size: .95rem;
+  font-weight: 600;
+}
+
+.Apartments-module__BYk6cG__cardButton {
+  background: var(--coral);
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  border-radius: 999px;
+  width: 100%;
+  margin-top: 1.25rem;
+  padding: .9rem;
+  font-size: .95rem;
+  font-weight: 500;
+  transition: background .2s;
+}
+
+.Apartments-module__BYk6cG__cardButton:hover {
+  background: var(--coral-dark);
+}
+
+.Apartments-module__BYk6cG__buttonsWrapper {
+  z-index: 1;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+
+.Apartments-module__BYk6cG__right {
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.Apartments-module__BYk6cG__dots {
+  z-index: 1;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+  display: flex;
+  position: relative;
+}
+
+.Apartments-module__BYk6cG__dot {
+  cursor: pointer;
+  background: #fff;
+  border: none;
+  border-radius: 999px;
+  width: .6rem;
+  height: .6rem;
+  transition: width .2s, background .2s;
+}
+
+.Apartments-module__BYk6cG__dotActive {
+  background: var(--coral);
+  width: 1.6rem;
+}
+
+@media (min-width: 768px) {
+  .Apartments-module__BYk6cG__navButton {
+    display: inline-flex;
+  }
+}
+
+/*# sourceMappingURL=src_sections_Home_Apartments_Apartments_module_css_1igg3k2._.single.css.map*/

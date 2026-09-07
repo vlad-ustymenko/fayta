@@ -2,9 +2,9 @@ import React from "react";
 import styles from "./BlockTitle.module.css";
 import Image from "next/image";
 
-const BlockTitle = ({ title, image }) => {
+const BlockTitle = ({ title, image, className }) => {
   return (
-    <div className={styles.blokTitleWrapper}>
+    <div className={styles.blokTitleWrapper + " " + className}>
       <div className={styles.blokTitle}>{title}</div>
       <div className={styles.iconWrapper}>
         <Image

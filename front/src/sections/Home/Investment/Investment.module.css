@@ -1,0 +1,169 @@
+.investment {
+  width: 100%;
+  padding: var(--pbd);
+}
+
+.title {
+  margin-top: 5vw;
+  margin-bottom: 3vw;
+  font-family: var(--font-roboto), sans-serif;
+  font-size: var(--titleDesc);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.description {
+  width: 60vw;
+  margin-bottom: 6vw;
+  font-family: var(--font-roboto), sans-serif;
+  font-size: 2vw;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.strong {
+  font-family: var(--font-sofia), sans-serif;
+  color: var(--secondary);
+}
+
+.investmentList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8vw;
+  margin-top: 1vw;
+}
+
+.rightBlock {
+  margin-bottom: 1vw;
+  border-bottom: 0.1vw solid var(--black);
+}
+
+.leftBlockTitle {
+  padding-left: 4vw;
+  position: relative;
+  font-family: var(--font-roboto), sans-serif;
+  font-size: 1.8vw;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.rightBlock:last-child {
+  border-bottom: none;
+}
+
+.leftBlockTitle:nth-child(1) {
+  margin-bottom: 5vw;
+}
+
+.leftBlockTitle:nth-child(2) {
+  margin-bottom: 4.5vw;
+}
+
+.leftBlockTitle::after {
+  width: 2.5vw;
+  height: 2.5vw;
+  position: absolute;
+  background-image: var(--after-image);
+  background-size: contain;
+  background-repeat: no-repeat;
+  content: "";
+  inset: 0;
+}
+
+.rightBlockTitle {
+  padding-left: 3vw;
+  margin-bottom: 1vw;
+  position: relative;
+  font-family: var(--font-roboto), sans-serif;
+  font-size: 1.2vw;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.rightBlockTitle::after {
+  width: 2.5vw;
+  height: 2.5vw;
+  position: absolute;
+  background-image: var(--after-image);
+  background-size: contain;
+  background-repeat: no-repeat;
+  content: var(--index);
+  inset: 0;
+}
+
+.rightBlockDescription {
+  padding-left: 3vw;
+  margin-bottom: 1vw;
+  font-family: var(--font-roboto), sans-serif;
+  font-size: 1.2vw;
+  font-weight: 400;
+  line-height: 1;
+}
+
+@media (width >= 768px) and (width <= 1024px) {
+}
+
+@media (width <= 767px) {
+  .investment {
+    padding: var(--pbm);
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 2vw;
+  }
+
+  .title {
+    margin-top: 8vw;
+    margin-bottom: 6vw;
+    font-size: var(--titleMob);
+  }
+
+  .description {
+    width: 100%;
+    margin-bottom: 10vw;
+    font-size: 4vw;
+  }
+
+  .investmentList {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2vw;
+    margin-top: 1vw;
+  }
+
+  .leftBlock {
+    margin-bottom: 10vw;
+  }
+
+  .leftBlockTitle {
+    padding-left: 8vw;
+    margin-bottom: 6vw;
+    font-size: 4vw;
+  }
+
+  .leftBlockTitle:nth-child(1) {
+    margin-bottom: 6vw;
+  }
+
+  .leftBlockTitle:nth-child(2) {
+    margin-bottom: 6vw;
+  }
+
+  .leftBlockTitle::after {
+    width: 5vw;
+    height: 5vw;
+  }
+
+  .rightBlock {
+    margin-bottom: 4vw;
+    border-bottom: 0.2vw solid var(--black);
+  }
+
+  .rightBlockTitle,
+  .rightBlockDescription {
+    padding-left: 8vw;
+    margin-bottom: 4vw;
+    font-size: 3.5vw;
+  }
+}

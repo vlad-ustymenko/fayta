@@ -8,6 +8,11 @@ import { notFound } from "next/navigation";
 import ImageSlider from "@/src/components/ImageSlider/ImageSlider";
 import Concept from "@/src/sections/Home/Concept/Concept";
 import Galery from "@/src/sections/Home/Galery/Galery";
+import Investment from "@/src/sections/Home/Investment/Investment";
+import Footer from "@/src/components/Footer/Footer";
+import Feedback from "@/src/sections/Home/Feedback/Feedback";
+import Genplan from "@/src/sections/Home/Genplan/Genplan";
+import Infrastructure from "@/src/sections/Home/Infrastructure/Infrastructure";
 import styles from "./page.module.css";
 
 async function getData(path, locale) {
@@ -32,8 +37,12 @@ async function getData(path, locale) {
               },
             },
             "blocks.home-main-screen": {
-              fields: ["title", "description"],
+              fields: ["title", "subTitle"],
+
               populate: {
+                socialLinks: {
+                  populate: "*",
+                },
                 image: {
                   fields: ["url"],
                 },
@@ -71,6 +80,52 @@ async function getData(path, locale) {
                 },
               },
             },
+            "blocks.investment": {
+              populate: {
+                blockTitle: { populate: { image: { fields: ["url"] } } },
+                investmentList: {
+                  populate: {
+                    leftBlockIcon: {
+                      fields: ["url"],
+                    },
+                  },
+                },
+              },
+            },
+            "blocks.genplan": {
+              populate: {
+                image: {
+                  fields: ["url"],
+                },
+              },
+            },
+            "blocks.feedback": {
+              populate: "*",
+            },
+            "blocks.infrastructure": {
+              populate: {
+                blockTitle: { populate: { image: { fields: ["url"] } } },
+              },
+            },
+            "blocks.footer": {
+              populate: {
+                leftBlock: {
+                  populate: "*",
+                },
+                rightBlock: {
+                  populate: "*",
+                },
+                icon: {
+                  fields: ["url"],
+                },
+                socialLinks: {
+                  populate: "*",
+                },
+                policy: {
+                  populate: "*",
+                },
+              },
+            },
           },
         },
       },
@@ -103,6 +158,14 @@ function blockRendered(block, faqCategories, projectCategories) {
       return <Concept key={block.id} data={block} />;
     case "blocks.galery":
       return <Galery key={block.id} data={block} />;
+    case "blocks.investment":
+      return <Investment key={block.id} data={block} />;
+    case "blocks.genplan":
+      return <Genplan key={block.id} data={block} />;
+    case "blocks.feedback":
+      return <Feedback key={block.id} data={block} />;
+    case "blocks.infrastructure":
+      return <Infrastructure key={block.id} data={block} />;
     // case "blocks.advantages":
     //   return <Advantages key={block.id} data={block} />;
     // case "blocks.faq":
@@ -111,21 +174,10 @@ function blockRendered(block, faqCategories, projectCategories) {
     //   return <News key={block.id} data={block} />;
     // case "blocks.contacts":
     //   return <Contacts key={block.id} data={block} />;
-    // case "blocks.footer":
-    //   return <Footer key={block.id} data={block} />;
+    case "blocks.footer":
+      return <Footer key={block.id} data={block} />;
   }
 }
-
-const slides = [
-  {
-    title:
-      "йцуакцуепйцукепцуіпмявчапиівка йцуакцуепйцукепцуіпмявчапиівка йцуакцуепйцукепцуіпмявчапиівка",
-    description: "wefwfwe",
-    image: "/image.png",
-  },
-  { title: "werwrwerqwerqwer", description: "wefwfwe", image: "/image.png" },
-  { title: "werwrwerqwerqwer", description: "wefwfwe", image: "/image.png" },
-];
 
 export default async function Home({ params }) {
   const { locale } = await params;
@@ -149,7 +201,7 @@ export default async function Home({ params }) {
 
   const { blocks } = strapiData;
   return (
-    <>
+    <body>
       <Header data={header}></Header>
       <main className={styles.main}>
         {blocks.map((block) => blockRendered(block))}
@@ -160,6 +212,6 @@ export default async function Home({ params }) {
       </main>
       <Sidebar data={sidebar}></Sidebar>
       <Menu data={menu.menuLinks} />
-    </>
+    </body>
   );
 }

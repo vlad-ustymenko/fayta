@@ -1,0 +1,82 @@
+/* [project]/app/globals.css [app-client] (css) */
+:root {
+  --background: #f5f1eb;
+  --accent: #c66e4e;
+  --accentHover: #d77a55;
+  --secondary: #7e8a63;
+  --black: #2f2b28;
+  --header: #2f2b2899;
+  --pbd: 6vw 7.4vw;
+  --pbt: 4vw 7.4vw 6vw 7.4vw;
+  --pbm: 15vw 9vw;
+  --border: 3px solid #b9956b;
+  --borderRadius: 1.1vw;
+  --borderRadiusMobile: 10px;
+  --borderRadiusTablet: 15px;
+  --backgroundSecondary: #e8e8e8;
+  --titleDesc: 3.3vw;
+  --titleTab: 4vw;
+  --titleMob: 6.5vw;
+  --containerPadding: 5vw 0;
+  --containerPaddingTablet: 12vw 0;
+  --containerPaddingMobile: 18vw 0;
+}
+
+html {
+  height: 100%;
+}
+
+html, body {
+  scroll-behavior: smooth;
+  -webkit-user-select: none;
+  user-select: none;
+  position: relative;
+}
+
+body {
+  background: var(--background);
+  min-height: 100%;
+}
+
+*, :before, :after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+ul, ol, li {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img, svg, video {
+  max-width: 100%;
+  display: block;
+}
+
+button, input, textarea, select {
+  font: inherit;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus, :active {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+::selection {
+  color: var(--bg-primary, #fff);
+  background: var(--color-primary, #000);
+}
+
+/*# sourceMappingURL=app_globals_css_1igg3k2._.single.css.map*/

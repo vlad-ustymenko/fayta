@@ -1,0 +1,53 @@
+{
+  "collectionName": "components_blocks_feedbacks",
+  "info": {
+    "displayName": "Feedback"
+  },
+  "options": {},
+  "attributes": {
+    "leftBlockName": {
+      "type": "string",
+      "required": true
+    },
+    "leftBlockTitle": {
+      "type": "richtext",
+      "required": true
+    },
+    "leftBlockText": {
+      "type": "string",
+      "required": true
+    },
+    "phoneTitle": {
+      "type": "string",
+      "required": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "rightBlockName": {
+      "type": "string",
+      "required": true
+    },
+    "rightBlockTitle": {
+      "type": "string",
+      "required": true
+    },
+    "form": {
+      "type": "component",
+      "component": "components.form-input",
+      "repeatable": true,
+      "required": true,
+      "max": 2
+    },
+    "button": {
+      "type": "string",
+      "required": true
+    },
+    "confidentialText": {
+      "type": "richtext",
+      "required": true
+    }
+  },
+  "config": {}
+}

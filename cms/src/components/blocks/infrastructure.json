@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_blocks_infrastructures",
+  "info": {
+    "displayName": "Infrastructure"
+  },
+  "options": {},
+  "attributes": {
+    "blockTitle": {
+      "type": "component",
+      "component": "components.block-title",
+      "repeatable": false,
+      "required": true
+    },
+    "mapCategoris": {
+      "type": "component",
+      "component": "components.categories",
+      "repeatable": true
+    },
+    "homePlace": {
+      "type": "component",
+      "component": "components.home-place",
+      "repeatable": false
+    },
+    "title": {
+      "type": "richtext",
+      "required": true
+    }
+  },
+  "config": {}
+}

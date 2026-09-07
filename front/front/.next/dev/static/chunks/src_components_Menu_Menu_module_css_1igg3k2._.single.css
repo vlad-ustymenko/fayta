@@ -1,0 +1,51 @@
+/* [project]/src/components/Menu/Menu.module.css [app-client] (css) */
+.Menu-module__88cxuq__menu {
+  z-index: 5;
+  width: 100%;
+  height: 100vh;
+  color: var(--background);
+  background-color: var(--black);
+  opacity: 100;
+  padding: 40vw 6vw;
+  transition: transform .3s ease-in;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translateX(100%);
+}
+
+.Menu-module__88cxuq__open {
+  transform: translateX(0);
+}
+
+.Menu-module__88cxuq__nav {
+  flex-direction: column;
+  gap: 2vw;
+  font-family: Roboto, sans-serif;
+  font-size: 8vw;
+  font-weight: 500;
+  display: flex;
+}
+
+.Menu-module__88cxuq__link {
+  margin-bottom: 5vw;
+}
+
+.Menu-module__88cxuq__imageContainer {
+  z-index: -1;
+  opacity: .2;
+  width: 100%;
+  height: 50vh;
+  transition: opacity .3s ease-in;
+  position: absolute;
+  bottom: 0;
+  left: 30vw;
+}
+
+.Menu-module__88cxuq__image {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+/*# sourceMappingURL=src_components_Menu_Menu_module_css_1igg3k2._.single.css.map*/

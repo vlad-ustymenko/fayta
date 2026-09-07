@@ -1,0 +1,164 @@
+/* [project]/src/sections/Home/Investment/Investment.module.css [app-client] (css) */
+.Investment-module__r7EJWW__investment {
+  width: 100%;
+  padding: var(--pbd);
+}
+
+.Investment-module__r7EJWW__title {
+  font-family: var(--font-roboto), sans-serif;
+  font-size: var(--titleDesc);
+  margin-top: 5vw;
+  margin-bottom: 3vw;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.Investment-module__r7EJWW__description {
+  width: 60vw;
+  font-family: var(--font-roboto), sans-serif;
+  margin-bottom: 6vw;
+  font-size: 2vw;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.Investment-module__r7EJWW__strong {
+  font-family: var(--font-sofia), sans-serif;
+  color: var(--secondary);
+}
+
+.Investment-module__r7EJWW__investmentList {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8vw;
+  margin-top: 1vw;
+  display: grid;
+}
+
+.Investment-module__r7EJWW__rightBlock {
+  border-bottom: .1vw solid var(--black);
+  margin-bottom: 1vw;
+}
+
+.Investment-module__r7EJWW__leftBlockTitle {
+  font-family: var(--font-roboto), sans-serif;
+  padding-left: 4vw;
+  font-size: 1.8vw;
+  font-weight: 400;
+  line-height: 1;
+  position: relative;
+}
+
+.Investment-module__r7EJWW__rightBlock:last-child {
+  border-bottom: none;
+}
+
+.Investment-module__r7EJWW__leftBlockTitle:first-child {
+  margin-bottom: 5vw;
+}
+
+.Investment-module__r7EJWW__leftBlockTitle:nth-child(2) {
+  margin-bottom: 4.5vw;
+}
+
+.Investment-module__r7EJWW__leftBlockTitle:after {
+  background-image: var(--after-image);
+  content: "";
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 2.5vw;
+  height: 2.5vw;
+  position: absolute;
+  inset: 0;
+}
+
+.Investment-module__r7EJWW__rightBlockTitle {
+  font-family: var(--font-roboto), sans-serif;
+  margin-bottom: 1vw;
+  padding-left: 3vw;
+  font-size: 1.2vw;
+  font-weight: 700;
+  line-height: 1;
+  position: relative;
+}
+
+.Investment-module__r7EJWW__rightBlockTitle:after {
+  background-image: var(--after-image);
+  content: var(--index);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 2.5vw;
+  height: 2.5vw;
+  position: absolute;
+  inset: 0;
+}
+
+.Investment-module__r7EJWW__rightBlockDescription {
+  font-family: var(--font-roboto), sans-serif;
+  margin-bottom: 1vw;
+  padding-left: 3vw;
+  font-size: 1.2vw;
+  font-weight: 400;
+  line-height: 1;
+}
+
+@media (max-width: 767px) {
+  .Investment-module__r7EJWW__investment {
+    padding: var(--pbm);
+  }
+
+  .Investment-module__r7EJWW__grid {
+    grid-template-columns: 1fr;
+    gap: 2vw;
+  }
+
+  .Investment-module__r7EJWW__title {
+    font-size: var(--titleMob);
+    margin-top: 8vw;
+    margin-bottom: 6vw;
+  }
+
+  .Investment-module__r7EJWW__description {
+    width: 100%;
+    margin-bottom: 10vw;
+    font-size: 4vw;
+  }
+
+  .Investment-module__r7EJWW__investmentList {
+    grid-template-columns: 1fr;
+    gap: 2vw;
+    margin-top: 1vw;
+    display: grid;
+  }
+
+  .Investment-module__r7EJWW__leftBlock {
+    margin-bottom: 10vw;
+  }
+
+  .Investment-module__r7EJWW__leftBlockTitle {
+    margin-bottom: 6vw;
+    padding-left: 8vw;
+    font-size: 4vw;
+  }
+
+  .Investment-module__r7EJWW__leftBlockTitle:first-child, .Investment-module__r7EJWW__leftBlockTitle:nth-child(2) {
+    margin-bottom: 6vw;
+  }
+
+  .Investment-module__r7EJWW__leftBlockTitle:after {
+    width: 5vw;
+    height: 5vw;
+  }
+
+  .Investment-module__r7EJWW__rightBlock {
+    border-bottom: .2vw solid var(--black);
+    margin-bottom: 4vw;
+  }
+
+  .Investment-module__r7EJWW__rightBlockTitle, .Investment-module__r7EJWW__rightBlockDescription {
+    margin-bottom: 4vw;
+    padding-left: 8vw;
+    font-size: 3.5vw;
+  }
+}
+
+/*# sourceMappingURL=src_sections_Home_Investment_Investment_module_css_1igg3k2._.single.css.map*/

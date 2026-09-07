@@ -1,0 +1,65 @@
+/* [project]/src/components/BurgerBTN/BurgerBTN.module.css [app-client] (css) */
+.BurgerBTN-module___hnyvq__bar {
+  cursor: pointer;
+  width: 28px;
+  height: 21px;
+  display: none;
+  position: relative;
+}
+
+.BurgerBTN-module___hnyvq__bar input {
+  visibility: hidden;
+  appearance: none;
+  display: none;
+}
+
+.BurgerBTN-module___hnyvq__line {
+  background: #f1faee;
+  border-radius: 100px;
+  width: 26px;
+  height: 3px;
+  transition: all .3s;
+  display: inline-block;
+  position: absolute;
+  left: 0;
+}
+
+.BurgerBTN-module___hnyvq__top {
+  top: 0;
+}
+
+.BurgerBTN-module___hnyvq__middle {
+  top: 9px;
+}
+
+.BurgerBTN-module___hnyvq__bottom {
+  bottom: 0;
+}
+
+.BurgerBTN-module___hnyvq__bar input:checked ~ .BurgerBTN-module___hnyvq__top {
+  transform-origin: 0 0;
+  width: 27px;
+  left: 2px;
+  transform: rotate(45deg);
+}
+
+.BurgerBTN-module___hnyvq__bar input:checked ~ .BurgerBTN-module___hnyvq__bottom {
+  transform-origin: 0 0;
+  width: 27px;
+  bottom: -1px;
+  transform: rotate(-45deg);
+  box-shadow: 0 0 10px #495057;
+}
+
+.BurgerBTN-module___hnyvq__bar input:checked ~ .BurgerBTN-module___hnyvq__middle {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+@media (max-width: 767px) {
+  .BurgerBTN-module___hnyvq__bar {
+    display: block;
+  }
+}
+
+/*# sourceMappingURL=src_components_BurgerBTN_BurgerBTN_module_css_1igg3k2._.single.css.map*/

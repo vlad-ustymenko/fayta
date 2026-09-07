@@ -75,7 +75,12 @@ export default function Sidebar({ data }) {
           className={styles.close}
           onClick={() => setOpenSidebar(false)}
         />
-        <Form data={data} />
+        <h2 className={styles.title}>{data.title}</h2>
+        <Form
+          form={data.form}
+          button={data.button}
+          confidentialText={data.confidentialText}
+        />
       </aside>
     </div>
   );

@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_components_social_links",
+  "info": {
+    "displayName": "socialLinks"
+  },
+  "options": {},
+  "attributes": {
+    "instaLink": {
+      "type": "string",
+      "required": true
+    },
+    "fbLink": {
+      "type": "string",
+      "required": true
+    },
+    "youtubeLink": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

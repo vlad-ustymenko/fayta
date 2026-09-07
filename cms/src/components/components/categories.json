@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_components_categories",
+  "info": {
+    "displayName": "mapCategories"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "places": {
+      "type": "component",
+      "component": "components.places",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

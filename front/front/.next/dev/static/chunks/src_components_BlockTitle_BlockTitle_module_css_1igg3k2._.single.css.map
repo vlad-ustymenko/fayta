@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/src/components/BlockTitle/BlockTitle.module.css"],"sourcesContent":[".blokTitleWrapper {\r\n  display: flex;\r\n  align-items: center;\r\n  gap: 1vw;\r\n  width: 100%;\r\n}\r\n\r\n.blokTitle {\r\n  width: fit-content;\r\n  font-family: var(--font-roboto), sans-serif;\r\n  font-size: 1.3vw;\r\n  text-align: center;\r\n  white-space: nowrap;\r\n  color: var(--black);\r\n}\r\n\r\n.iconWrapper {\r\n  width: 2vw;\r\n  height: 2vw;\r\n  position: relative;\r\n}\r\n\r\n.icon {\r\n  width: 100%;\r\n  height: 100%;\r\n  position: absolute;\r\n  top: 0;\r\n  left: 0;\r\n  object-fit: contain;\r\n}\r\n\r\n.line {\r\n  flex: 1;\r\n  height: 0.1vw;\r\n  background-color: var(--black);\r\n}\r\n\r\n@media (width >= 768px) and (width <= 1024px) {\r\n}\r\n\r\n@media (width <= 767px) {\r\n  .blokTitleWrapper {\r\n    gap: 3vw;\r\n  }\r\n\r\n  .blokTitle {\r\n    font-size: 4vw;\r\n  }\r\n\r\n  .iconWrapper {\r\n    width: 8vw;\r\n    height: 8vw;\r\n  }\r\n\r\n  .line {\r\n    height: 0.3vw;\r\n  }\r\n}\r\n"],"names":[],"mappings":"AAAA;;;;;;;AAOA;;;;;;;;;AASA;;;;;;AAMA;;;;;;;;;AASA;;;;;;AASA;EACE;;;;EAIA;;;;EAIA;;;;;EAKA"}}]
+}

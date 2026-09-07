@@ -9,8 +9,8 @@
       "type": "string",
       "required": true
     },
-    "description": {
-      "type": "text",
+    "subTitle": {
+      "type": "string",
       "required": true
     },
     "image": {
@@ -20,6 +20,11 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "socialLinks": {
+      "type": "component",
+      "component": "components.social-links",
+      "repeatable": false
     }
   },
   "config": {}

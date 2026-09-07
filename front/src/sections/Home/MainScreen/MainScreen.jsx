@@ -7,6 +7,7 @@ import { AiFillYoutube } from "react-icons/ai";
 import styles from "./MainScreen.module.css";
 
 const MainScreen = ({ data }) => {
+  const { instaLink, fbLink, youtubeLink } = data.socialLinks;
   return (
     <div className={styles.main}>
       <div className={styles.imageWrapper}>
@@ -22,17 +23,17 @@ const MainScreen = ({ data }) => {
 
       <div className={styles.overlay}></div>
       <div className={styles.content}>
+        <h2 className={styles.subTitle}>{data.subTitle}</h2>
         <h1 className={styles.title}>{data.title}</h1>
-        <h1 className={styles.description}>{data.description}</h1>
       </div>
       <div className={styles.socialWrapper}>
-        <a href="#" target="_blank" className={styles.socialLink}>
+        <a href={instaLink} target="_blank" className={styles.socialLink}>
           <AiFillInstagram className={styles.icon} />
         </a>
-        <a href="#" target="_blank" className={styles.socialLink}>
+        <a href={youtubeLink} target="_blank" className={styles.socialLink}>
           <AiFillYoutube className={styles.icon} />
         </a>
-        <a href="#" target="_blank" className={styles.socialLink}>
+        <a href={fbLink} target="_blank" className={styles.socialLink}>
           <BsFacebook className={styles.iconfacebook} />
         </a>
       </div>

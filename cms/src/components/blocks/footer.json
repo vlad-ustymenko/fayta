@@ -1,0 +1,48 @@
+{
+  "collectionName": "components_blocks_footers",
+  "info": {
+    "displayName": "Footer"
+  },
+  "options": {},
+  "attributes": {
+    "leftBlock": {
+      "type": "component",
+      "component": "components.link",
+      "repeatable": true,
+      "required": true
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "rightBlock": {
+      "type": "component",
+      "component": "components.link",
+      "repeatable": true,
+      "required": true
+    },
+    "socialText": {
+      "type": "string",
+      "required": true
+    },
+    "copyright": {
+      "type": "string",
+      "required": true
+    },
+    "policy": {
+      "type": "component",
+      "component": "components.link",
+      "repeatable": false
+    },
+    "socialLinks": {
+      "type": "component",
+      "component": "components.social-links",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

@@ -1,6 +1,6 @@
 .concept {
   width: 100%;
-  padding: 4vw 7.4vw;
+  padding: var(--pbd);
   position: relative;
 }
 
@@ -15,7 +15,7 @@
   margin-top: 5vw;
   margin-bottom: 3vw;
   font-family: var(--font-roboto), sans-serif;
-  font-size: var(--titleFontSize);
+  font-size: var(--titleDesc);
   font-weight: 700;
   line-height: 1;
 }
@@ -75,7 +75,7 @@
 
 @media (width <= 767px) {
   .concept {
-    padding: 7vw 9vw;
+    padding: var(--pbm);
   }
 
   .grid {
@@ -86,7 +86,7 @@
   .title {
     margin-top: 7vw;
     margin-bottom: 7vw;
-    font-size: var(--titleFontSizeMobile);
+    font-size: var(--titleMob);
   }
 
   .description {

@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_blocks_investments",
+  "info": {
+    "displayName": "Investment"
+  },
+  "options": {},
+  "attributes": {
+    "blockTitle": {
+      "type": "component",
+      "component": "components.block-title",
+      "repeatable": false
+    },
+    "title": {
+      "type": "richtext",
+      "required": true
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "investmentList": {
+      "type": "component",
+      "component": "components.investment-list",
+      "repeatable": true,
+      "required": true
+    }
+  },
+  "config": {}
+}

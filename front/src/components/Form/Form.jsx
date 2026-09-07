@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import IMask from "imask";
 import { useRef, useEffect } from "react";
@@ -22,7 +23,7 @@ import ReactMarkdown from "react-markdown";
 //   },
 // ];
 
-const Form = ({ data }) => {
+const Form = ({ form, button, confidentialText, feedback, className }) => {
   const phoneInputRef = useRef(null);
 
   const {
@@ -77,9 +78,8 @@ const Form = ({ data }) => {
   };
   return (
     <div className={styles.wrapper}>
-      <h2 className={styles.title}>{data.title}</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        {data.form.map((item) => (
+        {form.map((item) => (
           <Controller
             key={item.id}
             name={item.type}
@@ -116,33 +116,55 @@ const Form = ({ data }) => {
                   }}
                   style={{
                     borderBottom: errors[item.title] ? "2px solid red" : "",
+                    color: feedback ? "var(--black)" : "",
                   }}
                 />
-                <label htmlFor={item.type} className={styles.floatingLabel}>
+                <label
+                  htmlFor={item.type}
+                  className={styles.floatingLabel}
+                  style={{
+                    color: feedback ? "var(--black)" : "",
+                  }}
+                >
                   {item.placeholder}
                 </label>
-                {errors[item.type] && (
-                  <p className={styles.errorMessage}>
-                    {errors[item.type].message}
-                  </p>
-                )}
+                <p className={styles.errorMessage}>
+                  {errors[item.type]?.message || "\u00A0"}
+                </p>
               </div>
             )}
           />
         ))}
-        <Button title={data.button} form className={styles.button}></Button>
+        <Button
+          title={button}
+          form
+          className={feedback ? styles.feedbackButton : styles.button}
+        ></Button>
         <ReactMarkdown
           remarkPlugins={[remarkBreaks]}
           components={{
-            p: ({ children }) => <p className={styles.subtitle}>{children}</p>,
+            p: ({ children }) => (
+              <p
+                className={styles.subtitle}
+                // style={{ fontSize: feedback ? "1vw" : "" }}
+              >
+                {children}
+              </p>
+            ),
             strong: ({ children }) => (
-              <a href="#" className={styles.link}>
+              <a
+                href="#"
+                className={styles.link}
+                style={{
+                  borderBottom: feedback ? `0.1vw solid var(--black)` : "",
+                }}
+              >
                 {children}
               </a>
             ),
           }}
         >
-          {data.confidentialText}
+          {confidentialText}
         </ReactMarkdown>
       </form>
     </div>

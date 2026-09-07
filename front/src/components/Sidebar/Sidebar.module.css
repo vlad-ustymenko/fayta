@@ -28,6 +28,13 @@
   transition: transform 0.5s ease-out;
 }
 
+.title {
+  margin-bottom: 4vw;
+  font-family: var(--font-sofia), sans-serif;
+  font-size: 2vw;
+  color: var(--secondary);
+}
+
 .open {
   transform: translateX(0);
 }

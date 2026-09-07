@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_components_places",
+  "info": {
+    "displayName": "places"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "time": {
+      "type": "string"
+    },
+    "lat": {
+      "type": "decimal"
+    },
+    "lng": {
+      "type": "decimal"
+    }
+  },
+  "config": {}
+}

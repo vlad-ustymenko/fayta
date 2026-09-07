@@ -35,6 +35,10 @@
       "component": "components.block-title",
       "repeatable": false,
       "required": true
+    },
+    "blockID": {
+      "type": "string",
+      "required": true
     }
   },
   "config": {}

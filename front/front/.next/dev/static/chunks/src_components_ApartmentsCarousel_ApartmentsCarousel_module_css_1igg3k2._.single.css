@@ -1,0 +1,73 @@
+/* [project]/src/components/ApartmentsCarousel/ApartmentsCarousel.module.css [app-client] (css) */
+.ApartmentsCarousel-module__yAv4AW__carousel {
+  z-index: 5;
+  flex: 1;
+  align-self: center;
+  width: 40%;
+}
+
+.ApartmentsCarousel-module__yAv4AW__wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.ApartmentsCarousel-module__yAv4AW__imageWrapper {
+  flex: 1;
+  width: 100%;
+  position: relative;
+}
+
+.ApartmentsCarousel-module__yAv4AW__card {
+  background-color: var(--background);
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 3vw;
+  display: flex;
+  position: absolute;
+  overflow: hidden;
+}
+
+.ApartmentsCarousel-module__yAv4AW__character {
+  justify-content: space-between;
+  display: flex;
+}
+
+.ApartmentsCarousel-module__yAv4AW__image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .ApartmentsCarousel-module__yAv4AW__carousel {
+    order: 1;
+    place-self: center;
+    width: 70%;
+    height: 50%;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .ApartmentsCarousel-module__yAv4AW__carousel {
+    z-index: 5;
+    place-self: center;
+    width: 85%;
+    height: 50%;
+    min-height: 25vh;
+    margin-top: 0;
+  }
+
+  .ApartmentsCarousel-module__yAv4AW__card {
+    border-radius: 10px;
+    justify-self: center;
+    width: 100%;
+    height: 100%;
+    margin-top: 0;
+  }
+}
+
+/*# sourceMappingURL=src_components_ApartmentsCarousel_ApartmentsCarousel_module_css_1igg3k2._.single.css.map*/

@@ -1,0 +1,158 @@
+.feedback {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8vw;
+  padding: var(--pbd);
+}
+
+.rightBlock {
+  position: relative;
+}
+
+.imageWrapper {
+  position: absolute;
+  top: -7vw;
+  left: -15vw;
+  width: 180%;
+  height: 180%;
+  z-index: -1;
+}
+
+.image {
+  opacity: 5%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: -1;
+}
+
+.leftBlockName,
+.rightBlockName {
+  padding-left: 6vw;
+  margin-bottom: 1vw;
+  font-family: var(--font-roboto), sans-serif;
+  font-size: 1.2vw;
+  font-weight: 400;
+  line-height: 1;
+  position: relative;
+}
+
+.leftBlockName::before,
+.rightBlockName::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 5vw;
+  height: 0.1vw;
+  background-color: var(--black);
+}
+
+.leftBlockTitle {
+  font-family: var(--font-roboto), sans-serif;
+  font-size: 3.2vw;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 3vw;
+}
+
+.strong {
+  font-family: var(--font-sofia), sans-serif;
+  color: var(--secondary);
+}
+
+.leftBlockText {
+  font-family: var(--font-roboto), sans-serif;
+  font-size: 1.2vw;
+  font-weight: 400;
+  line-height: 1;
+  border-bottom: 0.15vw solid var(--black);
+  padding-bottom: 0.7vw;
+}
+
+.phoneTitle {
+  font-family: var(--font-roboto), sans-serif;
+  font-size: 1.2vw;
+  font-weight: 700;
+  line-height: 1;
+  margin-top: 2vw;
+  margin-bottom: 1vw;
+  color: var(--secondary);
+}
+
+.phone {
+  font-family: var(--font-roboto), sans-serif;
+  font-size: 2.5vw;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.rightBlockTitle {
+  font-family: var(--font-roboto), sans-serif;
+  font-size: 1.8vw;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 1vw;
+  margin-top: 1.5vw;
+  color: var(--secondary);
+}
+
+@media (width >= 768px) and (width <= 1024px) {
+}
+
+@media (width <= 767px) {
+  .feedback {
+    grid-template-columns: 1fr;
+    gap: 10vw;
+    padding: var(--pbm);
+  }
+
+  .leftBlockName,
+  .rightBlockName {
+    padding-left: 18vw;
+    margin-bottom: 4vw;
+    font-size: 3.5vw;
+  }
+
+  .leftBlockName::before,
+  .rightBlockName::before {
+    width: 15vw;
+    height: 0.3vw;
+  }
+
+  .leftBlockTitle {
+    font-size: var(--titleMob);
+    margin-bottom: 3vw;
+  }
+
+  .leftBlockText {
+    font-size: 3vw;
+    border-bottom: 0.2vw solid var(--black);
+    padding-bottom: 2vw;
+  }
+
+  .phoneTitle {
+    font-size: 3vw;
+
+    margin-top: 4vw;
+    margin-bottom: 2vw;
+  }
+
+  .phone {
+    font-size: 5vw;
+  }
+
+  .rightBlockTitle {
+    font-family: var(--font-roboto), sans-serif;
+    font-size: 5vw;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 6vw;
+    margin-top: 2vw;
+    color: var(--secondary);
+  }
+}

@@ -28,7 +28,12 @@
         "blocks.sidebar",
         "blocks.menu",
         "blocks.concept",
-        "blocks.galery"
+        "blocks.galery",
+        "blocks.investment",
+        "blocks.footer",
+        "blocks.feedback",
+        "blocks.genplan",
+        "blocks.infrastructure"
       ]
     }
   }
