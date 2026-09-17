@@ -1,9 +1,133 @@
-import React from 'react'
+import Link from "next/link";
+import qs from "qs";
 
-const page = () => {
-	return (
-		<div>page</div>
-	)
+import { notFound } from "next/navigation";
+
+import NewsCardsList from "@/src/components/NewsCardsList/NewsCardsList";
+import Feedback from "@/src/sections/Home/Feedback/Feedback";
+import Image from "next/image";
+import styles from "./page.module.css";
+
+async function getHomeData(locale) {
+  const baseUrl = process.env.STRAPI_BASE_URL;
+
+  const query = qs.stringify(
+    {
+      locale: locale,
+      populate: {
+        blocks: {
+          on: {
+            "blocks.feedback": {
+              populate: "*",
+            },
+          },
+        },
+      },
+    },
+    { encodeValuesOnly: true },
+  );
+
+  const url = new URL(process.env.HOME_URL, baseUrl);
+  url.search = query;
+
+  try {
+    const res = await fetch(url.href, { next: { revalidate: 60 } });
+
+    if (!res.ok) {
+      console.error(`Strapi error: ${res.status} ${res.statusText}`);
+      return null;
+    }
+
+    const data = await res.json();
+    return data.data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 }
 
-export default page
+async function getData(path, locale) {
+  const baseUrl = process.env.STRAPI_BASE_URL;
+
+  const query = qs.stringify(
+    {
+      locale: locale,
+      populate: {
+        news_cards: {
+          populate: {
+            button: { populate: "*" },
+            image: {
+              fields: ["url"],
+            },
+          },
+        },
+        newsCategories: {
+          populate: "*",
+        },
+        moreButton: {
+          populate: {
+            icon: {
+              fields: ["url"],
+            },
+          },
+        },
+      },
+    },
+    { encodeValuesOnly: true },
+  );
+
+  const url = new URL(path, baseUrl);
+  url.search = query;
+
+  try {
+    const res = await fetch(url.href, { cache: "no-store" });
+
+    if (!res.ok) {
+      console.error(`Strapi error: ${res.status} ${res.statusText}`);
+      return;
+    }
+
+    const data = await res.json();
+    return data.data;
+  } catch {}
+}
+
+export default async function Home({ params }) {
+  const { locale } = await params;
+  const strapiData = await getData(process.env.NEWS_URL, locale);
+  const feedbackData = await getHomeData(locale);
+
+  const feedback = feedbackData?.blocks.find(
+    (block) => block.__component === "blocks.feedback",
+  );
+
+  if (!strapiData) {
+    notFound();
+  }
+
+  return (
+    <main className={styles.main}>
+      <NewsCardsList
+        backText={strapiData.backText}
+        newsCategories={strapiData.newsCategories}
+        cards={strapiData.news_cards}
+        locale={locale}
+        moreButton={strapiData.moreButton}
+        className={styles.cardsWrapper}
+      />
+
+      <div className={styles.blokTitleWrapper}>
+        <div className={styles.iconWrapper}>
+          <Image
+            src="/logo.svg"
+            fill
+            alt="block title icon"
+            className={styles.icon}
+          />
+        </div>
+        <span className={styles.line}></span>
+      </div>
+      <Feedback data={feedback} />
+    </main>
+  );
+}

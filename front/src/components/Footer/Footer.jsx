@@ -1,20 +1,27 @@
+"use client";
 import React from "react";
 import Image from "next/image";
-import { AiFillInstagram } from "react-icons/ai";
-import { BsFacebook } from "react-icons/bs";
-import { AiFillYoutube } from "react-icons/ai";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { getSocialIcon } from "../../utils/socialIcons";
+import { buildNavHref, getHomePath } from "@/src/utils/nav";
 import styles from "./Footer.module.css";
 
 const Footer = ({ data }) => {
-  const { instaLink, fbLink, youtubeLink } = data.socialLinks;
+  const pathname = usePathname();
+  const homeHref = getHomePath(pathname);
   return (
     <div className={styles.footer}>
       <div className={styles.grid}>
         <div className={styles.leftBlock}>
           {data.leftBlock.map((item) => (
-            <a href={item.link} className={styles.link} key={item.id}>
+            <Link
+              key={item.id}
+              href={buildNavHref(item.blockID, pathname)}
+              className={styles.link}
+            >
               {item.title}
-            </a>
+            </Link>
           ))}
         </div>
         <div className={styles.iconWrapper}>
@@ -27,23 +34,34 @@ const Footer = ({ data }) => {
         </div>
         <div className={styles.rightBlock}>
           {data.rightBlock.map((item) => (
-            <a href={item.link} className={styles.link} key={item.id}>
+            <Link
+              key={item.id}
+              href={buildNavHref(item.blockID, pathname)}
+              className={styles.link}
+            >
               {item.title}
-            </a>
+            </Link>
           ))}
         </div>
       </div>
       <p className={styles.socialText}>{data.socialText}</p>
       <div className={styles.socialWrapper}>
-        <a href={instaLink} target="_blank" className={styles.socialLink}>
-          <AiFillInstagram className={styles.icon} />
-        </a>
-        <a href={youtubeLink} target="_blank" className={styles.socialLink}>
-          <AiFillYoutube className={styles.icon} />
-        </a>
-        <a href={fbLink} target="_blank" className={styles.socialLink}>
-          <BsFacebook className={styles.iconfacebook} />
-        </a>
+        {data.socialIcons?.map((icon) => {
+          const Icon = getSocialIcon(icon.title);
+          if (!Icon) return null;
+
+          return (
+            <a
+              key={icon.id}
+              href={icon.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.socialLink}
+            >
+              <Icon className={styles.icon} />
+            </a>
+          );
+        })}
       </div>
       <div className={styles.line}></div>
       <div className={styles.copyrightWrapper}>

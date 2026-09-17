@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_blocks_advantages",
+  "info": {
+    "displayName": "Advantages"
+  },
+  "options": {},
+  "attributes": {
+    "blockTitle": {
+      "type": "component",
+      "component": "components.block-title",
+      "repeatable": false
+    },
+    "advantagesCards": {
+      "type": "component",
+      "component": "components.advanages-card",
+      "repeatable": true
+    },
+    "moreButton": {
+      "type": "component",
+      "component": "components.button",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

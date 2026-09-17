@@ -8,10 +8,6 @@ import { SplitText } from "gsap/SplitText";
 import { useLenis } from "@/context/LenisContext";
 import styles from "./ImageSlider.module.css";
 
-// slides підтримує 3 формати:
-// [{ title: string, description: string, image: string }]  - з заголовком та описом
-// [{ title: string, image: string }]                       - лише заголовок
-// [{ url: string }]                                         - лише картинка
 export default function ImageSlider({ data = [] }) {
   const sectionRef = useRef(null);
   const sliderImagesRef = useRef(null);
@@ -19,35 +15,43 @@ export default function ImageSlider({ data = [] }) {
   const sliderIndicesRef = useRef(null);
   const progressBarRef = useRef(null);
 
-  // ЗМІНЕНО: Lenis більше не створюється тут - береться зі спільного контексту,
-  // щоб на сторінці існував лише ОДИН інстанс Lenis (LenisProvider у layout.jsx)
   const lenis = useLenis();
 
-  // Приводимо усі формати до єдиної внутрішньої форми { image, title, description }
-  const normalizedSlides = data.images.map((slide) => ({
-    image: slide.image ?? slide.url,
-    title: slide.title ?? null,
-    description: slide.description ?? null,
-  }));
+  const normalizedSlides = data.images
+    .map((slide) => {
+      // Варіант 1: slide сам є медіафайлом { url, id, documentId }
+      if (typeof slide.url === "string") {
+        return {
+          image: slide.url,
+          title: null,
+          description: null,
+        };
+      }
+
+      // Варіант 2: slide — обгортка { image, title, description }
+      const imageUrl =
+        typeof slide.image === "string"
+          ? slide.image
+          : (slide.image?.url ?? null);
+
+      return {
+        image: imageUrl,
+        title: slide.title ?? null,
+        description: slide.description ?? null,
+      };
+    })
+    .filter((slide) => slide.image);
 
   const hasText = normalizedSlides.some(
     (slide) => slide.title || slide.description,
   );
 
   useEffect(() => {
-    // ДОДАНО: чекаємо, поки LenisProvider створить інстанс (перший рендер на
-    // клієнті lenis === null, поки не відпрацює useEffect у провайдері)
     if (!normalizedSlides.length || !lenis) return;
 
     gsap.registerPlugin(ScrollTrigger, SplitText);
 
-    // gsap.context прив'язує всі анімації/тригери до контейнера і дозволяє
-    // прибрати їх ОДНИМ викликом revert() при розмонтуванні компонента -
-    // це критично в Next.js, інакше ScrollTrigger-и накопичуються між переходами сторінок
     const ctx = gsap.context(() => {
-      // ЗМІНЕНО: раніше тут створювався власний "new Lenis()" і власний тікер -
-      // обидва прибрані, бо цим тепер керує LenisProvider глобально.
-      // Залишається тільки підписка ScrollTrigger на скрол спільного інстансу.
       lenis.on("scroll", ScrollTrigger.update);
 
       const sliderImages = sliderImagesRef.current;
@@ -121,8 +125,6 @@ export default function ImageSlider({ data = [] }) {
         });
       }
 
-      // Розбиває елемент на рядки через SplitText і анімує їх появу.
-      // delay використовується, щоб опис з'являвся трохи пізніше за заголовок.
       function splitAndAnimate(element, delay = 0) {
         const split = new SplitText(element, {
           type: "lines",
@@ -148,8 +150,6 @@ export default function ImageSlider({ data = [] }) {
       }
 
       function animateNewText(index) {
-        // якщо ні title, ні description немає в жодному слайді - блок узагалі
-        // не рендериться в JSX (див. hasText), і sliderTitle буде null
         if (!sliderTitle) return;
 
         if (currentTitleSplit) currentTitleSplit.revert();
@@ -174,7 +174,6 @@ export default function ImageSlider({ data = [] }) {
           currentTitleSplit = splitAndAnimate(titleEl, 0);
         }
 
-        // якщо є і заголовок, і опис - опис з'являється з невеликою затримкою після заголовка
         if (descriptionEl) {
           currentDescriptionSplit = splitAndAnimate(
             descriptionEl,
@@ -185,9 +184,7 @@ export default function ImageSlider({ data = [] }) {
 
       function animateNewSlide(index) {
         const newSliderImage = document.createElement("img");
-        // ВИПРАВЛЕНО: раніше тут не було префіксу NEXT_PUBLIC_STRAPI_BASE_URL,
-        // через що всі слайди, крім першого (який рендериться через next/image
-        // в JSX з правильним префіксом), не завантажувались
+
         newSliderImage.src = `${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${normalizedSlides[index].image}`;
         newSliderImage.alt =
           normalizedSlides[index].title || `Slide #${index + 1}`;
@@ -219,6 +216,7 @@ export default function ImageSlider({ data = [] }) {
       }
 
       createIndices();
+
       animateNewText(0);
 
       const pinDistance = window.innerHeight * normalizedSlides.length;
@@ -250,15 +248,12 @@ export default function ImageSlider({ data = [] }) {
         },
       });
 
-      // ЗМІНЕНО: замість lenis.destroy() (бо інстанс тепер спільний і належить
-      // провайдеру) - просто відписуємось від його події скролу
       return () => {
         lenis.off("scroll", ScrollTrigger.update);
       };
     }, sectionRef);
 
     return () => ctx.revert();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data.images, lenis]);
 
   return (
@@ -267,13 +262,13 @@ export default function ImageSlider({ data = [] }) {
         {normalizedSlides[0] && (
           <Image
             fill
+            sizes="100vw"
             src={`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${normalizedSlides[0].image}`}
             alt={normalizedSlides[0].title || "Slide #1"}
           />
         )}
       </div>
 
-      {/* Блок тексту рендериться лише якщо хоч у одного слайду є title АБО description */}
       {hasText && (
         <div className={styles.sliderTitle} ref={sliderTitleRef}>
           {normalizedSlides[0]?.title && <h2>{normalizedSlides[0].title}</h2>}

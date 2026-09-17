@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_components_contacts_infos",
+  "info": {
+    "displayName": "contactsInfo"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "phone",
+        "email",
+        "address"
+      ]
+    }
+  },
+  "config": {}
+}

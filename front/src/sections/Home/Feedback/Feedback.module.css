@@ -10,54 +10,54 @@
 }
 
 .imageWrapper {
+  width: 180%;
+  height: 160%;
   position: absolute;
   top: -7vw;
-  left: -15vw;
-  width: 180%;
-  height: 180%;
+  left: -19vw;
   z-index: -1;
 }
 
 .image {
-  opacity: 5%;
+  width: 100%;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
   z-index: -1;
+  object-fit: contain;
+  opacity: 0.05;
 }
 
 .leftBlockName,
 .rightBlockName {
   padding-left: 6vw;
   margin-bottom: 1vw;
+  position: relative;
   font-family: var(--font-roboto), sans-serif;
   font-size: 1.2vw;
   font-weight: 400;
   line-height: 1;
-  position: relative;
 }
 
 .leftBlockName::before,
 .rightBlockName::before {
-  content: "";
+  width: 5vw;
+  height: 0.1vw;
   position: absolute;
   top: 50%;
   left: 0;
   transform: translateY(-50%);
-  width: 5vw;
-  height: 0.1vw;
   background-color: var(--black);
+  content: "";
 }
 
 .leftBlockTitle {
+  margin-bottom: 3vw;
   font-family: var(--font-roboto), sans-serif;
   font-size: 3.2vw;
   font-weight: 700;
   line-height: 1;
-  margin-bottom: 3vw;
 }
 
 .strong {
@@ -66,21 +66,21 @@
 }
 
 .leftBlockText {
+  padding-bottom: 0.7vw;
+  border-bottom: 0.15vw solid var(--black);
   font-family: var(--font-roboto), sans-serif;
   font-size: 1.2vw;
   font-weight: 400;
   line-height: 1;
-  border-bottom: 0.15vw solid var(--black);
-  padding-bottom: 0.7vw;
 }
 
 .phoneTitle {
+  margin-top: 2vw;
+  margin-bottom: 1vw;
   font-family: var(--font-roboto), sans-serif;
   font-size: 1.2vw;
   font-weight: 700;
   line-height: 1;
-  margin-top: 2vw;
-  margin-bottom: 1vw;
   color: var(--secondary);
 }
 
@@ -92,12 +92,12 @@
 }
 
 .rightBlockTitle {
+  margin-top: 1.5vw;
+  margin-bottom: 1vw;
   font-family: var(--font-roboto), sans-serif;
   font-size: 1.8vw;
   font-weight: 700;
   line-height: 1;
-  margin-bottom: 1vw;
-  margin-top: 1.5vw;
   color: var(--secondary);
 }
 
@@ -125,21 +125,20 @@
   }
 
   .leftBlockTitle {
-    font-size: var(--titleMob);
     margin-bottom: 3vw;
+    font-size: var(--titleMob);
   }
 
   .leftBlockText {
-    font-size: 3vw;
-    border-bottom: 0.2vw solid var(--black);
     padding-bottom: 2vw;
+    border-bottom: 0.2vw solid var(--black);
+    font-size: 3vw;
   }
 
   .phoneTitle {
-    font-size: 3vw;
-
     margin-top: 4vw;
     margin-bottom: 2vw;
+    font-size: 3vw;
   }
 
   .phone {
@@ -147,12 +146,12 @@
   }
 
   .rightBlockTitle {
+    margin-top: 2vw;
+    margin-bottom: 6vw;
     font-family: var(--font-roboto), sans-serif;
     font-size: 5vw;
     font-weight: 700;
     line-height: 1;
-    margin-bottom: 6vw;
-    margin-top: 2vw;
     color: var(--secondary);
   }
 }

@@ -1,13 +1,10 @@
 import React from "react";
 import Image from "next/image";
-import { AiFillInstagram } from "react-icons/ai";
-import { BsFacebook } from "react-icons/bs";
-import { AiFillYoutube } from "react-icons/ai";
+import { getSocialIcon } from "../../../utils/socialIcons";
 
 import styles from "./MainScreen.module.css";
 
 const MainScreen = ({ data }) => {
-  const { instaLink, fbLink, youtubeLink } = data.socialLinks;
   return (
     <div className={styles.main}>
       <div className={styles.imageWrapper}>
@@ -27,15 +24,22 @@ const MainScreen = ({ data }) => {
         <h1 className={styles.title}>{data.title}</h1>
       </div>
       <div className={styles.socialWrapper}>
-        <a href={instaLink} target="_blank" className={styles.socialLink}>
-          <AiFillInstagram className={styles.icon} />
-        </a>
-        <a href={youtubeLink} target="_blank" className={styles.socialLink}>
-          <AiFillYoutube className={styles.icon} />
-        </a>
-        <a href={fbLink} target="_blank" className={styles.socialLink}>
-          <BsFacebook className={styles.iconfacebook} />
-        </a>
+        {data.socialIcons?.map((icon) => {
+          const Icon = getSocialIcon(icon.title);
+          if (!Icon) return null;
+
+          return (
+            <a
+              key={icon.id}
+              href={icon.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.socialLink}
+            >
+              <Icon className={styles.icon} />
+            </a>
+          );
+        })}
       </div>
     </div>
   );

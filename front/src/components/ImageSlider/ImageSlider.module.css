@@ -1,16 +1,16 @@
 /* components/ImageSlider/ImageSlider.module.css */
 
 .slider {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   position: relative;
   overflow: hidden;
 }
 
-.slider h1,
 .slider h2 {
-  font-size: 3rem;
-  font-weight: 400;
+  font-size: 3vw;
+  font-weight: 700;
+  font-family: var(--font-sofia), sans-serif;
   line-height: 1.2;
   letter-spacing: -0.1rem;
   /* word-break: break-word;
@@ -18,18 +18,14 @@
 }
 
 .description {
+  font-family: var(--font-roboto), sans-serif;
   max-width: 90%;
-  margin-top: 1rem;
-  font-size: 1.1rem;
+  margin-top: 3vw;
+  font-size: 1.4vw;
   font-weight: 400;
   line-height: 1.4;
   /* word-break: break-word;
   overflow-wrap: break-word; */
-}
-
-.slider p {
-  font-size: 0.85rem;
-  font-weight: 400;
 }
 
 .sliderImages {
@@ -44,7 +40,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  background: rgb(0 0 0 / 35%);
+  background: rgb(0 0 0 / 50%);
   content: "";
 }
 
@@ -58,12 +54,13 @@
 }
 
 .sliderTitle {
-  width: 50%;
+  width: 90%;
   position: absolute;
   top: 50%;
   left: 2rem;
   transform: translateY(-50%);
   color: #fff;
+  padding: 0 7.4vw;
 }
 
 .sliderIndicator {

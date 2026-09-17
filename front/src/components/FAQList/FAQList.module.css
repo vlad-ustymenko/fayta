@@ -1,0 +1,114 @@
+.faq {
+  padding: 0 7.4vw 4vw;
+}
+
+.tabWrapper {
+  width: 100%;
+  margin: 0 auto 1.5vw;
+  margin-bottom: 1vw;
+  border-bottom: 0.15vw solid black;
+  cursor: pointer;
+}
+
+.tabTitleWrapper {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 20px;
+}
+
+.tabTitle {
+  padding-bottom: 1.5vw;
+  font-family: var(--font-sofia), sans-serif;
+  font-size: 1.7vw;
+  font-weight: 700;
+}
+
+.tabTitle:hover {
+  color: var(--secondary);
+}
+
+.tabDescription {
+  display: grid;
+  grid-template-rows: 0fr;
+  font-family: var(--font-roboto), sans-serif;
+  transition: 0.3s ease;
+}
+
+.open {
+  grid-template-rows: 1fr;
+  margin-bottom: 1.5vw;
+}
+
+.tabContent {
+  font-size: 1.2vw;
+  overflow: hidden;
+}
+
+.activeTab {
+  padding-bottom: 1vw;
+  color: var(--accent);
+}
+
+.iconWrapper {
+  width: 2vw;
+  height: 2vw;
+  transform: rotate(180deg);
+  transition: 0.3s ease;
+  margin-bottom: 1.5vw;
+}
+
+.icon {
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease-out;
+}
+
+.tabTitle:hover ~ .iconWrapper .icon {
+  color: var(--secondary);
+}
+
+.rotate {
+  transform: rotate(180deg);
+  transition: all 0.3s ease-out;
+  color: var(--accent);
+}
+
+@media (width >= 768px) and (width <= 1024px) {
+  .tabTitle {
+    padding: 30px 0;
+    font-family: MontserratBold, sans-serif;
+    font-size: 22px;
+  }
+
+  .activeTab {
+    padding-bottom: 15px;
+  }
+
+  .tabContent {
+    font-size: 18px;
+  }
+
+  .open {
+    margin-bottom: 22px;
+  }
+}
+
+@media (width <= 767px) {
+  .tabTitle {
+    padding: 20px 0;
+    font-family: MontserratBold, sans-serif;
+    font-size: 18px;
+  }
+
+  .activeTab {
+    padding-bottom: 15px;
+  }
+
+  .tabContent {
+    font-size: 15px;
+  }
+
+  .open {
+    margin-bottom: 20px;
+  }
+}

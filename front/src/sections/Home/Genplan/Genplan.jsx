@@ -4,7 +4,7 @@ import styles from "./Genplan.module.css";
 
 const Genplan = ({ data }) => {
   return (
-    <div className={styles.genplan}>
+    <div className={styles.genplan} id="genplan">
       <Image
         src={`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${data.image.url}`}
         fill

@@ -1,0 +1,45 @@
+{
+  "collectionName": "components_blocks_contacts",
+  "info": {
+    "displayName": "Contacts"
+  },
+  "options": {},
+  "attributes": {
+    "contactsInfo": {
+      "type": "component",
+      "component": "components.contacts-info",
+      "repeatable": true
+    },
+    "googleMap": {
+      "type": "string"
+    },
+    "rightBlockTitle": {
+      "type": "string"
+    },
+    "form": {
+      "type": "component",
+      "component": "components.form-input",
+      "repeatable": true
+    },
+    "button": {
+      "type": "string"
+    },
+    "confidentialText": {
+      "type": "richtext"
+    },
+    "socialText": {
+      "type": "string"
+    },
+    "socialIcons": {
+      "type": "component",
+      "component": "components.social-icon",
+      "repeatable": true
+    },
+    "blockTitle": {
+      "type": "component",
+      "component": "components.block-title",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,50 @@
+.imageWrapper {
+  width: 100%;
+  height: 20vw;
+  position: relative;
+}
+
+.cardNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3vw;
+  height: 3vw;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  color: white;
+  background: rgb(0 0 0 / 50%);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.icon {
+  width: 2.5vw;
+  height: 2.5vw;
+  position: absolute;
+  top: 52%;
+  transform: translate(-50%, -50%);
+}
+
+.iconLeft {
+  left: 52%;
+}
+
+.iconRight {
+  left: 55%;
+}
+
+.cardNav:hover {
+  background: rgb(0 0 0 / 80%);
+}
+
+.cardPrev {
+  left: 20px;
+}
+
+.cardNext {
+  right: 20px;
+}

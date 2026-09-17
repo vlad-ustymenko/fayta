@@ -1,0 +1,69 @@
+.main {
+  width: 100%;
+}
+
+.title {
+  margin-top: 5vw;
+  margin-bottom: 3vw;
+  margin-left: 7vw;
+  font-family: var(--font-roboto), sans-serif;
+  font-size: var(--titleDesc);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.strong {
+  font-family: var(--font-sofia), sans-serif;
+  color: var(--secondary);
+}
+
+.charactersWrapper {
+  padding: 0 7.4vw 4vw;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2vw;
+}
+
+.characterCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2vw;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--black);
+  border-radius: 2vw;
+  padding: 1.5vw;
+}
+
+.iconWrapper {
+  position: relative;
+  background-color: var(--background);
+  padding: 0.5vw;
+  border-radius: 50%;
+  width: 3vw;
+  height: 3vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.text {
+  flex: 1;
+  color: var(--background);
+  text-align: center;
+  font-family: var(--font-roboto), sans-serif;
+}
+
+.blockTitle {
+  padding: 0 7.4vw 2vw;
+}

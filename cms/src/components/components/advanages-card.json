@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_components_advanages_cards",
+  "info": {
+    "displayName": "advanagesCard"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  },
+  "config": {}
+}

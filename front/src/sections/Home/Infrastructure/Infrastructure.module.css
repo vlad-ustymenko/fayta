@@ -3,17 +3,17 @@
 }
 
 .blockTitle {
-  padding: 6vw 7.4vw 0 7.4vw;
+  padding: 6vw 7.4vw 0;
 }
 
 .title {
-  margin-top: 5vw;
+  padding: 0 7.4vw;
+  margin-top: 2vw;
   margin-bottom: 3vw;
   font-family: var(--font-roboto), sans-serif;
   font-size: var(--titleDesc);
   font-weight: 700;
   line-height: 1;
-  padding: 0 7.4vw 0 7.4vw;
 }
 
 .strong {
@@ -23,34 +23,34 @@
 
 .widget {
   margin: 0 auto;
-  background: var(--background);
   font-family: var(--font-roboto), sans-serif;
   color: var(--black);
+  background: var(--background);
 }
 
 .tabs {
   display: flex;
   gap: 2vw;
+  padding: 0 7.4vw 1vw;
   padding-bottom: 24px;
   margin-bottom: 16px;
-  padding: 0 7.4vw 1vw 7.4vw;
 }
 
 .tab {
-  background: none;
+  padding: 0.5vw 0;
+  position: relative;
   font-family: inherit;
   font-size: 1.2vw;
   font-weight: 600;
   letter-spacing: 0.01em;
   color: var(--black);
-  cursor: pointer;
-  padding: 0.5vw 0;
-  position: relative;
+  background: none;
   transition: color 0.2s ease;
+  cursor: pointer;
 }
 
 .tab:hover {
-  color: var(--accent);
+  color: var(--secondary);
 }
 
 .tabActive {
@@ -58,30 +58,29 @@
 }
 
 .tabActive::after {
-  content: "";
+  height: 2px;
   position: absolute;
-  left: 0;
   right: 0;
   bottom: -8px;
-  height: 2px;
+  left: 0;
   background: var(--accent);
+  content: "";
 }
 
 .content {
   display: grid;
+  align-items: center;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 8vw;
-  align-items: center;
-  padding-bottom: 6vw;
 }
 
 .mapWrap {
-  position: relative;
-  border-radius: 4px;
-  overflow: hidden;
-  border: 1px solid #e1d8c7;
   height: 25vw;
+  border: 1px solid #e1d8c7;
+  border-radius: 4px;
+  position: relative;
   background: var(--background);
+  overflow: hidden;
 }
 
 .map {
@@ -97,16 +96,20 @@
 
 .placeRow {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   padding: 16px 4px;
-  border-bottom: 1px solid #e1d8c7;
-  cursor: pointer;
+  border-bottom: 0.15vw solid var(--black);
   transition: background 0.15s ease;
+  cursor: pointer;
 }
 
 .placeRow:first-child {
   padding-top: 4px;
+}
+
+.placeRow:last-child {
+  border-bottom: unset;
 }
 
 .placeName {
@@ -117,7 +120,7 @@
 }
 
 .placeRow:hover .placeName {
-  color: var(--accent);
+  color: var(--secondary);
 }
 
 .placeNameSelected {
@@ -125,20 +128,20 @@
 }
 
 .placeTime {
-  font-size: 1.2vw;
-  color: #55504a;
-  white-space: nowrap;
   margin-left: 16px;
+  font-size: 1.2vw;
+  white-space: nowrap;
+  color: #55504a;
 }
 
 .pinDot {
   width: 22px;
   height: 22px;
-  border-radius: 50%;
-  background: var(--accent);
   border: 2px solid var(--background);
+  border-radius: 50%;
   transform: rotate(-45deg);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  background: var(--accent);
+  box-shadow: 0 2px 5px rgb(0 0 0 / 30%);
 }
 
 .pinDotMuted {
@@ -148,29 +151,29 @@
 .placeLabel {
   width: max-content;
   max-width: 160px;
-  background: var(--black);
-  color: #f5f0e6;
-  border-radius: 6px;
   padding: 8px 12px 9px;
+  border-radius: 6px;
+  position: relative;
+  transform: translate(-50%, -120%);
+  z-index: 2;
   font-size: 12px;
   line-height: 1.35;
-  white-space: normal;
   text-align: center;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
-  transform: translate(-50%, -120%);
-  position: relative;
-  z-index: 2;
+  white-space: normal;
+  color: #f5f0e6;
+  background: var(--black);
+  box-shadow: 0 6px 16px rgb(0 0 0 / 25%);
 }
 
 .placeLabel::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -6px;
-  transform: translateX(-50%);
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
   border-top: 6px solid #24211d;
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  content: "";
 }
 
 .placeLabelName {
@@ -178,52 +181,60 @@
 }
 
 .placeLabelTime {
-  color: #c9c2b4;
   font-weight: 400;
+  color: #c9c2b4;
 }
 
 .homePin {
   width: 26px;
   height: 26px;
+  border: 3px solid var(--background);
   border-radius: 50%;
   background: var(--black);
-  border: 3px solid var(--background);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 2px 6px rgb(0 0 0 / 35%);
 }
 
 .homeLabel {
   width: max-content;
   max-width: 160px;
-  background: var(--black);
-  color: var(--background);
-  border-radius: 6px;
   padding: 6px 10px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  position: relative;
+  transform: translate(-50%, -100%);
   font-size: 12px;
   font-weight: 700;
-  white-space: normal;
   text-align: center;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
-  transform: translate(-50%, -100%);
-  position: relative;
-  margin-bottom: 6px;
+  white-space: normal;
+  color: var(--background);
+  background: var(--black);
+  box-shadow: 0 6px 16px rgb(0 0 0 / 25%);
 }
 
 .homeLabel::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -6px;
-  transform: translateX(-50%);
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
   border-top: 6px solid #1e1b16;
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  content: "";
 }
 
 @media (width >= 768px) and (width <= 1024px) {
   .tabs {
     gap: 24px;
+    justify-content: center;
     padding-bottom: 20px;
     margin-bottom: 14px;
+  }
+
+  .title {
+    padding: 0 7.4vw;
+    margin-top: 2vw;
+    margin-bottom: 3vw;
+    font-size: var(--titleMob);
   }
 
   .content {
@@ -247,18 +258,26 @@
   }
 
   .placeTime {
-    font-size: 13px;
     margin-left: 12px;
+    font-size: 13px;
   }
 }
 
 @media (width < 768px) {
   .tabs {
     gap: 20px;
+    justify-content: center;
     padding-bottom: 16px;
     margin-bottom: 12px;
     overflow-x: auto;
     scrollbar-width: none;
+  }
+
+  .title {
+    padding: 0 7.4vw;
+    margin-top: 6vw;
+    margin-bottom: 6vw;
+    font-size: var(--titleMob);
   }
 
   .tabs::-webkit-scrollbar {
@@ -270,9 +289,13 @@
     font-size: 14px;
   }
 
+  .tab:hover {
+    color: var(--accent);
+  }
+
   .tabActive::after {
-    bottom: -6px;
     height: 2px;
+    bottom: -6px;
   }
 
   .content {
@@ -285,11 +308,17 @@
   }
 
   .placeList {
+    padding: 0 9vw 5vw 9vw;
     margin-right: 0;
   }
 
   .placeRow {
     padding: 14px 4px;
+    border-bottom: 0.4vw solid var(--black);
+  }
+
+  .placeRow:hover .placeName {
+    color: var(--accent);
   }
 
   .placeRow:first-child {
@@ -301,8 +330,8 @@
   }
 
   .placeTime {
-    font-size: 13px;
     margin-left: 12px;
+    font-size: 13px;
   }
 
   .placeLabel {

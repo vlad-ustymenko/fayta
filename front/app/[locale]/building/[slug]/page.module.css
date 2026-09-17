@@ -1,0 +1,194 @@
+.main {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.mainWrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8vw;
+  width: 100%;
+  height: 100%;
+  padding: 6vw 7.4vw 0;
+}
+
+.leftBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vw;
+  width: 50%;
+}
+
+.back {
+  display: flex;
+  align-items: center;
+  gap: 0.5vw;
+  margin-bottom: 1vw;
+  font-family: var(--font-roboto), sans-serif;
+  font-size: 1vw;
+  line-height: 1;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.back:hover {
+  color: var(--secondary);
+}
+
+.titleWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1vw;
+  width: 100%;
+  padding: 1vw;
+  color: var(--background);
+  background-color: var(--black);
+}
+
+.month {
+  font-family: var(--font-roboto), sans-serif;
+  font-size: 0.8vw;
+  align-self: flex-end;
+}
+
+.title {
+  font-family: var(--font-roboto), sans-serif;
+  font-size: 2vw;
+  font-weight: 700;
+}
+
+.socialWrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5vw;
+  align-self: flex-end;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5vw;
+  height: 1.5vw;
+  padding: 0.2vw;
+  border-radius: 20vw;
+  color: var(--black);
+  background-color: var(--background);
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+}
+
+.socialLink:hover {
+  color: var(--accent);
+}
+
+.icon {
+  width: 100%;
+  height: 100%;
+}
+
+.iconfacebook {
+  width: 90%;
+  height: 90%;
+}
+
+.videoTitle {
+  font-family: var(--font-sofia), sans-serif;
+  font-size: 2vw;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+.video {
+  width: 40%;
+  border: none;
+  aspect-ratio: 9 / 16;
+}
+
+.rightBlock {
+  width: 50%;
+  height: 100%;
+  position: relative; /* потрібно для коректної роботи дочірніх елементів з fill */
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 20vw; /* або конкретне значення, напр. 500px, якщо батьки без фіксованої висоти */
+  position: relative;
+}
+
+.moreText {
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+  font-family: var(--font-roboto), sans-serif;
+  font-size: 1.3vw;
+}
+
+.strong {
+  font-family: var(--font-sofia), sans-serif;
+  font-size: 1.5vw;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+.listItem {
+  margin-bottom: 2vw;
+  margin-left: 2vw;
+  position: relative;
+  font-family: var(--font-roboto), sans-serif;
+  font-size: 1.3vw;
+}
+
+.listItem::before {
+  width: 1.3vw;
+  height: 1.3vw;
+  margin-right: 0.5vw;
+  position: absolute;
+  top: 0.4vw;
+  left: -2vw;
+  background-image: url("/logo.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  content: "";
+}
+
+.blokTitleWrapper {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+  width: 100%;
+  padding: 4vw 7.4vw 0;
+}
+
+.blokTitle {
+  width: fit-content;
+  font-family: var(--font-roboto), sans-serif;
+  font-size: 1.3vw;
+  text-align: center;
+  white-space: nowrap;
+  color: var(--black);
+}
+
+.iconWrapper {
+  width: 2vw;
+  height: 2vw;
+  position: relative;
+}
+
+.blockTitleicon {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: contain;
+}
+
+.line {
+  flex: 1;
+  height: 0.1vw;
+  background-color: var(--black);
+}

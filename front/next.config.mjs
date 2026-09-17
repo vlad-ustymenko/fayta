@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  allowedDevOrigins: ["192.168.0.101"],
+  allowedDevOrigins: ["192.168.0.102"],
   images: {
     formats: ["image/avif", "image/webp"],
 
@@ -8,7 +8,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "http",
-        hostname: "192.168.0.101", // заміни на реальний домен з STRAPI_BASE_URL
+        hostname: "192.168.0.102", // заміни на реальний домен з STRAPI_BASE_URL
         port: "1337",
         pathname: "/uploads/**/*",
       },

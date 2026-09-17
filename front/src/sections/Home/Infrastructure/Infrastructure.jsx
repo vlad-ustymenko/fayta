@@ -54,7 +54,6 @@ function createHomeLabel(name) {
 }
 
 export default function InfrastructureWidget({ data }) {
-  console.log(data);
   const mapContainerRef = useRef(null);
   const mapRef = useRef(null);
   const maplibreRef = useRef(null);
@@ -67,12 +66,6 @@ export default function InfrastructureWidget({ data }) {
   const [activeCategory, setActiveCategory] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
   const [ready, setReady] = useState(false);
-
-  /*
-   * =========================
-   * MAP INITIALIZATION
-   * =========================
-   */
 
   useEffect(() => {
     let cancelled = false;
@@ -139,12 +132,6 @@ export default function InfrastructureWidget({ data }) {
             .setLngLat([Number(data.homePlace.lng), Number(data.homePlace.lat)])
             .addTo(map);
 
-          /*
-           * =========================
-           * HOME LABEL
-           * =========================
-           */
-
           const homeLabel = new MapLibre.Marker({
             element: createHomeLabel(data.homePlace.name),
             anchor: "bottom",
@@ -187,12 +174,6 @@ export default function InfrastructureWidget({ data }) {
     };
   }, [data]);
 
-  /*
-   * =========================
-   * CATEGORY MARKERS
-   * =========================
-   */
-
   useEffect(() => {
     if (!ready || !mapRef.current || !maplibreRef.current) {
       return;
@@ -229,12 +210,6 @@ export default function InfrastructureWidget({ data }) {
     places.forEach((place, index) => {
       const isSelected = index === selectedIndex;
 
-      /*
-       * =========================
-       * DOT
-       * =========================
-       */
-
       const dotElement = createDotElement(!isSelected);
 
       const marker = new MapLibre.Marker({
@@ -249,12 +224,6 @@ export default function InfrastructureWidget({ data }) {
       });
 
       categoryMarkersRef.current.push(marker);
-
-      /*
-       * =========================
-       * SELECTED LABEL
-       * =========================
-       */
 
       if (isSelected) {
         const labelElement = createPlaceLabel(place);
@@ -292,22 +261,10 @@ export default function InfrastructureWidget({ data }) {
     });
   }, [ready, activeCategory, activeIndex, categories]);
 
-  /*
-   * =========================
-   * TAB CLICK
-   * =========================
-   */
-
   const handleTabClick = (index) => {
     setActiveCategory(index);
     setActiveIndex(0);
   };
-
-  /*
-   * =========================
-   * ROW CLICK
-   * =========================
-   */
 
   const handleRowClick = (index) => {
     setActiveIndex(index);
@@ -338,8 +295,6 @@ export default function InfrastructureWidget({ data }) {
       </ReactMarkdown>
 
       <div className={styles.widget}>
-        {/* TABS */}
-
         <div className={styles.tabs}>
           {categories.map((category, index) => {
             const isActive = index === activeCategory;
@@ -358,13 +313,9 @@ export default function InfrastructureWidget({ data }) {
         </div>
 
         <div className={styles.content}>
-          {/* MAP */}
-
           <div className={styles.mapWrap}>
             <div ref={mapContainerRef} className={styles.map} />
           </div>
-
-          {/* PLACES */}
 
           <div className={styles.placeList}>
             {currentPlaces.map((place, index) => {

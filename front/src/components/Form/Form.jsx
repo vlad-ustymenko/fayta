@@ -156,7 +156,9 @@ const Form = ({ form, button, confidentialText, feedback, className }) => {
                 href="#"
                 className={styles.link}
                 style={{
-                  borderBottom: feedback ? `0.1vw solid var(--black)` : "",
+                  borderBottom: feedback ? `0.1vw solid var(--secondary)` : "",
+                  color: feedback ? "var(--secondary)" : "",
+                  fontFamily: "var(--font-sofia), sans-serif",
                 }}
               >
                 {children}

@@ -7,7 +7,7 @@
   "attributes": {
     "menuLinks": {
       "type": "component",
-      "component": "components.link",
+      "component": "components.menu-link",
       "repeatable": true
     }
   },

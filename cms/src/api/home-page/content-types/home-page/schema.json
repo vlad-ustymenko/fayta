@@ -33,7 +33,15 @@
         "blocks.footer",
         "blocks.feedback",
         "blocks.genplan",
-        "blocks.infrastructure"
+        "blocks.infrastructure",
+        "blocks.terms-of-purchase",
+        "blocks.documentation",
+        "blocks.building",
+        "blocks.developer",
+        "blocks.news",
+        "blocks.advantages",
+        "blocks.apartment",
+        "blocks.contacts"
       ]
     }
   }

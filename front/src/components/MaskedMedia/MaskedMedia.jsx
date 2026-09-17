@@ -24,8 +24,6 @@ export default function MaskedMedia({
     maskImage: `url(${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${logoSrc})`,
   };
 
-  console.log(src);
-
   return (
     <div className={`${styles.container} ${className}`}>
       {type === "video" ? (

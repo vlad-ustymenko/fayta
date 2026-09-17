@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_components_about_characters",
+  "info": {
+    "displayName": "aboutCharacter"
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "text": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

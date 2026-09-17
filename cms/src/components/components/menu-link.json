@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_components_menu_links",
+  "info": {
+    "displayName": "menuLink"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "blockID": {
+      "type": "enumeration",
+      "enum": [
+        "concept",
+        "apartments",
+        "news",
+        "contacts",
+        "termsOfPurchese",
+        "building",
+        "genplan"
+      ]
+    }
+  },
+  "config": {}
+}

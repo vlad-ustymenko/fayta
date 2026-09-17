@@ -6,16 +6,19 @@ import {
 } from "body-scroll-lock";
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useMenuContext } from "@/context/MenuContext";
 import { useLenis } from "@/context/LenisContext";
 import { useRef, useState, useEffect } from "react";
+import { buildNavHref } from "@/src/utils/nav";
 import styles from "./Menu.module.css";
 
 const Menu = ({ data }) => {
   const { activeMenu, setActiveMenu } = useMenuContext();
   const [isMounted, setIsMounted] = useState(activeMenu);
-  // ДОДАНО: спільний інстанс Lenis з контексту
   const lenis = useLenis();
+  const pathname = usePathname();
 
   const menuRef = useRef(null);
 
@@ -31,7 +34,6 @@ const Menu = ({ data }) => {
         if (target) {
           disableBodyScroll(target);
         }
-        // ДОДАНО: зупиняємо Lenis - той самий фікс, що й у Sidebar
         lenis?.stop();
       }, 100);
 
@@ -54,7 +56,6 @@ const Menu = ({ data }) => {
   useEffect(() => {
     return () => {
       clearAllBodyScrollLocks();
-      // ДОДАНО: підстраховка на випадок розмонтування, поки меню відкрите
       lenis?.start();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -66,14 +67,14 @@ const Menu = ({ data }) => {
     <div className={styles.menu} ref={menuRef}>
       <nav className={styles.nav}>
         {data.map((item) => (
-          <a
-            href={item.link}
+          <Link
+            href={buildNavHref(item.blockID, pathname)}
             key={item.id}
             className={styles.link}
             onClick={() => setActiveMenu(false)}
           >
             {item.title}
-          </a>
+          </Link>
         ))}
       </nav>
 

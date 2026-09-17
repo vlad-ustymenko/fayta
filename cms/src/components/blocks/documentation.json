@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_blocks_documentations",
+  "info": {
+    "displayName": "Documentation"
+  },
+  "options": {},
+  "attributes": {
+    "blockTitle": {
+      "type": "component",
+      "component": "components.block-title",
+      "repeatable": false
+    },
+    "doc": {
+      "type": "component",
+      "component": "components.link",
+      "repeatable": true
+    },
+    "title": {
+      "type": "richtext"
+    }
+  },
+  "config": {}
+}

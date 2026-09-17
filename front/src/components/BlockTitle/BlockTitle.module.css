@@ -12,12 +12,16 @@
   text-align: center;
   white-space: nowrap;
   color: var(--black);
+  flex-shrink: 0;
+  flex-grow: 0;
 }
 
 .iconWrapper {
   width: 2vw;
   height: 2vw;
   position: relative;
+  flex-shrink: 0;
+  flex-grow: 0;
 }
 
 .icon {
@@ -30,9 +34,8 @@
 }
 
 .line {
-  flex: 1;
-  height: 0.1vw;
-  background-color: var(--black);
+  width: 100%;
+  border-bottom: 0.15vw solid black;
 }
 
 @media (width >= 768px) and (width <= 1024px) {
@@ -48,11 +51,11 @@
   }
 
   .iconWrapper {
-    width: 8vw;
-    height: 8vw;
+    width: 6vw;
+    height: 6vw;
   }
 
   .line {
-    height: 0.3vw;
+    border-bottom: 0.4vw solid black;
   }
 }

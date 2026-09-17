@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_blocks_news",
+  "info": {
+    "displayName": "News"
+  },
+  "options": {},
+  "attributes": {
+    "blockTitle": {
+      "type": "component",
+      "component": "components.block-title",
+      "repeatable": false
+    },
+    "title": {
+      "type": "richtext"
+    },
+    "button": {
+      "type": "component",
+      "component": "components.button",
+      "repeatable": false
+    },
+    "newsCategories": {
+      "type": "component",
+      "component": "components.news-categorie",
+      "repeatable": true
+    },
+    "news_cards": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::news-card.news-card"
+    }
+  },
+  "config": {}
+}

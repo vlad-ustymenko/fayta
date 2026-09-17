@@ -1,5 +1,63 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface BlocksAdvantages extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_advantages';
+  info: {
+    displayName: 'Advantages';
+  };
+  attributes: {
+    advantagesCards: Schema.Attribute.Component<
+      'components.advanages-card',
+      true
+    >;
+    blockTitle: Schema.Attribute.Component<'components.block-title', false>;
+    moreButton: Schema.Attribute.Component<'components.button', false>;
+  };
+}
+
+export interface BlocksApartment extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_apartments';
+  info: {
+    displayName: 'Apartment';
+  };
+  attributes: {
+    apartment_cards: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::aparmnet-card.aparmnet-card'
+    >;
+    apartmentCategories: Schema.Attribute.Component<
+      'components.apartment-catrgories',
+      true
+    > &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 5;
+        },
+        number
+      >;
+    backgroundImage: Schema.Attribute.Media<'images'>;
+    blockTitle: Schema.Attribute.Component<'components.block-title', false>;
+    button: Schema.Attribute.Component<'components.button', false>;
+    title: Schema.Attribute.RichText;
+  };
+}
+
+export interface BlocksBuilding extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_buildings';
+  info: {
+    displayName: 'Building';
+  };
+  attributes: {
+    blockTitle: Schema.Attribute.Component<'components.block-title', false>;
+    building_cards: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::building-card.building-card'
+    >;
+    button: Schema.Attribute.Component<'components.button', false>;
+    title: Schema.Attribute.RichText;
+  };
+}
+
 export interface BlocksConcept extends Struct.ComponentSchema {
   collectionName: 'components_blocks_concepts';
   info: {
@@ -16,6 +74,50 @@ export interface BlocksConcept extends Struct.ComponentSchema {
     stats: Schema.Attribute.Component<'components.stats', true> &
       Schema.Attribute.Required;
     title: Schema.Attribute.RichText & Schema.Attribute.Required;
+  };
+}
+
+export interface BlocksContacts extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_contacts';
+  info: {
+    displayName: 'Contacts';
+  };
+  attributes: {
+    blockTitle: Schema.Attribute.Component<'components.block-title', false>;
+    button: Schema.Attribute.String;
+    confidentialText: Schema.Attribute.RichText;
+    contactsInfo: Schema.Attribute.Component<'components.contacts-info', true>;
+    form: Schema.Attribute.Component<'components.form-input', true>;
+    googleMap: Schema.Attribute.String;
+    rightBlockTitle: Schema.Attribute.String;
+    socialIcons: Schema.Attribute.Component<'components.social-icon', true>;
+    socialText: Schema.Attribute.String;
+  };
+}
+
+export interface BlocksDeveloper extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_developers';
+  info: {
+    displayName: 'Developer';
+  };
+  attributes: {
+    blockTitle: Schema.Attribute.Component<'components.block-title', false>;
+    description: Schema.Attribute.RichText;
+    logo: Schema.Attribute.Media<'images'>;
+    stats: Schema.Attribute.Component<'components.stats', true>;
+    title: Schema.Attribute.RichText;
+  };
+}
+
+export interface BlocksDocumentation extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_documentations';
+  info: {
+    displayName: 'Documentation';
+  };
+  attributes: {
+    blockTitle: Schema.Attribute.Component<'components.block-title', false>;
+    doc: Schema.Attribute.Component<'components.link', true>;
+    title: Schema.Attribute.RichText;
   };
 }
 
@@ -53,12 +155,10 @@ export interface BlocksFooter extends Struct.ComponentSchema {
   attributes: {
     copyright: Schema.Attribute.String & Schema.Attribute.Required;
     icon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
-    leftBlock: Schema.Attribute.Component<'components.link', true> &
-      Schema.Attribute.Required;
+    leftBlock: Schema.Attribute.Component<'components.menu-link', true>;
     policy: Schema.Attribute.Component<'components.link', false>;
-    rightBlock: Schema.Attribute.Component<'components.link', true> &
-      Schema.Attribute.Required;
-    socialLinks: Schema.Attribute.Component<'components.social-links', false>;
+    rightBlock: Schema.Attribute.Component<'components.menu-link', true>;
+    socialIcons: Schema.Attribute.Component<'components.social-icon', true>;
     socialText: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
@@ -92,8 +192,7 @@ export interface BlocksHeader extends Struct.ComponentSchema {
   attributes: {
     button: Schema.Attribute.String & Schema.Attribute.Required;
     logo: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
-    menuLinks: Schema.Attribute.Component<'components.link', true> &
-      Schema.Attribute.Required;
+    menuLinks: Schema.Attribute.Component<'components.menu-link', true>;
   };
 }
 
@@ -104,7 +203,7 @@ export interface BlocksHomeMainScreen extends Struct.ComponentSchema {
   };
   attributes: {
     image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
-    socialLinks: Schema.Attribute.Component<'components.social-links', false>;
+    socialIcons: Schema.Attribute.Component<'components.social-icon', true>;
     subTitle: Schema.Attribute.String & Schema.Attribute.Required;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
@@ -147,7 +246,27 @@ export interface BlocksMenu extends Struct.ComponentSchema {
     displayName: 'Menu';
   };
   attributes: {
-    menuLinks: Schema.Attribute.Component<'components.link', true>;
+    menuLinks: Schema.Attribute.Component<'components.menu-link', true>;
+  };
+}
+
+export interface BlocksNews extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_news';
+  info: {
+    displayName: 'News';
+  };
+  attributes: {
+    blockTitle: Schema.Attribute.Component<'components.block-title', false>;
+    button: Schema.Attribute.Component<'components.button', false>;
+    news_cards: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::news-card.news-card'
+    >;
+    newsCategories: Schema.Attribute.Component<
+      'components.news-categorie',
+      true
+    >;
+    title: Schema.Attribute.RichText;
   };
 }
 
@@ -167,6 +286,77 @@ export interface BlocksSidebar extends Struct.ComponentSchema {
         number
       >;
     title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface BlocksTermsOfPurchase extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_terms_of_purchases';
+  info: {
+    displayName: 'TermsOfPurchase';
+  };
+  attributes: {
+    blockTitle: Schema.Attribute.Component<'components.block-title', false>;
+    cards: Schema.Attribute.Component<'components.terms-of-purchase', true>;
+    title: Schema.Attribute.RichText;
+  };
+}
+
+export interface ComponentsAboutCharacter extends Struct.ComponentSchema {
+  collectionName: 'components_components_about_characters';
+  info: {
+    displayName: 'aboutCharacter';
+  };
+  attributes: {
+    icon: Schema.Attribute.Media<'images'>;
+    text: Schema.Attribute.Text;
+  };
+}
+
+export interface ComponentsAboutImages extends Struct.ComponentSchema {
+  collectionName: 'components_components_about_images';
+  info: {
+    displayName: 'aboutImages';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images'>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface ComponentsAdvanagesCard extends Struct.ComponentSchema {
+  collectionName: 'components_components_advanages_cards';
+  info: {
+    displayName: 'advanagesCard';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images'>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface ComponentsApartmentCatrgories extends Struct.ComponentSchema {
+  collectionName: 'components_components_apartment_catrgories';
+  info: {
+    displayName: 'apartmentCatrgories';
+  };
+  attributes: {
+    slug: Schema.Attribute.Enumeration<
+      ['one-room', 'two-room', 'three-room', 'four-room', 'five-room']
+    >;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface ComponentsApartmentCharacter extends Struct.ComponentSchema {
+  collectionName: 'components_components_apartment_characters';
+  info: {
+    displayName: 'apartmentCharacter';
+  };
+  attributes: {
+    characterText: Schema.Attribute.String;
+    characterTitle: Schema.Attribute.String;
   };
 }
 
@@ -201,6 +391,29 @@ export interface ComponentsCategories extends Struct.ComponentSchema {
   attributes: {
     name: Schema.Attribute.String;
     places: Schema.Attribute.Component<'components.places', true>;
+  };
+}
+
+export interface ComponentsContactsInfo extends Struct.ComponentSchema {
+  collectionName: 'components_components_contacts_infos';
+  info: {
+    displayName: 'contactsInfo';
+  };
+  attributes: {
+    text: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+    type: Schema.Attribute.Enumeration<['phone', 'email', 'address']>;
+  };
+}
+
+export interface ComponentsFaqItem extends Struct.ComponentSchema {
+  collectionName: 'components_components_faq_items';
+  info: {
+    displayName: 'faqItem';
+  };
+  attributes: {
+    text: Schema.Attribute.Text;
+    title: Schema.Attribute.Text;
   };
 }
 
@@ -277,6 +490,38 @@ export interface ComponentsMaskedImage extends Struct.ComponentSchema {
   };
 }
 
+export interface ComponentsMenuLink extends Struct.ComponentSchema {
+  collectionName: 'components_components_menu_links';
+  info: {
+    displayName: 'menuLink';
+  };
+  attributes: {
+    blockID: Schema.Attribute.Enumeration<
+      [
+        'concept',
+        'apartments',
+        'news',
+        'contacts',
+        'termsOfPurchese',
+        'building',
+        'genplan',
+      ]
+    >;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface ComponentsNewsCategorie extends Struct.ComponentSchema {
+  collectionName: 'components_components_news_categories';
+  info: {
+    displayName: 'newsCategorie';
+  };
+  attributes: {
+    slug: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface ComponentsPlaces extends Struct.ComponentSchema {
   collectionName: 'components_components_places';
   info: {
@@ -287,6 +532,19 @@ export interface ComponentsPlaces extends Struct.ComponentSchema {
     lng: Schema.Attribute.Decimal;
     name: Schema.Attribute.String;
     time: Schema.Attribute.String;
+  };
+}
+
+export interface ComponentsSocialIcon extends Struct.ComponentSchema {
+  collectionName: 'components_components_social_icons';
+  info: {
+    displayName: 'socialIcon';
+  };
+  attributes: {
+    link: Schema.Attribute.String;
+    title: Schema.Attribute.Enumeration<
+      ['instagram', 'telegram', 'youtube', 'tiktok', 'linkedin', 'facebook']
+    >;
   };
 }
 
@@ -313,10 +571,29 @@ export interface ComponentsStats extends Struct.ComponentSchema {
   };
 }
 
+export interface ComponentsTermsOfPurchase extends Struct.ComponentSchema {
+  collectionName: 'components_components_terms_of_purchases';
+  info: {
+    displayName: 'termsOfPurchase';
+  };
+  attributes: {
+    button: Schema.Attribute.Component<'components.button', false>;
+    description: Schema.Attribute.Text;
+    terms: Schema.Attribute.RichText;
+    title: Schema.Attribute.String;
+  };
+}
+
 declare module '@strapi/strapi' {
   export namespace Public {
     export interface ComponentSchemas {
+      'blocks.advantages': BlocksAdvantages;
+      'blocks.apartment': BlocksApartment;
+      'blocks.building': BlocksBuilding;
       'blocks.concept': BlocksConcept;
+      'blocks.contacts': BlocksContacts;
+      'blocks.developer': BlocksDeveloper;
+      'blocks.documentation': BlocksDocumentation;
       'blocks.feedback': BlocksFeedback;
       'blocks.footer': BlocksFooter;
       'blocks.galery': BlocksGalery;
@@ -326,19 +603,32 @@ declare module '@strapi/strapi' {
       'blocks.infrastructure': BlocksInfrastructure;
       'blocks.investment': BlocksInvestment;
       'blocks.menu': BlocksMenu;
+      'blocks.news': BlocksNews;
       'blocks.sidebar': BlocksSidebar;
+      'blocks.terms-of-purchase': BlocksTermsOfPurchase;
+      'components.about-character': ComponentsAboutCharacter;
+      'components.about-images': ComponentsAboutImages;
+      'components.advanages-card': ComponentsAdvanagesCard;
+      'components.apartment-catrgories': ComponentsApartmentCatrgories;
+      'components.apartment-character': ComponentsApartmentCharacter;
       'components.block-title': ComponentsBlockTitle;
       'components.button': ComponentsButton;
       'components.categories': ComponentsCategories;
+      'components.contacts-info': ComponentsContactsInfo;
+      'components.faq-item': ComponentsFaqItem;
       'components.form-input': ComponentsFormInput;
       'components.home-place': ComponentsHomePlace;
       'components.image-slider': ComponentsImageSlider;
       'components.investment-list': ComponentsInvestmentList;
       'components.link': ComponentsLink;
       'components.masked-image': ComponentsMaskedImage;
+      'components.menu-link': ComponentsMenuLink;
+      'components.news-categorie': ComponentsNewsCategorie;
       'components.places': ComponentsPlaces;
+      'components.social-icon': ComponentsSocialIcon;
       'components.social-links': ComponentsSocialLinks;
       'components.stats': ComponentsStats;
+      'components.terms-of-purchase': ComponentsTermsOfPurchase;
     }
   }
 }

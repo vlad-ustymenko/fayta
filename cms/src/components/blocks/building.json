@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_blocks_buildings",
+  "info": {
+    "displayName": "Building"
+  },
+  "options": {},
+  "attributes": {
+    "blockTitle": {
+      "type": "component",
+      "component": "components.block-title",
+      "repeatable": false
+    },
+    "title": {
+      "type": "richtext"
+    },
+    "building_cards": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::building-card.building-card"
+    },
+    "button": {
+      "type": "component",
+      "component": "components.button",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

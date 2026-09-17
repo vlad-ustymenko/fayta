@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_blocks_terms_of_purchases",
+  "info": {
+    "displayName": "TermsOfPurchase"
+  },
+  "options": {},
+  "attributes": {
+    "blockTitle": {
+      "type": "component",
+      "component": "components.block-title",
+      "repeatable": false
+    },
+    "title": {
+      "type": "richtext"
+    },
+    "cards": {
+      "type": "component",
+      "component": "components.terms-of-purchase",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

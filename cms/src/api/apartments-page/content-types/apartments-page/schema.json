@@ -1,0 +1,58 @@
+{
+  "kind": "singleType",
+  "collectionName": "apartments_pages",
+  "info": {
+    "singularName": "apartments-page",
+    "pluralName": "apartments-pages",
+    "displayName": "Apartments Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "richtext",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "backText": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "apartment_cards": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::aparmnet-card.aparmnet-card"
+    },
+    "flatShow": {
+      "type": "boolean",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "apartmentCategories": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "components.apartment-catrgories",
+      "repeatable": true
+    }
+  }
+}

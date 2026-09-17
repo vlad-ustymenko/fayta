@@ -1,20 +1,21 @@
-import Image from "next/image";
 import qs from "qs";
 import MainScreen from "@/src/sections/Home/MainScreen/MainScreen";
-import Header from "@/src/components/Header/Header";
-import Sidebar from "@/src/components/Sidebar/Sidebar";
-import Menu from "@/src/components/Menu/Menu";
 import { notFound } from "next/navigation";
-import ImageSlider from "@/src/components/ImageSlider/ImageSlider";
 import Concept from "@/src/sections/Home/Concept/Concept";
 import Galery from "@/src/sections/Home/Galery/Galery";
 import Investment from "@/src/sections/Home/Investment/Investment";
-import Footer from "@/src/components/Footer/Footer";
 import Feedback from "@/src/sections/Home/Feedback/Feedback";
 import Genplan from "@/src/sections/Home/Genplan/Genplan";
 import Infrastructure from "@/src/sections/Home/Infrastructure/Infrastructure";
+import Apartments from "@/src/sections/Home/Apartments/Apartments";
+import TermsOfPurchase from "@/src/sections/Home/TermsOfPurchase/TermsOfPurchase";
+import Documentation from "@/src/sections/Home/Documentation/Documentation";
+import Building from "@/src/sections/Home/Building/Building";
+import Developer from "@/src/sections/Home/Developer/Developer";
+import News from "@/src/sections/Home/News/News";
+import Advantages from "@/src/sections/Home/Advantages/Advantages";
+import Contacts from "@/src/sections/Home/Contacts/Contacts";
 import styles from "./page.module.css";
-
 async function getData(path, locale) {
   const baseUrl = process.env.STRAPI_BASE_URL;
 
@@ -24,23 +25,11 @@ async function getData(path, locale) {
       populate: {
         blocks: {
           on: {
-            "blocks.menu": { populate: "*" },
-            "blocks.sidebar": { populate: "*" },
-            "blocks.header": {
-              populate: {
-                menuLinks: {
-                  populate: "*",
-                },
-                logo: {
-                  fields: ["url"],
-                },
-              },
-            },
             "blocks.home-main-screen": {
               fields: ["title", "subTitle"],
 
               populate: {
-                socialLinks: {
+                socialIcons: {
                   populate: "*",
                 },
                 image: {
@@ -105,23 +94,144 @@ async function getData(path, locale) {
             "blocks.infrastructure": {
               populate: {
                 blockTitle: { populate: { image: { fields: ["url"] } } },
+                mapCategoris: {
+                  populate: {
+                    places: true,
+                  },
+                },
+                homePlace: {
+                  populate: "*",
+                },
               },
             },
-            "blocks.footer": {
+            "blocks.terms-of-purchase": {
               populate: {
-                leftBlock: {
+                blockTitle: { populate: { image: { fields: ["url"] } } },
+                cards: {
+                  populate: {
+                    button: { populate: { icon: { fields: ["url"] } } },
+                  },
+                },
+              },
+            },
+            "blocks.building": {
+              populate: {
+                blockTitle: { populate: { image: { fields: ["url"] } } },
+                building_cards: {
+                  populate: {
+                    button: { populate: { icon: { fields: ["url"] } } },
+                    images: {
+                      fields: ["url"],
+                    },
+                  },
+                },
+                button: {
+                  populate: {
+                    icon: {
+                      fields: ["url"],
+                    },
+                  },
+                },
+              },
+            },
+
+            "blocks.news": {
+              populate: {
+                blockTitle: { populate: { image: { fields: ["url"] } } },
+                news_cards: {
+                  populate: {
+                    button: { populate: "*" },
+                    image: {
+                      fields: ["url"],
+                    },
+                  },
+                },
+                newsCategories: {
                   populate: "*",
                 },
-                rightBlock: {
+                button: {
+                  populate: {
+                    icon: {
+                      fields: ["url"],
+                    },
+                  },
+                },
+              },
+            },
+
+            "blocks.apartment": {
+              populate: {
+                blockTitle: { populate: { image: { fields: ["url"] } } },
+                apartment_cards: {
+                  populate: {
+                    apartmentCharacters: { populate: "*" },
+                    image: {
+                      fields: ["url"],
+                    },
+                  },
+                },
+                apartmentCategories: {
                   populate: "*",
                 },
-                icon: {
+                backgroundImage: {
                   fields: ["url"],
                 },
-                socialLinks: {
+                button: {
+                  populate: {
+                    icon: {
+                      fields: ["url"],
+                    },
+                  },
+                },
+              },
+            },
+
+            "blocks.documentation": {
+              populate: {
+                blockTitle: { populate: { image: { fields: ["url"] } } },
+                doc: {
                   populate: "*",
                 },
-                policy: {
+              },
+            },
+            "blocks.developer": {
+              populate: {
+                blockTitle: { populate: { image: { fields: ["url"] } } },
+                logo: {
+                  fields: ["url"],
+                },
+                stats: { populate: "*" },
+              },
+            },
+            "blocks.advantages": {
+              populate: {
+                blockTitle: { populate: { image: { fields: ["url"] } } },
+                advantagesCards: {
+                  populate: {
+                    image: {
+                      fields: ["url"],
+                    },
+                  },
+                },
+                moreButton: {
+                  populate: {
+                    icon: {
+                      fields: ["url"],
+                    },
+                  },
+                },
+              },
+            },
+            "blocks.contacts": {
+              populate: {
+                blockTitle: { populate: { image: { fields: ["url"] } } },
+                contactsInfo: {
+                  populate: "*",
+                },
+                form: {
+                  populate: "*",
+                },
+                socialIcons: {
                   populate: "*",
                 },
               },
@@ -150,7 +260,7 @@ async function getData(path, locale) {
   } catch {}
 }
 
-function blockRendered(block, faqCategories, projectCategories) {
+function blockRendered(block, locale) {
   switch (block.__component) {
     case "blocks.home-main-screen":
       return <MainScreen key={block.id} data={block} />;
@@ -166,16 +276,22 @@ function blockRendered(block, faqCategories, projectCategories) {
       return <Feedback key={block.id} data={block} />;
     case "blocks.infrastructure":
       return <Infrastructure key={block.id} data={block} />;
-    // case "blocks.advantages":
-    //   return <Advantages key={block.id} data={block} />;
-    // case "blocks.faq":
-    //   return <FAQ key={block.id} data={block} categories={faqCategories} />;
-    // case "blocks.news":
-    //   return <News key={block.id} data={block} />;
-    // case "blocks.contacts":
-    //   return <Contacts key={block.id} data={block} />;
-    case "blocks.footer":
-      return <Footer key={block.id} data={block} />;
+    case "blocks.terms-of-purchase":
+      return <TermsOfPurchase key={block.id} data={block} />;
+    case "blocks.documentation":
+      return <Documentation key={block.id} data={block} />;
+    case "blocks.building":
+      return <Building key={block.id} data={block} locale={locale} />;
+    case "blocks.developer":
+      return <Developer key={block.id} data={block} />;
+    case "blocks.news":
+      return <News key={block.id} data={block} locale={locale} />;
+    case "blocks.advantages":
+      return <Advantages key={block.id} data={block} locale={locale} />;
+    case "blocks.apartment":
+      return <Apartments key={block.id} data={block} locale={locale} />;
+    case "blocks.contacts":
+      return <Contacts key={block.id} data={block} />;
   }
 }
 
@@ -187,31 +303,10 @@ export default async function Home({ params }) {
     notFound();
   }
 
-  const header = strapiData.blocks.find(
-    (block) => block.__component === "blocks.header",
-  );
-
-  const sidebar = strapiData.blocks.find(
-    (block) => block.__component === "blocks.sidebar",
-  );
-
-  const menu = strapiData.blocks.find(
-    (block) => block.__component === "blocks.menu",
-  );
-
   const { blocks } = strapiData;
   return (
-    <body>
-      <Header data={header}></Header>
-      <main className={styles.main}>
-        {blocks.map((block) => blockRendered(block))}
-        {/* <ImageSlider slides={slides}></ImageSlider> */}
-        {header.menuLinks.map((item) => (
-          <div key={item.id}>{item.title}</div>
-        ))}
-      </main>
-      <Sidebar data={sidebar}></Sidebar>
-      <Menu data={menu.menuLinks} />
-    </body>
+    <main className={styles.main}>
+      {blocks.map((block) => blockRendered(block, locale))}
+    </main>
   );
 }

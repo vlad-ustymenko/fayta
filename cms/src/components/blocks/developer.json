@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_blocks_developers",
+  "info": {
+    "displayName": "Developer"
+  },
+  "options": {},
+  "attributes": {
+    "blockTitle": {
+      "type": "component",
+      "component": "components.block-title",
+      "repeatable": false
+    },
+    "title": {
+      "type": "richtext"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "stats": {
+      "type": "component",
+      "component": "components.stats",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

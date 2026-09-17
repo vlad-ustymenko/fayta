@@ -11,6 +11,13 @@
   cursor: pointer;
 }
 
+.linkWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1vw;
+}
+
 .title {
   font-family: Roboto, sans-serif;
   font-size: 1.5vw;
@@ -18,14 +25,14 @@
 }
 
 .smallTitle {
-  font-size: 1vw;
+  font-size: 1.2vw;
 }
 
 .wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2vw;
+  gap: 1vw;
 }
 
 .icon {
@@ -35,6 +42,9 @@
 }
 
 .smallIcon {
+  width: 1.5vw;
+  height: 1.5vw;
+  object-fit: contain;
 }
 
 .button:hover {
@@ -74,5 +84,10 @@
   .icon {
     width: 7vw;
     height: 7vw;
+  }
+
+  .smallIcon {
+    width: 5vw;
+    height: 5vw;
   }
 }

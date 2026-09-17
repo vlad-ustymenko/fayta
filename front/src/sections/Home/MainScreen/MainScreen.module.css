@@ -45,10 +45,10 @@
 .subTitle {
   width: 45vw;
   padding-left: 0.8vw;
+  margin-bottom: 1vw;
   font-family: var(--font-sofia), sans-serif;
   font-size: 3vw;
   font-weight: 400;
-  margin-bottom: 1vw;
 }
 
 .socialWrapper {
@@ -67,25 +67,19 @@
   height: 1.5vw;
   padding: 0.2vw;
   border-radius: 20vw;
+  color: var(--black);
   background-color: var(--background);
   transition: all 0.2s ease-out;
   cursor: pointer;
 }
 
-.icon {
-  width: 1.5vw;
-  height: 1.5vw;
-}
-
-.iconfacebook {
-  width: 1vw;
-  height: 1vw;
-}
-
 .socialLink:hover {
-  transform: scale(1.1);
   color: var(--accent);
-  transition: all 0.2s ease-out;
+}
+
+.icon {
+  width: 100%;
+  height: 100%;
 }
 
 @media (width >= 768px) and (width <= 1024px) {
@@ -106,11 +100,10 @@
   .subTitle {
     width: 45vw;
     padding-left: 0.8vw;
-
+    margin-bottom: 1vw;
     font-family: var(--font-sofia), sans-serif;
     font-size: 5vw;
     font-weight: 400;
-    margin-bottom: 1vw;
   }
 
   .description {
@@ -126,22 +119,15 @@
   }
 
   .socialLink {
-    width: 10vw;
-    height: 10vw;
-    padding: 1vw;
-  }
-
-  .icon {
-    width: 9vw;
-    height: 9vw;
-  }
-
-  .iconfacebook {
-    width: 7vw;
-    height: 7vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 12vw;
+    height: 12vw;
+    padding: 1.5vw;
   }
 
   .socialLink:hover {
-    transform: scale(1);
+    color: var(--black);
   }
 }

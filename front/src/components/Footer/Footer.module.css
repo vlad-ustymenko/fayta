@@ -1,7 +1,7 @@
 .footer {
-  background-color: var(--black);
+  padding: 2vw 7.4vw;
   color: var(--background);
-  padding: 2vw 7.4vw 2vw 7.4vw;
+  background-color: var(--black);
 }
 
 .grid {
@@ -31,13 +31,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.5vw;
-  height: 2.5vw;
+  width: 1.5vw;
+  height: 1.5vw;
   padding: 0.2vw;
   border-radius: 20vw;
+  color: var(--black);
   background-color: var(--background);
   transition: all 0.2s ease-out;
-  color: var(--black);
   cursor: pointer;
 }
 
@@ -79,18 +79,18 @@
 }
 
 .socialText {
+  margin-top: 1.5vw;
   font-family: var(--font-roboto), sans-serif;
   font-size: 1.2vw;
-  color: var(--background);
   text-align: center;
-  margin-top: 1.5vw;
+  color: var(--background);
 }
 
 .line {
   width: 100%;
   height: 1px;
-  background-color: var(--background);
   margin-top: 1vw;
+  background-color: var(--background);
 }
 
 .copyrightWrapper {

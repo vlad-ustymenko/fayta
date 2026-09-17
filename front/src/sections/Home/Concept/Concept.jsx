@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import Image from "next/image";
 import styles from "./Concept.module.css";
 import BlockTitle from "../../../components/BlockTitle/BlockTitle";
 import remarkBreaks from "remark-breaks";
@@ -13,7 +12,7 @@ const Concept = ({ data }) => {
   const { setOpenSidebar } = useSidebarContext();
 
   return (
-    <div className={styles.concept} id={data.blockID}>
+    <div className={styles.concept} id="concept">
       <BlockTitle
         title={data.blockTitle.title}
         image={data.blockTitle.image.url}

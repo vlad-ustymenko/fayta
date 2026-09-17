@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_components_apartment_characters",
+  "info": {
+    "displayName": "apartmentCharacter"
+  },
+  "options": {},
+  "attributes": {
+    "characterTitle": {
+      "type": "string"
+    },
+    "characterText": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

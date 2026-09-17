@@ -21,10 +21,10 @@
         "images"
       ]
     },
-    "socialLinks": {
+    "socialIcons": {
       "type": "component",
-      "component": "components.social-links",
-      "repeatable": false
+      "component": "components.social-icon",
+      "repeatable": true
     }
   },
   "config": {}

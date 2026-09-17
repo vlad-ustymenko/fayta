@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_components_apartment_catrgories",
+  "info": {
+    "displayName": "apartmentCatrgories"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "enumeration",
+      "enum": [
+        "one-room",
+        "two-room",
+        "three-room",
+        "four-room",
+        "five-room"
+      ]
+    }
+  },
+  "config": {}
+}

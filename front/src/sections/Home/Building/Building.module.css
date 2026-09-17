@@ -1,0 +1,126 @@
+.building {
+  width: 100%;
+  padding: 0 7.4vw 6vw;
+  position: relative;
+}
+
+.titleWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  margin-top: 2vw;
+  margin-bottom: 3vw;
+  font-family: var(--font-roboto), sans-serif;
+  font-size: var(--titleDesc);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.strong {
+  font-family: var(--font-sofia), sans-serif;
+  color: var(--secondary);
+}
+
+.cardsWrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2vw;
+}
+
+.card {
+  transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 15vw;
+  position: relative;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mounthWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2vw;
+}
+
+.mounth {
+  font-family: var(--font-roboto), sans-serif;
+  font-size: 1.7vw;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.cardTitle {
+  margin-top: 2vw;
+  font-family: var(--font-roboto), sans-serif;
+  font-size: 1.2vw;
+  font-weight: 400;
+  line-height: 1;
+}
+
+@media (width >= 768px) and (width <= 1024px) {
+}
+
+@media (width <= 767px) {
+  .building {
+    padding: 0 9vw 33vw;
+    position: relative;
+  }
+
+  .title {
+    margin-top: 2vw;
+    margin-bottom: 3vw;
+    font-size: var(--titleMob);
+  }
+
+  .cardsWrapper {
+    grid-template-columns: 1fr;
+    gap: 15vw;
+  }
+
+  .card:hover {
+    transform: scale(1);
+  }
+
+  .imageWrapper {
+    height: 40vw;
+  }
+
+  .mounthWrapper {
+    margin-top: 4vw;
+  }
+
+  .mounth {
+    font-size: 5vw;
+  }
+
+  .cardTitle {
+    margin-top: 4vw;
+    font-size: 4vw;
+    line-height: 1;
+  }
+
+  .buttonMore {
+    position: absolute;
+    bottom: 0;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    margin-bottom: 18vw;
+  }
+}
