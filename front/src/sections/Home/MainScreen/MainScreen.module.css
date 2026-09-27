@@ -34,7 +34,6 @@
 }
 
 .title {
-  margin-bottom: 1vw;
   font-family: var(--font-sofia), sans-serif;
   font-size: 17vw;
   font-weight: 800;
@@ -63,8 +62,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 1.5vw;
-  height: 1.5vw;
+  width: 2vw;
+  height: 2vw;
   padding: 0.2vw;
   border-radius: 20vw;
   color: var(--black);
@@ -82,18 +81,19 @@
   height: 100%;
 }
 
-@media (width >= 768px) and (width <= 1024px) {
+.iconfacebook {
+  width: 90%;
+  height: 90%;
 }
 
-@media (width <= 767px) {
+@media (width >= 768px) and (width <= 1024px) {
   .content {
     width: 95vw;
-    top: 50vw;
+    top: 30vw;
     left: 0;
   }
 
   .title {
-    margin-bottom: 6vw;
     font-size: 16.2vw;
   }
 
@@ -119,12 +119,54 @@
   }
 
   .socialLink {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 12vw;
-    height: 12vw;
-    padding: 1.5vw;
+    width: 8vw;
+    height: 8vw;
+    padding: 0.8vw;
+    border-radius: 20vw;
+  }
+
+  .socialLink:hover {
+    color: var(--black);
+  }
+}
+
+@media (width <= 767px) {
+  .content {
+    width: 95vw;
+    top: 50vw;
+    left: 0;
+  }
+
+  .title {
+    font-size: 16.2vw;
+  }
+
+  .subTitle {
+    width: 45vw;
+    padding-left: 0.8vw;
+    margin-bottom: 1vw;
+    font-family: var(--font-sofia), sans-serif;
+    font-size: 5vw;
+    font-weight: 400;
+  }
+
+  .description {
+    width: 78vw;
+    font-size: 3.2vw;
+  }
+
+  .socialWrapper {
+    flex-direction: column;
+    gap: 3vw;
+    right: 10vw;
+    bottom: 30vh;
+  }
+
+  .socialLink {
+    width: 8vw;
+    height: 8vw;
+    padding: 0.8vw;
+    border-radius: 20vw;
   }
 
   .socialLink:hover {

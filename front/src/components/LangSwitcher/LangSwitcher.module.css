@@ -18,6 +18,15 @@
 }
 
 @media (width >= 768px) and (width <= 1024px) {
+  .langSwitcher {
+    padding: 1.5vw 2vw;
+    border-radius: 15vw;
+    font-size: 4vw;
+  }
+
+  .langSwitcher:hover {
+    background-color: var(--accent);
+  }
 }
 
 @media (width <= 767px) {

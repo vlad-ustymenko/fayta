@@ -30,7 +30,7 @@
   left: 0;
   z-index: -1;
   object-fit: contain;
-  opacity: 0.05;
+  opacity: 0.09;
 }
 
 .infoWrapper {
@@ -48,12 +48,12 @@
 }
 
 .infoText {
+  display: block;
+  padding-bottom: 0.7vw;
   font-family: var(--font-roboto), sans-serif;
   font-size: 2vw;
   font-weight: 700;
   line-height: 1;
-  display: block;
-  padding-bottom: 0.7vw;
 }
 
 .infoWrapperAddress {
@@ -91,12 +91,12 @@
 }
 
 .socialText {
+  margin-top: 5vw;
   font-family: var(--font-roboto), sans-serif;
   font-size: 1.2vw;
   font-weight: 700;
   line-height: 1;
   text-align: center;
-  margin-top: 5vw;
 }
 
 .socialWrapper {
@@ -137,56 +137,185 @@
 }
 
 @media (width >= 768px) and (width <= 1024px) {
-}
-
-@media (width <= 767px) {
-  .feedback {
-    grid-template-columns: 1fr;
-    gap: 10vw;
+  .contacts {
     padding: var(--pbm);
   }
 
-  .leftBlockName,
-  .rightBlockName {
-    padding-left: 18vw;
-    margin-bottom: 4vw;
-    font-size: 3.5vw;
+  .contentWrapper {
+    grid-template-columns: 1fr;
+    gap: 8vw;
+    margin-top: 2vw;
   }
 
-  .leftBlockName::before,
-  .rightBlockName::before {
-    width: 15vw;
-    height: 0.3vw;
+  .imageWrapper {
+    width: 200%;
+    height: 110%;
+    top: -3vw;
+    left: -30vw;
   }
 
-  .leftBlockTitle {
-    margin-bottom: 3vw;
-    font-size: var(--titleMob);
+  .image {
+    opacity: 0.09;
   }
 
-  .leftBlockText {
-    padding-bottom: 2vw;
-    border-bottom: 0.2vw solid var(--black);
-    font-size: 3vw;
+  .infoWrapper {
+    border-bottom: 0.4vw solid var(--black);
   }
 
-  .phoneTitle {
+  .infoTitle {
     margin-top: 4vw;
     margin-bottom: 2vw;
-    font-size: 3vw;
+    font-size: 4vw;
   }
 
-  .phone {
-    font-size: 5vw;
+  .infoText {
+    padding-bottom: 2vw;
+    font-family: var(--font-roboto), sans-serif;
+    font-size: 6vw;
+    line-height: 1;
+  }
+
+  .infoWrapperAddress {
+    border-bottom: none;
+  }
+
+  .infoWrapperAddress .infoText {
+    font-size: 4vw;
+    font-weight: 400;
+  }
+
+  .mapWrapper {
+    height: 60vw;
+    margin-top: 4vw;
+    border-radius: 5vw;
+  }
+
+  .mapWrapper iframe {
+    width: 100%;
+    height: 100%;
   }
 
   .rightBlockTitle {
+    margin-top: 6vw;
+    margin-bottom: 3vw;
+    font-size: 6vw;
+  }
+
+  .socialText {
+    margin-top: 8vw;
+    font-size: 4vw;
+  }
+
+  .socialWrapper {
+    gap: 3vw;
+    margin-top: 3vw;
+  }
+
+  .socialLink {
+    width: 12vw;
+    height: 12vw;
+    padding: 1.5vw;
+    border-radius: 20vw;
+  }
+
+  .iconFacebook {
+    width: 85%;
+    height: 85%;
+  }
+
+  .socialLink:hover {
+    color: var(--black);
+  }
+}
+
+@media (width <= 767px) {
+  .contacts {
+    padding: var(--pbm);
+  }
+
+  .contentWrapper {
+    grid-template-columns: 1fr;
+    gap: 8vw;
     margin-top: 2vw;
-    margin-bottom: 6vw;
+  }
+
+  .imageWrapper {
+    width: 200%;
+    height: 110%;
+    top: -3vw;
+    left: -30vw;
+  }
+
+  .image {
+    opacity: 0.09;
+  }
+
+  .infoWrapper {
+    border-bottom: 0.4vw solid var(--black);
+  }
+
+  .infoTitle {
+    margin-top: 4vw;
+    margin-bottom: 2vw;
+    font-size: 4vw;
+  }
+
+  .infoText {
+    padding-bottom: 2vw;
     font-family: var(--font-roboto), sans-serif;
-    font-size: 5vw;
-    font-weight: 700;
+    font-size: 6vw;
     line-height: 1;
-    color: var(--secondary);
+  }
+
+  .infoWrapperAddress {
+    border-bottom: none;
+  }
+
+  .infoWrapperAddress .infoText {
+    font-size: 4vw;
+    font-weight: 400;
+  }
+
+  .mapWrapper {
+    height: 60vw;
+    margin-top: 4vw;
+    border-radius: 5vw;
+  }
+
+  .mapWrapper iframe {
+    width: 100%;
+    height: 100%;
+  }
+
+  .rightBlockTitle {
+    margin-top: 6vw;
+    margin-bottom: 3vw;
+    font-size: 6vw;
+  }
+
+  .socialText {
+    margin-top: 8vw;
+    font-size: 4vw;
+  }
+
+  .socialWrapper {
+    gap: 3vw;
+    margin-top: 3vw;
+  }
+
+  .socialLink {
+    width: 12vw;
+    height: 12vw;
+    padding: 1.5vw;
+    border-radius: 20vw;
+  }
+
+  .iconFacebook {
+    width: 85%;
+    height: 85%;
+  }
+
+  .socialLink:hover {
+    color: var(--black);
   }
 }

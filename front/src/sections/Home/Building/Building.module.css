@@ -31,12 +31,15 @@
 }
 
 .card {
-  transition: all 0.3s ease-in-out;
+  display: block;
 }
 
-.card:hover {
+.cardInner {
+  transition: transform 0.3s ease-in-out;
+}
+
+.cardInner:hover {
   transform: scale(1.05);
-  transition: all 0.3s ease-in-out;
 }
 
 .imageWrapper {
@@ -74,17 +77,14 @@
 }
 
 @media (width >= 768px) and (width <= 1024px) {
-}
-
-@media (width <= 767px) {
   .building {
     padding: 0 9vw 33vw;
     position: relative;
   }
 
   .title {
-    margin-top: 2vw;
-    margin-bottom: 3vw;
+    margin-top: 7vw;
+    margin-bottom: 7vw;
     font-size: var(--titleMob);
   }
 
@@ -93,7 +93,7 @@
     gap: 15vw;
   }
 
-  .card:hover {
+  .cardInner:hover {
     transform: scale(1);
   }
 
@@ -116,11 +116,64 @@
   }
 
   .buttonMore {
-    position: absolute;
-    bottom: 0;
     margin: 0 auto;
+    position: absolute;
     left: 0;
-    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 18vw;
+  }
+}
+
+@media (width <= 767px) {
+  .building {
+    padding: 0 9vw 33vw;
+    position: relative;
+  }
+
+  .title {
+    margin-top: 7vw;
+    margin-bottom: 7vw;
+    font-size: var(--titleMob);
+  }
+
+  .cardsWrapper {
+    grid-template-columns: 1fr;
+    gap: 15vw;
+  }
+
+  .cardInner:hover {
+    transform: scale(1);
+  }
+
+  .imageWrapper {
+    height: 40vw;
+  }
+
+  .mounthWrapper {
+    margin-top: 4vw;
+  }
+
+  .mounth {
+    font-size: 5vw;
+  }
+
+  .cardTitle {
+    margin-top: 4vw;
+    font-size: 4vw;
+    line-height: 1;
+  }
+
+  .buttonMore {
+    margin: 0 auto;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
     margin-bottom: 18vw;
   }
 }

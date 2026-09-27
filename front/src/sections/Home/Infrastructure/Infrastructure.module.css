@@ -3,7 +3,7 @@
 }
 
 .blockTitle {
-  padding: 6vw 7.4vw 0;
+  padding: 0 7.4vw;
 }
 
 .title {
@@ -14,6 +14,7 @@
   font-size: var(--titleDesc);
   font-weight: 700;
   line-height: 1;
+  display: inline-block;
 }
 
 .strong {
@@ -58,10 +59,10 @@
 }
 
 .tabActive::after {
-  height: 2px;
+  height: 0.15vw;
   position: absolute;
   right: 0;
-  bottom: -8px;
+  bottom: -0.1vw;
   left: 0;
   background: var(--accent);
   content: "";
@@ -224,49 +225,8 @@
 
 @media (width >= 768px) and (width <= 1024px) {
   .tabs {
-    gap: 24px;
     justify-content: center;
-    padding-bottom: 20px;
-    margin-bottom: 14px;
-  }
-
-  .title {
-    padding: 0 7.4vw;
-    margin-top: 2vw;
-    margin-bottom: 3vw;
-    font-size: var(--titleMob);
-  }
-
-  .content {
-    gap: 50px;
-  }
-
-  .mapWrap {
-    height: 350px;
-  }
-
-  .placeList {
-    margin-right: 30px;
-  }
-
-  .placeRow {
-    padding: 14px 4px;
-  }
-
-  .placeName {
-    font-size: 14px;
-  }
-
-  .placeTime {
-    margin-left: 12px;
-    font-size: 13px;
-  }
-}
-
-@media (width < 768px) {
-  .tabs {
     gap: 20px;
-    justify-content: center;
     padding-bottom: 16px;
     margin-bottom: 12px;
     overflow-x: auto;
@@ -286,7 +246,7 @@
 
   .tab {
     flex: 0 0 auto;
-    font-size: 14px;
+    font-size: 4.5vw;
   }
 
   .tab:hover {
@@ -294,8 +254,8 @@
   }
 
   .tabActive::after {
-    height: 2px;
-    bottom: -6px;
+    height: 0.5vw;
+    bottom: -2vw;
   }
 
   .content {
@@ -308,8 +268,12 @@
   }
 
   .placeList {
-    padding: 0 9vw 5vw 9vw;
+    padding: 0 9vw 5vw;
     margin-right: 0;
+  }
+
+  .placeName {
+    font-size: 14px;
   }
 
   .placeRow {
@@ -325,8 +289,88 @@
     padding-top: 4px;
   }
 
+  .placeTime {
+    margin-left: 12px;
+    font-size: 13px;
+  }
+
+  .placeLabel {
+    max-width: 140px;
+    padding: 7px 10px 8px;
+    font-size: 11px;
+  }
+
+  .homeLabel {
+    max-width: 140px;
+    padding: 5px 9px;
+    font-size: 11px;
+  }
+}
+
+@media (width < 768px) {
+  .tabs {
+    justify-content: center;
+    gap: 20px;
+    padding-bottom: 16px;
+    margin-bottom: 12px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .title {
+    padding: 0 7.4vw;
+    margin-top: 6vw;
+    margin-bottom: 6vw;
+    font-size: var(--titleMob);
+  }
+
+  .tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab {
+    flex: 0 0 auto;
+    font-size: 4.5vw;
+  }
+
+  .tab:hover {
+    color: var(--accent);
+  }
+
+  .tabActive::after {
+    height: 0.5vw;
+    bottom: -2vw;
+  }
+
+  .content {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .mapWrap {
+    height: 300px;
+  }
+
+  .placeList {
+    padding: 0 9vw 5vw;
+    margin-right: 0;
+  }
+
   .placeName {
     font-size: 14px;
+  }
+
+  .placeRow {
+    padding: 14px 4px;
+    border-bottom: 0.4vw solid var(--black);
+  }
+
+  .placeRow:hover .placeName {
+    color: var(--accent);
+  }
+
+  .placeRow:first-child {
+    padding-top: 4px;
   }
 
   .placeTime {

@@ -53,9 +53,33 @@
 }
 
 @media (width >= 768px) and (width <= 1024px) {
+  .title {
+    margin-bottom: 6vw;
+    font-size: 6vw;
+  }
+
+  .sidebar {
+    width: 100vw;
+    padding: 5vw;
+  }
+
+  .close {
+    width: 10vw;
+    height: 10vw;
+    margin-bottom: 5vw;
+  }
+
+  .close:hover {
+    transform: unset;
+  }
 }
 
 @media (width <= 767px) {
+  .title {
+    margin-bottom: 6vw;
+    font-size: 6vw;
+  }
+
   .sidebar {
     width: 100vw;
     padding: 5vw;

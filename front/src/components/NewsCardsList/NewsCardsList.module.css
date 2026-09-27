@@ -12,6 +12,7 @@
 }
 
 .category {
+  position: relative;
   font-family: var(--font-roboto), sans-serif;
   font-size: 1.9vw;
   font-weight: 500;
@@ -20,7 +21,27 @@
 }
 
 .active {
+  color: var(--accent);
+}
+
+.active::after {
+  height: 0.15vw;
+  position: absolute;
+  right: 0;
+  bottom: -0.5vw;
+  left: 0;
+  background: var(--accent);
+  transition: all 0.3s ease-out;
+  content: "";
+}
+
+.category:hover {
   color: var(--secondary);
+  transition: all 0.3s ease-out;
+}
+
+.category:hover.active::after {
+  background: var(--secondary);
 }
 
 .cardsWrapper {
@@ -31,18 +52,23 @@
 }
 
 .card {
+  display: block;
+}
+
+.cardInner {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100%;
+  position: relative;
   transform: translateZ(0);
-  transition: all 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
   backface-visibility: hidden;
   will-change: transform;
 }
 
-.card:hover {
+.cardInner:hover {
   transform: scale(1.05) translateZ(0);
-  transition: transform 0.3s ease-in-out;
 }
 
 .imageWrapper {
@@ -122,4 +148,172 @@
 
 .back:hover {
   color: var(--secondary);
+}
+
+@media (width >= 768px) and (width <= 1024px) {
+  .titleWrapper {
+    padding: 22vw 7.4vw 6vw;
+  }
+
+  .categoriesWrapper {
+    display: flex;
+    justify-content: center;
+    gap: 6vw;
+  }
+
+  .category {
+    margin-bottom: 0;
+    font-size: 5vw;
+  }
+
+  .active::after {
+    height: 0.5vw;
+    bottom: -2vw;
+  }
+
+  .category:hover {
+    color: var(--accent);
+  }
+
+  .categoryActive {
+    color: var(--accent);
+  }
+
+  .category:hover.active::after {
+    background: var(--accent);
+  }
+
+  .cardsWrapper {
+    grid-template-columns: 1fr;
+    gap: 5vw;
+    padding: 0 7.4vw;
+  }
+
+  .cardInner:hover {
+    transform: scale(1) translateZ(0);
+  }
+
+  .imageWrapper {
+    height: 40vw;
+  }
+
+  .mounth {
+    margin-top: 3vw;
+    font-size: 4vw;
+  }
+
+  .cardTitle {
+    margin-top: 4vw;
+    margin-bottom: 2vw;
+    font-size: 5vw;
+  }
+
+  .cardDescription {
+    font-size: 4vw;
+    line-height: 1.1;
+  }
+
+  .line {
+    height: 0.4vw;
+    margin-top: 3vw;
+  }
+
+  .button {
+    margin-top: 1vw;
+    font-size: 3vw;
+  }
+
+  .back {
+    justify-content: center;
+    gap: 1vw;
+    font-size: 4vw;
+  }
+
+  .back:hover {
+    color: var(--black);
+  }
+}
+
+@media (width <= 767px) {
+  .titleWrapper {
+    padding: 22vw 7.4vw 6vw;
+  }
+
+  .categoriesWrapper {
+    display: flex;
+    justify-content: center;
+    gap: 6vw;
+  }
+
+  .category {
+    margin-bottom: 0;
+    font-size: 5vw;
+  }
+
+  .active::after {
+    height: 0.5vw;
+    bottom: -2vw;
+  }
+
+  .category:hover {
+    color: var(--accent);
+  }
+
+  .categoryActive {
+    color: var(--accent);
+  }
+
+  .category:hover.active::after {
+    background: var(--accent);
+  }
+
+  .cardsWrapper {
+    grid-template-columns: 1fr;
+    gap: 5vw;
+    padding: 0 7.4vw;
+  }
+
+  .cardInner:hover {
+    transform: scale(1) translateZ(0);
+  }
+
+  .imageWrapper {
+    height: 40vw;
+  }
+
+  .mounth {
+    margin-top: 3vw;
+    font-size: 4vw;
+  }
+
+  .cardTitle {
+    margin-top: 4vw;
+    margin-bottom: 2vw;
+    font-size: 5vw;
+  }
+
+  .cardDescription {
+    font-size: 4vw;
+    line-height: 1.1;
+  }
+
+  .line {
+    height: 0.4vw;
+    margin-top: 3vw;
+  }
+
+  .button {
+    margin-top: 1vw;
+    font-size: 3vw;
+  }
+
+  .back {
+    justify-content: center;
+    gap: 1vw;
+    font-size: 4vw;
+  }
+
+  .back:hover {
+    color: var(--black);
+  }
 }

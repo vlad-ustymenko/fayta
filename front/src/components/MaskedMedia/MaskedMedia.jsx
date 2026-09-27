@@ -1,6 +1,6 @@
 // components/MaskedMedia/MaskedMedia.jsx
 "use client";
-
+import React, { forwardRef } from "react";
 import Image from "next/image";
 import styles from "./MaskedMedia.module.css";
 
@@ -11,21 +11,17 @@ import styles from "./MaskedMedia.module.css";
 // alt - alt-текст для зображення
 // className - додатковий клас для контейнера (задає width/height ззовні)
 
-export default function MaskedMedia({
-  src,
-  type = "image",
-  logoSrc,
-  poster,
-  alt = "",
-  className = "",
-}) {
+const MaskedMedia = forwardRef(function MaskedMedia(
+  { src, type = "image", logoSrc, poster, alt = "", className = "" },
+  ref,
+) {
   const maskStyle = {
     WebkitMaskImage: `url(${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${logoSrc})`,
     maskImage: `url(${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${logoSrc})`,
   };
 
   return (
-    <div className={`${styles.container} ${className}`}>
+    <div ref={ref} className={`${styles.container} ${className}`}>
       {type === "video" ? (
         <video
           className={styles.maskedMedia}
@@ -49,4 +45,6 @@ export default function MaskedMedia({
       )}
     </div>
   );
-}
+});
+
+export default MaskedMedia;

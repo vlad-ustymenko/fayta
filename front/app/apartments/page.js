@@ -1,13 +1,10 @@
 import React from "react";
-import Link from "next/link";
 import qs from "qs";
 import { notFound } from "next/navigation";
-import ReactMarkdown from "react-markdown";
-import remarkBreaks from "remark-breaks";
-import { BiChevronsLeft } from "react-icons/bi";
 import styles from "./page.module.css";
 import TermsOfPurchase from "../../src/sections/Home/TermsOfPurchase/TermsOfPurchase";
 import ApartmentsRoomFilter from "@/src/components/ApartmentsRoomFilter/ApartmentsRoomFilter";
+import ApartmentsAnimatedHeader from "@/src/components/ApartmentsAnimatedHeader/ApartmentsAnimatedHeader";
 
 async function getHomeData() {
   const baseUrl = process.env.STRAPI_BASE_URL;
@@ -95,54 +92,38 @@ export default async function Home() {
   const apartmentData = await getData(process.env.APARTMENTS_URL);
   const termsData = await getHomeData();
 
-  const oneRoom = apartmentData.apartment_cards.filter(
-    (card) => card.category === "one-room",
-  );
+  if (!apartmentData) {
+    console.error("APARTMENT DATA IS EMPTY");
+    notFound();
+  }
 
-  console.log(oneRoom);
+  const apartmentCards = apartmentData.apartment_cards || [];
 
-  const twoRoom = apartmentData.apartment_cards.filter(
-    (card) => card.category === "two-room",
-  );
-  const threeRoom = apartmentData.apartment_cards.filter(
+  const oneRoom = apartmentCards.filter((card) => card.category === "one-room");
+
+  const twoRoom = apartmentCards.filter((card) => card.category === "two-room");
+
+  const threeRoom = apartmentCards.filter(
     (card) => card.category === "three-room",
   );
-  const fourRoom = apartmentData.apartment_cards.filter(
+
+  const fourRoom = apartmentCards.filter(
     (card) => card.category === "four-room",
   );
-  const fiveRoom = apartmentData.apartment_cards.filter(
-    (card) => card.category === "five-room",
-  );
 
-  const terms = termsData?.blocks.find(
-    (block) => block.__component === "blocks.terms-of-purchase",
+  const fiveRoom = apartmentCards.filter(
+    (card) => card.category === "five-room",
   );
 
   const locale = "uk";
 
-  if (!apartmentData) {
-    notFound();
-  }
-
   return (
     <main className={styles.main}>
-      <div className={styles.titleWrapper}>
-        <ReactMarkdown
-          remarkPlugins={[remarkBreaks]}
-          components={{
-            p: ({ children }) => <h2 className={styles.title}>{children}</h2>,
-            strong: ({ children }) => (
-              <span className={styles.strong}>{children}</span>
-            ),
-          }}
-        >
-          {apartmentData.title}
-        </ReactMarkdown>
-        <Link href={locale === "en" ? "/en" : "/"} className={styles.back}>
-          <BiChevronsLeft className={styles.iconBack} />
-          <p>{apartmentData.backText}</p>
-        </Link>
-      </div>
+      <ApartmentsAnimatedHeader
+        title={apartmentData.title}
+        backText={apartmentData.backText}
+        locale={locale}
+      />
       {oneRoom.length > 0 && (
         <ApartmentsRoomFilter
           data={oneRoom}
@@ -176,7 +157,7 @@ export default async function Home() {
       {apartmentData.flatShow && (
         <div className={styles.flatShow}>flatShow</div>
       )}
-      <TermsOfPurchase data={terms}></TermsOfPurchase>
+      <TermsOfPurchase data={termsData.blocks[0]}></TermsOfPurchase>
     </main>
   );
 }

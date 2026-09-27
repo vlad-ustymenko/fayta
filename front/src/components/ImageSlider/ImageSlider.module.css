@@ -8,9 +8,9 @@
 }
 
 .slider h2 {
+  font-family: var(--font-sofia), sans-serif;
   font-size: 3vw;
   font-weight: 700;
-  font-family: var(--font-sofia), sans-serif;
   line-height: 1.2;
   letter-spacing: -0.1rem;
   /* word-break: break-word;
@@ -18,9 +18,9 @@
 }
 
 .description {
-  font-family: var(--font-roboto), sans-serif;
   max-width: 90%;
   margin-top: 3vw;
+  font-family: var(--font-roboto), sans-serif;
   font-size: 1.4vw;
   font-weight: 400;
   line-height: 1.4;
@@ -55,12 +55,12 @@
 
 .sliderTitle {
   width: 90%;
+  padding: 0 7.4vw;
   position: absolute;
   top: 50%;
   left: 2rem;
   transform: translateY(-50%);
   color: #fff;
-  padding: 0 7.4vw;
 }
 
 .sliderIndicator {
@@ -135,14 +135,85 @@
   will-change: transform;
 }
 
-/* ВИПРАВЛЕНО: було "max-widht" замість "max-width" - медіа-запит повністю ігнорувався */
-@media (width <= 1000px) {
+@media (width >= 768px) and (width <= 1024px) {
   .sliderTitle {
-    width: 100%;
-    padding: 2rem;
-    top: 45;
+    padding: 7.4vw;
+    top: 45%;
     left: 0;
+  }
+
+  .slider h2 {
+    font-size: 12vw;
+    /* word-break: break-word;
+  overflow-wrap: break-word; */
+  }
+
+  .description {
+    max-width: 100%;
+    margin-top: 3vw;
+    font-family: var(--font-roboto), sans-serif;
+    font-size: 3.5vw;
+    /* word-break: break-word;
+  overflow-wrap: break-word; */
+  }
+
+  .sliderIndicator {
+    top: unset;
+    bottom: 20vw;
     transform: none;
+  }
+
+  .sliderIndices {
+    gap: 3vw;
+    padding: 3vw 0;
+  }
+
+  .sliderIndices :global(p) {
+    gap: 7vw;
+  }
+
+  .index {
+    width: 1.25vw;
+    font-size: 3.5vw;
+  }
+
+  .marker {
+    width: 3vw;
+    height: 0.5vw;
+    position: relative;
+  }
+
+  .sliderProgressBar {
+    width: 1vw;
+    border-radius: 0.7vw;
+  }
+
+  .sliderProgress {
+    width: 1.3vw;
+    border-radius: 2vw;
+  }
+}
+
+@media (width <= 767px) {
+  .sliderTitle {
+    padding: 7.4vw;
+    top: 45%;
+    left: 0;
+  }
+
+  .slider h2 {
+    font-size: 12vw;
+    /* word-break: break-word;
+  overflow-wrap: break-word; */
+  }
+
+  .description {
+    max-width: 100%;
+    margin-top: 3vw;
+    font-family: var(--font-roboto), sans-serif;
+    font-size: 3.5vw;
+    /* word-break: break-word;
+  overflow-wrap: break-word; */
   }
 
   .sliderIndicator {

@@ -5,7 +5,6 @@ import remarkBreaks from "remark-breaks";
 import styles from "./Galery.module.css";
 
 const Galery = ({ data }) => {
-  console.log(data);
   return (
     <div className={styles.galery}>
       <div className={styles.slider}></div>

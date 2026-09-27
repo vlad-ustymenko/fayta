@@ -47,6 +47,14 @@
           "localized": true
         }
       }
+    },
+    "initialCount": {
+      "type": "integer",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

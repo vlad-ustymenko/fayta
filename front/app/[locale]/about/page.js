@@ -1,13 +1,9 @@
 import qs from "qs";
 import { notFound } from "next/navigation";
 import ImageSlider from "@/src/components/ImageSlider/ImageSlider";
-import ReactMarkdown from "react-markdown";
-import remarkBreaks from "remark-breaks";
-import Image from "next/image";
-import BlockTitle from "@/src/components/BlockTitle/BlockTitle";
 import FAQList from "@/src/components/FAQList/FAQList";
+import AboutAnimatedContent from "@/src/components/AboutAnimatedContent/AboutAnimatedContent";
 import styles from "./page.module.css";
-
 async function getHomeData(locale) {
   const baseUrl = process.env.STRAPI_BASE_URL;
 
@@ -110,39 +106,7 @@ export default async function Home({ params }) {
   return (
     <main className={styles.main}>
       <ImageSlider data={strapiData}></ImageSlider>
-      <ReactMarkdown
-        remarkPlugins={[remarkBreaks]}
-        components={{
-          p: ({ children }) => <h2 className={styles.title}>{children}</h2>,
-          strong: ({ children }) => (
-            <span className={styles.strong}>{children}</span>
-          ),
-        }}
-      >
-        {strapiData.title}
-      </ReactMarkdown>
-      <div className={styles.charactersWrapper}>
-        {strapiData.aboutCharacters.map((item) => (
-          <div key={item.id} className={styles.characterCard}>
-            <div className={styles.iconWrapper}>
-              <Image
-                src={`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${item.icon.url}`}
-                width={50}
-                height={50}
-                className={styles.icon}
-                alt={item.title || "Slide #1"}
-              />
-            </div>
-            <p className={styles.text}>{item.text}</p>
-          </div>
-        ))}
-      </div>
-      <BlockTitle
-        title={strapiData.faqBlockTitle.title}
-        image={strapiData.faqBlockTitle.image.url}
-        className={styles.blockTitle}
-        about
-      />
+      <AboutAnimatedContent data={strapiData} />
       <FAQList data={strapiData.faqList} />
     </main>
   );

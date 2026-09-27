@@ -1,13 +1,14 @@
 .apartments {
   width: 100%;
   padding-top: 6vw;
+  position: relative;
 }
 
 .titleWrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 7.4vw 0 7.4vw;
+  padding: 0 7.4vw;
 }
 
 .title {
@@ -25,7 +26,7 @@
 }
 
 .blockTitle {
-  padding: 0 7.4vw 0 7.4vw;
+  padding: 0 7.4vw;
 }
 
 .categoriesWrapper {
@@ -33,41 +34,57 @@
   align-items: center;
   justify-content: center;
   gap: 3vw;
+  padding: 0 7.4vw 2vw;
   margin-top: 2vw;
-  padding: 0 7.4vw 2vw 7.4vw;
 }
 
 .category {
+  position: relative;
   font-family: var(--font-roboto), sans-serif;
   font-size: 1.2vw;
   font-weight: 500;
   line-height: 1;
+  transition: all 0.3s ease-out;
   cursor: pointer;
-  transition: all 0.3s ease-out;
-}
-
-.category:hover {
-  transition: all 0.3s ease-out;
-  color: var(--secondary);
 }
 
 .categoryActive {
   color: var(--accent);
 }
 
+.categoryActive::after {
+  height: 0.15vw;
+  position: absolute;
+  right: 0;
+  bottom: -0.5vw;
+  left: 0;
+  background: var(--accent);
+  transition: all 0.3s ease-out;
+  content: "";
+}
+
+.category:hover {
+  color: var(--secondary);
+  transition: all 0.3s ease-out;
+}
+
+.category:hover.categoryActive::after {
+  background: var(--secondary);
+}
+
 .cardsBackground {
-  height: 100vh;
+  height: 80vh;
   position: relative;
 }
 
 .overlay {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgb(0 0 0 / 50%);
   z-index: 2;
+  background-color: rgb(0 0 0 / 50%);
 }
 
 .backgroundImage {
@@ -77,16 +94,16 @@
 }
 
 .carouselWrapper {
-  width: 100%;
-  height: 100vh;
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
 .carousel {
-  width: 30%;
+  width: 25%;
   height: 80%;
   z-index: 5;
   align-self: center;
@@ -99,17 +116,17 @@
 }
 
 .card {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--background);
-  opacity: 0;
-  padding: 3vw 5vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  padding: 2vw 3.5vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--background);
+  opacity: 0;
 }
 
 .cardImageWrapper {
@@ -130,20 +147,20 @@
   justify-content: space-between;
   width: 100%;
   margin-top: 0.5vw;
-  color: var(--black);
   font-family: var(--font-roboto), sans-serif;
   font-size: 1vw;
   font-weight: 400;
   line-height: 1;
+  color: var(--black);
 }
 
 .characterFirst {
-  color: var(--secondary);
+  margin-bottom: 1vw;
   font-family: var(--font-roboto), sans-serif;
   font-size: 1.7vw;
   font-weight: 400;
   line-height: 1;
-  margin-bottom: 1vw;
+  color: var(--secondary);
 }
 
 .button {
@@ -152,19 +169,19 @@
 }
 
 .pagination {
-  position: relative;
-  z-index: 5;
-  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1vw;
-  background-color: var(--background);
-  padding: 0.5vw 1vw;
   width: fit-content;
+  padding: 0.5vw 1vw;
   margin: 0 auto;
-  border-radius: 2vw;
   margin-top: 2vw;
+  border-radius: 2vw;
+  position: relative;
+  z-index: 5;
+  color: white;
+  background-color: var(--background);
 }
 
 .dotsWrapper {
@@ -174,11 +191,11 @@
 }
 
 .dot {
-  width: 1.5vw;
-  height: 0.7vw;
+  width: 1.2vw;
+  height: 0.5vw;
+  margin: 0 0.2vw;
   border-radius: 2vw;
   background-color: var(--black);
-  margin: 0 0.2vw;
 }
 
 .dotActive {
@@ -186,14 +203,252 @@
 }
 
 .nav {
-  width: 3vw;
-  height: 3vw;
+  width: 2vw;
+  height: 2vw;
   color: var(--black);
-  cursor: pointer;
   transition: all 0.3s ease-out;
+  cursor: pointer;
 }
 
 .nav:hover {
-  transition: all 0.3s ease-out;
   color: var(--accent);
+  transition: all 0.3s ease-out;
+}
+
+@media (width >= 768px) and (width <= 1024px) {
+  .apartments {
+    padding-top: 6vw;
+  }
+
+  .titleWrapper {
+    display: block;
+    padding: 0 7.4vw;
+  }
+
+  .title {
+    margin-top: 7vw;
+    margin-bottom: 7vw;
+    font-size: var(--titleMob);
+  }
+
+  .blockTitle {
+    padding: 0 7.4vw;
+  }
+
+  .categoriesWrapper {
+    gap: 5vw;
+    padding: 6vw 0;
+    margin-top: 2vw;
+  }
+
+  .category {
+    position: relative;
+    font-size: 5vw;
+  }
+
+  .categoryActive::after {
+    height: 0.5vw;
+    bottom: -2vw;
+    color: var(--accent);
+  }
+
+  .category:hover {
+    color: var(--accent);
+  }
+
+  .categoryActive {
+    color: var(--accent);
+  }
+
+  .category:hover.categoryActive::after {
+    background: var(--accent);
+  }
+
+  .cardsBackground {
+    height: 70vh;
+    position: relative;
+  }
+
+  .backgroundImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .carousel {
+    width: 85%;
+    height: 80%;
+  }
+
+  .card {
+    padding: 6vw 10vw;
+  }
+
+  .characterWrapper {
+    margin-top: 2vw;
+    font-size: 4vw;
+    line-height: 1;
+  }
+
+  .characterFirst {
+    margin-top: 4vw;
+    margin-bottom: 4vw;
+    font-size: 5vw;
+  }
+
+  .button {
+    margin: 0 auto;
+    margin-top: 4vw;
+  }
+
+  .pagination {
+    gap: 4vw;
+    padding: 1vw 2vw;
+    margin-top: 6vw;
+    border-radius: 8vw;
+  }
+
+  .dotsWrapper {
+    gap: 3vw;
+  }
+
+  .dot {
+    width: 4vw;
+    height: 2vw;
+    margin: 0 0.2vw;
+    border-radius: 2vw;
+  }
+
+  .nav {
+    width: 8vw;
+    height: 8vw;
+  }
+
+  .nav:hover {
+    color: var(--black);
+  }
+
+  .buttonMore {
+    margin: 0 auto;
+    margin-top: 4vw;
+  }
+}
+
+@media (width <= 767px) {
+  .apartments {
+    padding-top: 6vw;
+  }
+
+  .titleWrapper {
+    display: block;
+    padding: 0 7.4vw;
+  }
+
+  .title {
+    margin-top: 7vw;
+    margin-bottom: 7vw;
+    font-size: var(--titleMob);
+  }
+
+  .blockTitle {
+    padding: 0 7.4vw;
+  }
+
+  .categoriesWrapper {
+    gap: 5vw;
+    padding: 6vw 0;
+    margin-top: 2vw;
+  }
+
+  .category {
+    position: relative;
+    font-size: 5vw;
+  }
+
+  .categoryActive::after {
+    height: 0.5vw;
+    bottom: -2vw;
+    color: var(--accent);
+  }
+
+  .category:hover {
+    color: var(--accent);
+  }
+
+  .categoryActive {
+    color: var(--accent);
+  }
+
+  .category:hover.categoryActive::after {
+    background: var(--accent);
+  }
+
+  .cardsBackground {
+    height: 70vh;
+    position: relative;
+  }
+
+  .backgroundImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .carousel {
+    width: 85%;
+    height: 80%;
+  }
+
+  .card {
+    padding: 6vw 10vw;
+  }
+
+  .characterWrapper {
+    margin-top: 2vw;
+    font-size: 4vw;
+    line-height: 1;
+  }
+
+  .characterFirst {
+    margin-top: 4vw;
+    margin-bottom: 4vw;
+    font-size: 5vw;
+  }
+
+  .button {
+    margin: 0 auto;
+    margin-top: 4vw;
+  }
+
+  .pagination {
+    gap: 4vw;
+    padding: 1vw 2vw;
+    margin-top: 6vw;
+    border-radius: 8vw;
+  }
+
+  .dotsWrapper {
+    gap: 3vw;
+  }
+
+  .dot {
+    width: 4vw;
+    height: 2vw;
+    margin: 0 0.2vw;
+    border-radius: 2vw;
+  }
+
+  .nav {
+    width: 8vw;
+    height: 8vw;
+  }
+
+  .nav:hover {
+    color: var(--black);
+  }
+
+  .buttonMore {
+    margin: 0 auto;
+    margin-top: 4vw;
+  }
 }

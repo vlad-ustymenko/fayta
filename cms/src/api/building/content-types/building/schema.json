@@ -45,6 +45,14 @@
       },
       "component": "components.button",
       "repeatable": false
+    },
+    "initialCount": {
+      "type": "integer",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

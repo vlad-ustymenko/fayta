@@ -5,12 +5,15 @@
 }
 
 .card {
-  transition: all 0.3s ease-in-out;
+  display: block;
 }
 
-.card:hover {
+.cardInner {
+  transition: transform 0.3s ease-in-out;
+}
+
+.cardInner:hover {
   transform: scale(1.05);
-  transition: all 0.3s ease-in-out;
 }
 
 .imageWrapper {
@@ -50,4 +53,72 @@
 .loadMoreButton {
   margin: 0 auto;
   margin-top: 4vw;
+}
+
+@media (width >= 768px) and (width <= 1024px) {
+  .cardsWrapper {
+    grid-template-columns: 1fr;
+    gap: 10vw;
+  }
+
+  .cardInner:hover {
+    transform: scale(1);
+  }
+
+  .imageWrapper {
+    height: 40vw;
+  }
+
+  .mounthWrapper {
+    margin-top: 4vw;
+  }
+
+  .mounth {
+    font-size: 5vw;
+  }
+
+  .cardTitle {
+    margin-top: 4vw;
+    font-size: 4vw;
+    line-height: 1.2;
+  }
+
+  .loadMoreButton {
+    margin: 0 auto;
+    margin-top: 4vw;
+  }
+}
+
+@media (width <= 767px) {
+  .cardsWrapper {
+    grid-template-columns: 1fr;
+    gap: 10vw;
+  }
+
+  .cardInner:hover {
+    transform: scale(1);
+  }
+
+  .imageWrapper {
+    height: 40vw;
+  }
+
+  .mounthWrapper {
+    margin-top: 4vw;
+  }
+
+  .mounth {
+    font-size: 5vw;
+  }
+
+  .cardTitle {
+    margin-top: 4vw;
+    font-size: 4vw;
+    line-height: 1.2;
+  }
+
+  .loadMoreButton {
+    margin: 0 auto;
+    margin-top: 4vw;
+  }
 }

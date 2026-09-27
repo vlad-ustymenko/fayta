@@ -1,12 +1,12 @@
-// components/ImageSlider/ImageSlider.jsx
 "use client";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
-import { useLenis } from "@/context/LenisContext";
 import styles from "./ImageSlider.module.css";
+
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 export default function ImageSlider({ data = [] }) {
   const sectionRef = useRef(null);
@@ -15,25 +15,15 @@ export default function ImageSlider({ data = [] }) {
   const sliderIndicesRef = useRef(null);
   const progressBarRef = useRef(null);
 
-  const lenis = useLenis();
-
   const normalizedSlides = data.images
     .map((slide) => {
-      // Варіант 1: slide сам є медіафайлом { url, id, documentId }
       if (typeof slide.url === "string") {
-        return {
-          image: slide.url,
-          title: null,
-          description: null,
-        };
+        return { image: slide.url, title: null, description: null };
       }
-
-      // Варіант 2: slide — обгортка { image, title, description }
       const imageUrl =
         typeof slide.image === "string"
           ? slide.image
           : (slide.image?.url ?? null);
-
       return {
         image: imageUrl,
         title: slide.title ?? null,
@@ -46,14 +36,10 @@ export default function ImageSlider({ data = [] }) {
     (slide) => slide.title || slide.description,
   );
 
-  useEffect(() => {
-    if (!normalizedSlides.length || !lenis) return;
-
-    gsap.registerPlugin(ScrollTrigger, SplitText);
+  useLayoutEffect(() => {
+    if (!normalizedSlides.length) return;
 
     const ctx = gsap.context(() => {
-      lenis.on("scroll", ScrollTrigger.update);
-
       const sliderImages = sliderImagesRef.current;
       const sliderTitle = sliderTitleRef.current;
       const sliderIndices = sliderIndicesRef.current;
@@ -132,10 +118,7 @@ export default function ImageSlider({ data = [] }) {
           mask: "lines",
         });
 
-        gsap.set(split.lines, {
-          yPercent: 100,
-          opacity: 0,
-        });
+        gsap.set(split.lines, { yPercent: 100, opacity: 0 });
 
         gsap.to(split.lines, {
           yPercent: 0,
@@ -170,16 +153,12 @@ export default function ImageSlider({ data = [] }) {
           `.${styles.description}`,
         );
 
-        if (titleEl) {
-          currentTitleSplit = splitAndAnimate(titleEl, 0);
-        }
-
-        if (descriptionEl) {
+        if (titleEl) currentTitleSplit = splitAndAnimate(titleEl, 0);
+        if (descriptionEl)
           currentDescriptionSplit = splitAndAnimate(
             descriptionEl,
             titleEl ? 0.15 : 0,
           );
-        }
       }
 
       function animateNewSlide(index) {
@@ -189,10 +168,7 @@ export default function ImageSlider({ data = [] }) {
         newSliderImage.alt =
           normalizedSlides[index].title || `Slide #${index + 1}`;
 
-        gsap.set(newSliderImage, {
-          opacity: 0,
-          scale: 1.1,
-        });
+        gsap.set(newSliderImage, { opacity: 0, scale: 1.1 });
 
         sliderImages.appendChild(newSliderImage);
 
@@ -216,7 +192,6 @@ export default function ImageSlider({ data = [] }) {
       }
 
       createIndices();
-
       animateNewText(0);
 
       const pinDistance = window.innerHeight * normalizedSlides.length;
@@ -230,9 +205,7 @@ export default function ImageSlider({ data = [] }) {
         pinSpacing: true,
 
         onUpdate: (self) => {
-          gsap.set(progressBar, {
-            scaleY: self.progress,
-          });
+          gsap.set(progressBar, { scaleY: self.progress });
 
           const currentSlide = Math.floor(
             self.progress * normalizedSlides.length,
@@ -247,14 +220,10 @@ export default function ImageSlider({ data = [] }) {
           }
         },
       });
-
-      return () => {
-        lenis.off("scroll", ScrollTrigger.update);
-      };
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [data.images, lenis]);
+  }, [data.images]);
 
   return (
     <section className={styles.slider} ref={sectionRef}>

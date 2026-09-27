@@ -8,6 +8,7 @@ import { BiChevronsLeft } from "react-icons/bi";
 import styles from "./page.module.css";
 import TermsOfPurchase from "../../../src/sections/Home/TermsOfPurchase/TermsOfPurchase";
 import ApartmentsRoomFilter from "@/src/components/ApartmentsRoomFilter/ApartmentsRoomFilter";
+import ApartmentsAnimatedHeader from "@/src/components/ApartmentsAnimatedHeader/ApartmentsAnimatedHeader";
 
 async function getHomeData(locale) {
   const baseUrl = process.env.STRAPI_BASE_URL;
@@ -123,23 +124,11 @@ export default async function Home({ params }) {
 
   return (
     <main className={styles.main}>
-      <div className={styles.titleWrapper}>
-        <ReactMarkdown
-          remarkPlugins={[remarkBreaks]}
-          components={{
-            p: ({ children }) => <h2 className={styles.title}>{children}</h2>,
-            strong: ({ children }) => (
-              <span className={styles.strong}>{children}</span>
-            ),
-          }}
-        >
-          {apartmentData.title}
-        </ReactMarkdown>
-        <Link href={locale === "en" ? "/en" : "/"} className={styles.back}>
-          <BiChevronsLeft className={styles.iconBack} />
-          <p>{apartmentData.backText}</p>
-        </Link>
-      </div>
+      <ApartmentsAnimatedHeader
+        title={apartmentData.title}
+        backText={apartmentData.backText}
+        locale={locale}
+      />
       {oneRoom.length > 0 && (
         <ApartmentsRoomFilter
           data={oneRoom}

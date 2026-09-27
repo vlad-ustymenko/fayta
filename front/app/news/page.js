@@ -109,6 +109,7 @@ export default async function Home() {
   return (
     <main className={styles.main}>
       <NewsCardsList
+        initialCount={strapiData.initialCount}
         backText={strapiData.backText}
         newsCategories={strapiData.newsCategories}
         cards={strapiData.news_cards}
@@ -128,7 +129,7 @@ export default async function Home() {
         </div>
         <span className={styles.line}></span>
       </div>
-      <Feedback data={feedback} />
+      <Feedback data={feedback} className={styles.feedback} />
     </main>
   );
 }

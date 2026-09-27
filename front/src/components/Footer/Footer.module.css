@@ -27,12 +27,16 @@
   margin-top: 1vw;
 }
 
+.socialLinkWrapper {
+  display: flex;
+}
+
 .socialLink {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 1.5vw;
-  height: 1.5vw;
+  width: 2vw;
+  height: 2vw;
   padding: 0.2vw;
   border-radius: 20vw;
   color: var(--black);
@@ -59,8 +63,12 @@
 
 .link {
   font-family: var(--font-roboto), sans-serif;
-  font-size: 2vw;
+  font-size: 1.7vw;
   color: var(--background);
+}
+
+.link:hover {
+  color: var(--accent);
 }
 
 .iconWrapper {
@@ -100,4 +108,158 @@
   font-family: var(--font-roboto), sans-serif;
   font-size: 0.8vw;
   color: var(--background);
+}
+
+@media (width >= 768px) and (width <= 1024px) {
+  .footer {
+    padding: 5vw 9vw;
+    color: var(--background);
+    background-color: var(--black);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "left right"
+      "logo logo";
+  }
+
+  .leftBlock,
+  .rightBlock {
+    gap: 4vw;
+  }
+
+  .leftBlock {
+    grid-area: left;
+  }
+
+  .rightBlock {
+    grid-area: right;
+  }
+
+  .socialWrapper {
+    gap: 4vw;
+    margin-top: 4vw;
+  }
+
+  .socialLink {
+    width: 8vw;
+    height: 8vw;
+    padding: 0.8vw;
+    border-radius: 20vw;
+  }
+
+  .socialLink:hover {
+    transform: scale(1);
+    color: var(--black);
+  }
+
+  .link {
+    font-size: 4vw;
+  }
+
+  .link:hover {
+    color: var(--background);
+  }
+
+  .iconWrapper {
+    width: 30vw;
+    height: 20vw;
+    position: relative;
+    place-self: center center;
+    grid-area: logo;
+  }
+
+  .socialText {
+    margin-top: 4vw;
+    font-size: 3vw;
+  }
+
+  .line {
+    height: 0.4vw;
+    margin-top: 4vw;
+  }
+
+  .copyrightWrapper {
+    margin-top: 4vw;
+    font-size: 3vw;
+  }
+}
+
+@media (width <= 767px) {
+  .footer {
+    padding: 5vw 9vw;
+    color: var(--background);
+    background-color: var(--black);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "left right"
+      "logo logo";
+  }
+
+  .leftBlock,
+  .rightBlock {
+    gap: 4vw;
+  }
+
+  .leftBlock {
+    grid-area: left;
+  }
+
+  .rightBlock {
+    grid-area: right;
+  }
+
+  .socialWrapper {
+    gap: 4vw;
+    margin-top: 4vw;
+  }
+
+  .socialLink {
+    width: 8vw;
+    height: 8vw;
+    padding: 0.8vw;
+    border-radius: 20vw;
+  }
+
+  .socialLink:hover {
+    transform: scale(1);
+    color: var(--black);
+  }
+
+  .link {
+    font-size: 4vw;
+  }
+
+  .link:hover {
+    color: var(--background);
+  }
+
+  .iconWrapper {
+    width: 30vw;
+    height: 20vw;
+    position: relative;
+    place-self: center center;
+    grid-area: logo;
+  }
+
+  .socialText {
+    margin-top: 4vw;
+    font-size: 3vw;
+  }
+
+  .line {
+    height: 0.4vw;
+    margin-top: 4vw;
+  }
+
+  .copyrightWrapper {
+    margin-top: 4vw;
+    font-size: 3vw;
+  }
 }

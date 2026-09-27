@@ -7,13 +7,13 @@ const LangSwitcher = ({ className }) => {
   const { locale } = useParams();
   return (
     <a
-      href={locale === "en" ? `/uk` : `/en`}
+      href={locale === "en" ? `/` : `/en`}
       className={`${styles.langSwitcher} ${className}`}
       aria-label={
         locale === "en" ? "Перемкнути на українську" : "Switch to English"
       }
     >
-      {locale === "uk" ? <div>EN</div> : <div>UK</div>}
+      {locale === "en" ? <div>UA</div> : <div>EN</div>}
     </a>
   );
 };

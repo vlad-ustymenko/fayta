@@ -14,10 +14,15 @@
 }
 
 @media (width >= 768px) and (width <= 1024px) {
+  .title {
+    margin: 5vw 7.4vw 3vw;
+    font-size: 6vw;
+  }
 }
 
 @media (width <= 767px) {
   .title {
+    margin: 5vw 7.4vw 3vw;
     font-size: 6vw;
   }
 }

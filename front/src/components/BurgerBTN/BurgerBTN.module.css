@@ -56,6 +56,61 @@
 }
 
 @media (width >= 768px) and (width <= 1024px) {
+  .bar {
+    display: block;
+    width: 40px;
+    height: 40px;
+    justify-self: flex-end;
+  }
+
+  .bar input {
+    display: none;
+    visibility: hidden;
+    appearance: none;
+  }
+
+  .line {
+    display: inline-block;
+    width: 40px;
+    height: 5px;
+    border-radius: 100px;
+    position: absolute;
+    left: 0;
+    background: #f1faee;
+    transition: 0.3s ease;
+  }
+
+  .top {
+    top: 0;
+  }
+
+  .middle {
+    top: 18px;
+  }
+
+  .bottom {
+    bottom: 0;
+  }
+
+  .bar input:checked ~ .top {
+    width: 51px;
+    left: 2px;
+    transform: rotate(45deg);
+    transform-origin: top left;
+  }
+
+  .bar input:checked ~ .bottom {
+    width: 51px;
+    bottom: -1px;
+    transform: rotate(-45deg);
+    box-shadow: 0 0 10px #495057;
+    transform-origin: top left;
+  }
+
+  .bar input:checked ~ .middle {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
 }
 
 @media (width <= 767px) {

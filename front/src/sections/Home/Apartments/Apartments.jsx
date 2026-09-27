@@ -1,8 +1,10 @@
 "use client";
 import ReactMarkdown from "react-markdown";
 import remarkBreaks from "remark-breaks";
-import React from "react";
+import React, { memo } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 import {
   useRef,
   useState,
@@ -18,8 +20,143 @@ import { BiChevronsLeft, BiChevronsRight } from "react-icons/bi";
 import { useSidebarContext } from "@/context/SidebarContext";
 import styles from "./Apartments.module.css";
 
+gsap.registerPlugin(ScrollTrigger, SplitText);
+
 const HIDDEN_STATE = { scale: 0.5, xPercent: 0, opacity: 0, zIndex: 1 };
 const SWIPE_THRESHOLD = 50;
+
+// Винесено окремо і обгорнуто в memo — не ре-рендериться при зміні
+// index/activeCategory у батьківському компоненті, тому DOM,
+// перебудований SplitText для title, лишається недоторканим.
+const AnimatedHeader = memo(function AnimatedHeader({
+  blockTitle,
+  title,
+  button,
+  locale,
+}) {
+  const rootRef = useRef(null);
+  const blockTitleRef = useRef(null);
+  const titleRef = useRef(null);
+  const buttonMoreRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const commonTrigger = {
+        trigger: rootRef.current,
+        start: "top bottom",
+        toggleActions: "play none none none",
+      };
+
+      if (blockTitleRef.current) {
+        gsap.fromTo(
+          blockTitleRef.current,
+          { opacity: 0, x: -80 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              ...commonTrigger,
+              trigger: blockTitleRef.current,
+            },
+          },
+        );
+      }
+
+      let titleSplit;
+      if (titleRef.current) {
+        titleSplit = new SplitText(titleRef.current, {
+          type: "lines",
+          linesClass: "split-line",
+          mask: "lines",
+        });
+
+        gsap.set(titleSplit.lines, {
+          yPercent: 100,
+          opacity: 0,
+        });
+
+        gsap.to(titleSplit.lines, {
+          yPercent: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            ...commonTrigger,
+            trigger: titleRef.current,
+          },
+        });
+      }
+
+      if (buttonMoreRef.current) {
+        gsap.fromTo(
+          buttonMoreRef.current,
+          { opacity: 0, x: 80 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              ...commonTrigger,
+              trigger: buttonMoreRef.current,
+            },
+          },
+        );
+      }
+
+      const handleResize = () => ScrollTrigger.refresh();
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }, rootRef);
+
+    return () => ctx.revert();
+  }, [blockTitle, title, button]);
+
+  return (
+    <div ref={rootRef}>
+      <div ref={blockTitleRef}>
+        <BlockTitle
+          title={blockTitle.title}
+          image={blockTitle.image.url}
+          className={styles.blockTitle}
+        />
+      </div>
+      <div className={styles.titleWrapper}>
+        <ReactMarkdown
+          remarkPlugins={[remarkBreaks]}
+          components={{
+            p: ({ children }) => (
+              <h2 className={styles.title} ref={titleRef}>
+                {children}
+              </h2>
+            ),
+            strong: ({ children }) => (
+              <span className={styles.strong}>{children}</span>
+            ),
+          }}
+        >
+          {title}
+        </ReactMarkdown>
+        <div ref={buttonMoreRef}>
+          <Button
+            title={button.title}
+            link
+            href={`${locale === "en" ? "/en" : ""}${button.href}`}
+            small
+            icon={button.icon.url}
+            className={styles.buttonMore}
+          ></Button>
+        </div>
+      </div>
+    </div>
+  );
+});
 
 const Apartments = ({ data, locale }) => {
   const { setOpenSidebar } = useSidebarContext();
@@ -31,6 +168,8 @@ const Apartments = ({ data, locale }) => {
   const cardsRef = useRef([]);
   const touchStartX = useRef(null);
 
+  const categoriesWrapperRef = useRef(null);
+
   const filteredCards = useMemo(
     () =>
       data.apartment_cards.filter((card) => card.category === activeCategory),
@@ -39,8 +178,6 @@ const Apartments = ({ data, locale }) => {
 
   const total = filteredCards.length;
 
-  // Клік на категорію: обидва setState в одному обробнику —
-  // React забатчить їх, і не буде проміжного рендеру зі старим index.
   const handleCategoryChange = useCallback((slug) => {
     setActiveCategory(slug);
     setIndex(0);
@@ -85,13 +222,10 @@ const Apartments = ({ data, locale }) => {
     return diff;
   }, []);
 
-  // Обрізаємо застарілі рефи синхронно, до анімації.
   useLayoutEffect(() => {
     cardsRef.current = cardsRef.current.slice(0, total);
   }, [total, activeCategory]);
 
-  // useLayoutEffect замість useEffect — виконується ДО малювання кадру,
-  // усуває видиме зникнення/блимання карток при зміні категорії.
   useLayoutEffect(() => {
     if (!total) return;
 
@@ -104,13 +238,53 @@ const Apartments = ({ data, locale }) => {
         scale: pos.scale,
         xPercent: pos.xPercent,
         opacity: pos.opacity,
-        duration: 0.6,
+        duration: 1,
         ease: "power2.inOut",
       });
       card.style.zIndex = String(pos.zIndex);
       card.style.pointerEvents = pos.opacity === 0 ? "none" : "auto";
     });
   }, [index, positionsByOffset, getOffset, total, activeCategory]);
+
+  // Анімація категорій — знизу вгору, opacity, по черзі.
+  // Прив'язана лише до [data], тому спрацьовує один раз при вході
+  // в зону видимості (перемикання activeCategory просто змінює
+  // className активного елемента, не чіпаючи GSAP-стилі transform/opacity).
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      if (categoriesWrapperRef.current) {
+        const categoryItems = categoriesWrapperRef.current.querySelectorAll(
+          `.${styles.category}`,
+        );
+
+        gsap.fromTo(
+          categoryItems,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power2.out",
+            stagger: 0.1,
+            scrollTrigger: {
+              trigger: categoriesWrapperRef.current,
+              start: "top bottom",
+              toggleActions: "play none none none",
+            },
+          },
+        );
+      }
+
+      const handleResize = () => ScrollTrigger.refresh();
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }, categoriesWrapperRef);
+
+    return () => ctx.revert();
+  }, [data]);
 
   const handleNext = useCallback(() => {
     if (!total) return;
@@ -145,32 +319,14 @@ const Apartments = ({ data, locale }) => {
 
   return (
     <div className={styles.apartments} id="apartments">
-      <BlockTitle
-        title={data.blockTitle.title}
-        image={data.blockTitle.image.url}
-        className={styles.blockTitle}
+      <AnimatedHeader
+        blockTitle={data.blockTitle}
+        title={data.title}
+        button={data.button}
+        locale={locale}
       />
-      <div className={styles.titleWrapper}>
-        <ReactMarkdown
-          remarkPlugins={[remarkBreaks]}
-          components={{
-            p: ({ children }) => <h2 className={styles.title}>{children}</h2>,
-            strong: ({ children }) => (
-              <span className={styles.strong}>{children}</span>
-            ),
-          }}
-        >
-          {data.title}
-        </ReactMarkdown>
-        <Button
-          title={data.button.title}
-          link
-          href={`${locale === "en" ? "/en" : ""}${data.button.href}`}
-          small
-          icon={data.button.icon.url}
-        ></Button>
-      </div>
-      <div className={styles.categoriesWrapper}>
+
+      <div className={styles.categoriesWrapper} ref={categoriesWrapperRef}>
         {data.apartmentCategories.map((item) => (
           <div
             className={`${styles.category} ${

@@ -25,9 +25,16 @@
 }
 
 .docItemWrapper {
+  padding: 0;
+  border-radius: 2vw;
+}
+
+.docItemInner {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  height: 100%;
   padding: 2vw;
   border-radius: 2vw;
   font-family: var(--font-roboto), sans-serif;
@@ -36,16 +43,15 @@
   line-height: 1;
   color: var(--background);
   background-color: var(--black);
-  transition: background 0.15s ease;
-  transition: all 0.3s ease-in-out;
+  transition:
+    background 0.15s ease,
+    transform 0.3s ease-in-out;
   cursor: pointer;
 }
 
-.docItemWrapper:hover {
-  /* color: var(--accent); */
+.docItemInner:hover {
   transform: scale(1.05);
   background-color: var(--accent);
-  transition: all 0.3s ease-in-out;
 }
 
 .icon {
@@ -56,9 +62,6 @@
 }
 
 @media (width >= 768px) and (width <= 1024px) {
-}
-
-@media (width <= 767px) {
   .documentation {
     padding: 0 9vw 17vw;
   }
@@ -81,6 +84,45 @@
   }
 
   .docItemWrapper:hover {
+    transform: scale(1);
+    background-color: var(--black);
+  }
+
+  .icon {
+    width: 7vw !important;
+    height: 7vw !important;
+    margin-left: 2vw;
+    transition: transform 0.15s ease;
+  }
+}
+
+@media (width <= 767px) {
+  .documentation {
+    padding: 0 9vw 17vw;
+  }
+
+  .title {
+    margin-top: 7vw;
+    margin-bottom: 7vw;
+    font-size: var(--titleMob);
+  }
+
+  .docGrid {
+    grid-template-columns: 1fr;
+    gap: 2vw;
+  }
+
+  .docItemInner {
+    padding: 4vw 6vw;
+  }
+
+  .docItemInner {
+    padding: 4vw 6vw;
+    border-radius: 10vw;
+    font-size: 3.5vw;
+  }
+
+  .docItemInner:hover {
     transform: scale(1);
     background-color: var(--black);
   }

@@ -31,6 +31,7 @@
 
 .category {
   margin-bottom: 2vw;
+  position: relative;
   font-family: var(--font-roboto), sans-serif;
   font-size: 1.9vw;
   font-weight: 500;
@@ -39,7 +40,27 @@
 }
 
 .active {
+  color: var(--accent);
+}
+
+.active::after {
+  height: 0.15vw;
+  position: absolute;
+  right: 0;
+  bottom: -0.5vw;
+  left: 0;
+  background: var(--accent);
+  transition: all 0.3s ease-out;
+  content: "";
+}
+
+.category:hover {
   color: var(--secondary);
+  transition: all 0.3s ease-out;
+}
+
+.category:hover.active::after {
+  background: var(--secondary);
 }
 
 .back {
@@ -59,18 +80,23 @@
 }
 
 .card {
+  display: block;
+}
+
+.cardInner {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100%;
+  position: relative;
   transform: translateZ(0);
-  transition: all 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
   backface-visibility: hidden;
   will-change: transform;
 }
 
-.card:hover {
+.cardInner:hover {
   transform: scale(1.05) translateZ(0);
-  transition: transform 0.3s ease-in-out;
 }
 
 .imageWrapper {
@@ -89,7 +115,7 @@
   margin-top: 1vw;
   font-family: var(--font-roboto), sans-serif;
   font-size: 1vw;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1;
   text-align: left;
 }
@@ -131,4 +157,180 @@
   font-family: var(--font-roboto), sans-serif;
   font-size: 1vw;
   text-align: right;
+}
+
+@media (width >= 768px) and (width <= 1024px) {
+  .news {
+    padding: 17vw 9vw;
+  }
+
+  .title {
+    margin-top: 5vw;
+    margin-bottom: 6vw;
+    font-size: var(--titleMob);
+  }
+
+  .categoriesWrapper {
+    display: flex;
+    justify-content: center;
+    gap: 6vw;
+  }
+
+  .category {
+    margin-bottom: 6vw;
+    font-size: 5vw;
+  }
+
+  .active::after {
+    height: 0.5vw;
+    bottom: -2vw;
+  }
+
+  .category:hover {
+    color: var(--accent);
+  }
+
+  .categoryActive {
+    color: var(--accent);
+  }
+
+  .category:hover.active::after {
+    background: var(--accent);
+  }
+
+  .cardsWrapper {
+    grid-template-columns: 1fr;
+    gap: 7vw;
+  }
+
+  .cardInner:hover {
+    transform: scale(1);
+  }
+
+  .imageWrapper {
+    height: 40vw;
+  }
+
+  .mounth {
+    margin-top: 3vw;
+    font-size: 3vw;
+  }
+
+  .cardTitle {
+    margin-top: 3vw;
+    margin-bottom: 2vw;
+    font-size: 5vw;
+  }
+
+  .cardDescription {
+    font-size: 4vw;
+    line-height: 1.1;
+  }
+
+  .line {
+    height: 0.15vw;
+    margin-top: 3vw;
+  }
+
+  .button {
+    font-size: 3vw;
+  }
+
+  .buttonMore {
+    margin: 0 auto;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+@media (width <= 767px) {
+  .news {
+    padding: 17vw 9vw;
+  }
+
+  .title {
+    margin-top: 5vw;
+    margin-bottom: 6vw;
+    font-size: var(--titleMob);
+  }
+
+  .categoriesWrapper {
+    display: flex;
+    justify-content: center;
+    gap: 6vw;
+  }
+
+  .category {
+    margin-bottom: 6vw;
+    font-size: 5vw;
+  }
+
+  .active::after {
+    height: 0.5vw;
+    bottom: -2vw;
+  }
+
+  .category:hover {
+    color: var(--accent);
+  }
+
+  .categoryActive {
+    color: var(--accent);
+  }
+
+  .category:hover.active::after {
+    background: var(--accent);
+  }
+
+  .cardsWrapper {
+    grid-template-columns: 1fr;
+    gap: 7vw;
+  }
+
+  .cardInner:hover {
+    transform: scale(1);
+  }
+
+  .imageWrapper {
+    height: 40vw;
+  }
+
+  .mounth {
+    margin-top: 3vw;
+    font-size: 3vw;
+  }
+
+  .cardTitle {
+    margin-top: 3vw;
+    margin-bottom: 2vw;
+    font-size: 5vw;
+  }
+
+  .cardDescription {
+    font-size: 4vw;
+    line-height: 1.1;
+  }
+
+  .line {
+    height: 0.15vw;
+    margin-top: 3vw;
+  }
+
+  .button {
+    font-size: 3vw;
+  }
+
+  .buttonMore {
+    margin: 0 auto;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
 }

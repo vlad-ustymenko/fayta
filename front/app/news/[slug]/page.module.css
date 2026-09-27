@@ -108,19 +108,6 @@
   height: 90%;
 }
 
-.videoTitle {
-  font-family: var(--font-sofia), sans-serif;
-  font-size: 2vw;
-  font-weight: 700;
-  color: var(--secondary);
-}
-
-.video {
-  width: 40%;
-  border: none;
-  aspect-ratio: 9 / 16;
-}
-
 .rightBlock {
   width: 50%;
   height: 100%;
@@ -204,4 +191,334 @@
   flex: 1;
   height: 0.1vw;
   background-color: var(--black);
+}
+
+@media (width >= 768px) and (width <= 1024px) {
+  .mainWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8vw;
+    padding: 22vw 0 0;
+  }
+
+  .leftBlock {
+    gap: 1vw;
+    width: 100%;
+    padding: 0 7.4vw;
+  }
+
+  .back {
+    justify-content: center;
+    gap: 1vw;
+    margin-bottom: 5vw;
+    font-size: 4vw;
+    align-self: flex-end;
+  }
+
+  .back:hover {
+    color: var(--black);
+  }
+
+  .titleWrapper {
+    gap: 3vw;
+    padding: 3vw;
+  }
+
+  .monthWrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5vw;
+  }
+
+  .month {
+    font-family: var(--font-roboto), sans-serif;
+    font-size: 3vw;
+    align-self: flex-end;
+  }
+
+  .title {
+    font-family: var(--font-roboto), sans-serif;
+    font-size: 5vw;
+  }
+
+  .socialContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .socialWrapper {
+    gap: 3vw;
+    margin-top: 4vw;
+  }
+
+  .socialLink {
+    width: 8vw;
+    height: 8vw;
+    padding: 0.8vw;
+    border-radius: 20vw;
+  }
+
+  .socialLink:hover {
+    transform: scale(1);
+    color: var(--black);
+  }
+
+  .link {
+    font-size: 4vw;
+  }
+
+  .link:hover {
+    color: var(--background);
+  }
+
+  .iconfacebook {
+    width: 90%;
+    height: 90%;
+  }
+
+  .rightBlock {
+    width: 100%;
+  }
+
+  .imageWrapper {
+    width: 100%;
+    height: 60vw; /* або конкретне значення, напр. 500px, якщо батьки без фіксованої висоти */
+    position: relative;
+  }
+
+  .moreText {
+    padding: 6vw 7.4vw 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 4vw;
+  }
+
+  .strong {
+    font-size: 5vw;
+  }
+
+  .listItem {
+    width: 80%;
+    padding-left: 9vw;
+    margin: 5vw 0 0 7.4vw;
+    margin-bottom: 0;
+    margin-left: 9vw;
+    font-size: 4vw;
+  }
+
+  .listItem::before {
+    width: 6vw;
+    height: 6vw;
+  }
+
+  .blokTitleWrapper {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+    width: 100%;
+    padding: 10vw 7.4vw 0;
+  }
+
+  .blokTitle {
+    width: fit-content;
+    font-family: var(--font-roboto), sans-serif;
+    font-size: 1.3vw;
+    text-align: center;
+    white-space: nowrap;
+    color: var(--black);
+  }
+
+  .iconWrapper {
+    width: 6vw;
+    height: 6vw;
+    position: relative;
+  }
+
+  .blockTitleicon {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: contain;
+  }
+
+  .line {
+    flex: 1;
+    height: 0.4vw;
+    background-color: var(--black);
+  }
+
+  .feedback {
+    padding: 4vw 7.4vw 15vw;
+  }
+}
+
+@media (width <= 767px) {
+  .mainWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8vw;
+    padding: 22vw 0 0;
+  }
+
+  .leftBlock {
+    gap: 1vw;
+    width: 100%;
+    padding: 0 7.4vw;
+  }
+
+  .back {
+    justify-content: center;
+    gap: 1vw;
+    margin-bottom: 5vw;
+    font-size: 4vw;
+    align-self: flex-end;
+  }
+
+  .back:hover {
+    color: var(--black);
+  }
+
+  .titleWrapper {
+    gap: 3vw;
+    padding: 3vw;
+  }
+
+  .monthWrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5vw;
+  }
+
+  .month {
+    font-family: var(--font-roboto), sans-serif;
+    font-size: 3vw;
+    align-self: flex-end;
+  }
+
+  .title {
+    font-family: var(--font-roboto), sans-serif;
+    font-size: 5vw;
+  }
+
+  .socialContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .socialWrapper {
+    gap: 3vw;
+    margin-top: 4vw;
+  }
+
+  .socialLink {
+    width: 8vw;
+    height: 8vw;
+    padding: 0.8vw;
+    border-radius: 20vw;
+  }
+
+  .socialLink:hover {
+    transform: scale(1);
+    color: var(--black);
+  }
+
+  .link {
+    font-size: 4vw;
+  }
+
+  .link:hover {
+    color: var(--background);
+  }
+
+  .iconfacebook {
+    width: 90%;
+    height: 90%;
+  }
+
+  .rightBlock {
+    width: 100%;
+  }
+
+  .imageWrapper {
+    width: 100%;
+    height: 60vw; /* або конкретне значення, напр. 500px, якщо батьки без фіксованої висоти */
+    position: relative;
+  }
+
+  .moreText {
+    padding: 6vw 7.4vw 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 4vw;
+  }
+
+  .strong {
+    font-size: 5vw;
+  }
+
+  .listItem {
+    width: 80%;
+    padding-left: 9vw;
+    margin: 5vw 0 0 7.4vw;
+    margin-bottom: 0;
+    margin-left: 9vw;
+    font-size: 4vw;
+  }
+
+  .listItem::before {
+    width: 6vw;
+    height: 6vw;
+  }
+
+  .blokTitleWrapper {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+    width: 100%;
+    padding: 10vw 7.4vw 0;
+  }
+
+  .blokTitle {
+    width: fit-content;
+    font-family: var(--font-roboto), sans-serif;
+    font-size: 1.3vw;
+    text-align: center;
+    white-space: nowrap;
+    color: var(--black);
+  }
+
+  .iconWrapper {
+    width: 6vw;
+    height: 6vw;
+    position: relative;
+  }
+
+  .blockTitleicon {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: contain;
+  }
+
+  .line {
+    flex: 1;
+    height: 0.4vw;
+    background-color: var(--black);
+  }
+
+  .feedback {
+    padding: 4vw 7.4vw 15vw;
+  }
 }

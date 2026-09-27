@@ -1,11 +1,113 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, memo } from "react";
 import "maplibre-gl/dist/maplibre-gl.css";
 import ReactMarkdown from "react-markdown";
 import remarkBreaks from "remark-breaks";
 import BlockTitle from "../../../components/BlockTitle/BlockTitle";
 import styles from "./Infrastructure.module.css";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
+
+gsap.registerPlugin(ScrollTrigger, SplitText);
+
+const AnimatedIntro = memo(function AnimatedIntro({ blockTitle, title }) {
+  const rootRef = useRef(null);
+  const blockTitleRef = useRef(null);
+  const titleRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const commonTrigger = {
+        trigger: rootRef.current,
+        start: "top bottom",
+        toggleActions: "play none none none",
+      };
+
+      let blockTitleTween;
+      if (blockTitleRef.current) {
+        blockTitleTween = gsap.fromTo(
+          blockTitleRef.current,
+          { opacity: 0, x: -80 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              ...commonTrigger,
+              trigger: blockTitleRef.current,
+            },
+          },
+        );
+      }
+
+      let titleSplit;
+      if (titleRef.current) {
+        titleSplit = new SplitText(titleRef.current, {
+          type: "lines",
+          linesClass: "split-line",
+          mask: "lines",
+        });
+
+        gsap.set(titleSplit.lines, {
+          yPercent: 100,
+          opacity: 0,
+        });
+
+        gsap.to(titleSplit.lines, {
+          yPercent: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            ...commonTrigger,
+            trigger: titleRef.current,
+          },
+        });
+      }
+
+      const handleResize = () => ScrollTrigger.refresh();
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }, rootRef);
+
+    return () => ctx.revert();
+  }, [blockTitle, title]);
+
+  return (
+    <div ref={rootRef}>
+      <div ref={blockTitleRef}>
+        <BlockTitle
+          title={blockTitle.title}
+          image={blockTitle.image.url}
+          className={styles.blockTitle}
+        />
+      </div>
+
+      <ReactMarkdown
+        remarkPlugins={[remarkBreaks]}
+        components={{
+          p: ({ children }) => (
+            <h2 className={styles.title} ref={titleRef}>
+              {children}
+            </h2>
+          ),
+          strong: ({ children }) => (
+            <span className={styles.strong}>{children}</span>
+          ),
+        }}
+      >
+        {title}
+      </ReactMarkdown>
+    </div>
+  );
+});
 
 function createDotElement(muted) {
   const element = document.createElement("div");
@@ -54,6 +156,11 @@ function createHomeLabel(name) {
 }
 
 export default function InfrastructureWidget({ data }) {
+  const rootRef = useRef(null);
+  const tabsRef = useRef(null);
+  const mapWrapRef = useRef(null);
+  const placeListRef = useRef(null);
+
   const mapContainerRef = useRef(null);
   const mapRef = useRef(null);
   const maplibreRef = useRef(null);
@@ -106,6 +213,8 @@ export default function InfrastructureWidget({ data }) {
           dragRotate: false,
           touchPitch: false,
         });
+
+        map.scrollZoom.disable();
 
         map.addControl(
           new MapLibre.NavigationControl({
@@ -261,6 +370,84 @@ export default function InfrastructureWidget({ data }) {
     });
   }, [ready, activeCategory, activeIndex, categories]);
 
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const commonTrigger = {
+        trigger: rootRef.current,
+        start: "top bottom",
+        toggleActions: "play none none none",
+      };
+
+      if (tabsRef.current) {
+        const tabItems = tabsRef.current.querySelectorAll(`.${styles.tab}`);
+
+        gsap.fromTo(
+          tabItems,
+          { opacity: 0, x: -50 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 1,
+            ease: "power2.out",
+            stagger: 0.1,
+            scrollTrigger: {
+              ...commonTrigger,
+              trigger: tabsRef.current,
+            },
+          },
+        );
+      }
+
+      if (mapWrapRef.current) {
+        gsap.fromTo(
+          mapWrapRef.current,
+          { opacity: 0, x: -100 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              ...commonTrigger,
+              trigger: mapWrapRef.current,
+            },
+          },
+        );
+      }
+
+      if (placeListRef.current) {
+        const rowItems = placeListRef.current.querySelectorAll(
+          `.${styles.placeRow}`,
+        );
+
+        gsap.fromTo(
+          rowItems,
+          { opacity: 0, x: 50 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 1,
+            ease: "power2.out",
+            stagger: 0.1,
+            scrollTrigger: {
+              ...commonTrigger,
+              trigger: placeListRef.current,
+            },
+          },
+        );
+      }
+
+      const handleResize = () => ScrollTrigger.refresh();
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }, rootRef);
+
+    return () => ctx.revert();
+  }, [data]);
+
   const handleTabClick = (index) => {
     setActiveCategory(index);
     setActiveIndex(0);
@@ -275,27 +462,11 @@ export default function InfrastructureWidget({ data }) {
   const currentPlaces = currentCategory?.places || [];
 
   return (
-    <div className={styles.infrastructure}>
-      <BlockTitle
-        title={data.blockTitle.title}
-        image={data.blockTitle.image.url}
-        className={styles.blockTitle}
-      />
-
-      <ReactMarkdown
-        remarkPlugins={[remarkBreaks]}
-        components={{
-          p: ({ children }) => <h2 className={styles.title}>{children}</h2>,
-          strong: ({ children }) => (
-            <span className={styles.strong}>{children}</span>
-          ),
-        }}
-      >
-        {data.title}
-      </ReactMarkdown>
+    <div className={styles.infrastructure} ref={rootRef}>
+      <AnimatedIntro blockTitle={data.blockTitle} title={data.title} />
 
       <div className={styles.widget}>
-        <div className={styles.tabs}>
+        <div className={styles.tabs} ref={tabsRef}>
           {categories.map((category, index) => {
             const isActive = index === activeCategory;
 
@@ -313,11 +484,11 @@ export default function InfrastructureWidget({ data }) {
         </div>
 
         <div className={styles.content}>
-          <div className={styles.mapWrap}>
+          <div className={styles.mapWrap} ref={mapWrapRef}>
             <div ref={mapContainerRef} className={styles.map} />
           </div>
 
-          <div className={styles.placeList}>
+          <div className={styles.placeList} ref={placeListRef}>
             {currentPlaces.map((place, index) => {
               const isSelected = index === activeIndex;
 

@@ -53,6 +53,40 @@
 }
 
 @media (width >= 768px) and (width <= 1024px) {
+  .button {
+    width: fit-content;
+    padding: 2vw 6vw;
+    border-radius: 5vw;
+    color: var(--background);
+    background-color: var(--accent);
+    cursor: pointer;
+  }
+
+  .title {
+    font-size: 4vw;
+  }
+
+  .smallTitle {
+    font-size: 4vw;
+  }
+
+  .wrapper {
+    gap: 4vw;
+  }
+
+  .button:hover {
+    background-color: var(--accent);
+  }
+
+  .icon {
+    width: 7vw;
+    height: 7vw;
+  }
+
+  .smallIcon {
+    width: 5vw;
+    height: 5vw;
+  }
 }
 
 @media (width <= 767px) {

@@ -90,7 +90,7 @@ export default async function BuildingPage({ params }) {
             <p>{building.backText}</p>
           </Link>
           <div className={styles.titleWrapper}>
-            <p className={styles.month}>{building.month}</p>
+            <p className={styles.month}>{building.mounth}</p>
             <p className={styles.title}>{building.title}</p>
             <div className={styles.socialWrapper}>
               {building.socialIcons?.map((icon) => {
@@ -105,7 +105,13 @@ export default async function BuildingPage({ params }) {
                     rel="noopener noreferrer"
                     className={styles.socialLink}
                   >
-                    <Icon className={styles.icon} />
+                    <Icon
+                      className={
+                        icon.title === "facebook" || icon.title === "telegram"
+                          ? `${styles.icon} ${styles.iconfacebook}`
+                          : styles.icon
+                      }
+                    />
                   </a>
                 );
               })}
@@ -154,7 +160,7 @@ export default async function BuildingPage({ params }) {
         </div>
         <span className={styles.line}></span>
       </div>
-      <Feedback data={feedback} />
+      <Feedback data={feedback} className={styles.feedback} />
     </main>
   );
 }

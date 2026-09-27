@@ -10,11 +10,11 @@
 }
 
 .imageWrapper {
-  width: 180%;
+  width: 140%;
   height: 160%;
   position: absolute;
-  top: -7vw;
-  left: -19vw;
+  top: -6vw;
+  left: -7vw;
   z-index: -1;
 }
 
@@ -26,7 +26,7 @@
   left: 0;
   z-index: -1;
   object-fit: contain;
-  opacity: 0.05;
+  opacity: 0.09;
 }
 
 .leftBlockName,
@@ -89,6 +89,7 @@
   font-size: 2.5vw;
   font-weight: 700;
   line-height: 1;
+  display: block;
 }
 
 .rightBlockTitle {
@@ -102,6 +103,66 @@
 }
 
 @media (width >= 768px) and (width <= 1024px) {
+  .feedback {
+    grid-template-columns: 1fr;
+    gap: 10vw;
+    padding: var(--pbm);
+  }
+
+  .imageWrapper {
+    width: 220%;
+    height: 120%;
+    top: -3vw;
+    left: -47vw;
+  }
+
+  .image {
+    opacity: 0.09;
+  }
+
+  .leftBlockName,
+  .rightBlockName {
+    padding-left: 18vw;
+    margin-bottom: 4vw;
+    font-size: 3.5vw;
+  }
+
+  .leftBlockName::before,
+  .rightBlockName::before {
+    width: 15vw;
+    height: 0.3vw;
+  }
+
+  .leftBlockTitle {
+    margin-bottom: 3vw;
+    font-size: var(--titleMob);
+  }
+
+  .leftBlockText {
+    padding-bottom: 2vw;
+    border-bottom: 0.2vw solid var(--black);
+    font-size: 3vw;
+  }
+
+  .phoneTitle {
+    margin-top: 4vw;
+    margin-bottom: 2vw;
+    font-size: 3vw;
+  }
+
+  .phone {
+    font-size: 5vw;
+  }
+
+  .rightBlockTitle {
+    margin-top: 2vw;
+    margin-bottom: 6vw;
+    font-family: var(--font-roboto), sans-serif;
+    font-size: 5vw;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--secondary);
+  }
 }
 
 @media (width <= 767px) {
@@ -109,6 +170,17 @@
     grid-template-columns: 1fr;
     gap: 10vw;
     padding: var(--pbm);
+  }
+
+  .imageWrapper {
+    width: 220%;
+    height: 120%;
+    top: -3vw;
+    left: -47vw;
+  }
+
+  .image {
+    opacity: 0.09;
   }
 
   .leftBlockName,

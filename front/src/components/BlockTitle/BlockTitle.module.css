@@ -12,16 +12,16 @@
   text-align: center;
   white-space: nowrap;
   color: var(--black);
-  flex-shrink: 0;
   flex-grow: 0;
+  flex-shrink: 0;
 }
 
 .iconWrapper {
   width: 2vw;
   height: 2vw;
   position: relative;
-  flex-shrink: 0;
   flex-grow: 0;
+  flex-shrink: 0;
 }
 
 .icon {
@@ -39,6 +39,22 @@
 }
 
 @media (width >= 768px) and (width <= 1024px) {
+  .blokTitleWrapper {
+    gap: 3vw;
+  }
+
+  .blokTitle {
+    font-size: 2vw;
+  }
+
+  .iconWrapper {
+    width: 3vw;
+    height: 3vw;
+  }
+
+  .line {
+    border-bottom: 0.3vw solid black;
+  }
 }
 
 @media (width <= 767px) {

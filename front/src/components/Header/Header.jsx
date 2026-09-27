@@ -11,11 +11,23 @@ import { useSidebarContext } from "@/context/SidebarContext";
 import { useMenuContext } from "@/context/MenuContext";
 import { buildNavHref, getHomePath } from "@/src/utils/nav";
 
+const ABOUT_TITLES = ["Про проект", "About"];
+
 const Header = ({ data }) => {
   const { setOpenSidebar } = useSidebarContext();
   const { activeMenu, setActiveMenu } = useMenuContext();
   const pathname = usePathname();
   const homeHref = getHomePath(pathname);
+
+  const isEnglish = pathname.startsWith("/en");
+
+  function getMenuItemHref(item) {
+    if (ABOUT_TITLES.includes(item.title)) {
+      return isEnglish ? "/en/about" : "/about";
+    }
+
+    return buildNavHref(item.blockID, pathname);
+  }
 
   return (
     <header className={styles.header}>
@@ -23,7 +35,7 @@ const Header = ({ data }) => {
         {data.menuLinks.map((item) => (
           <Link
             key={item.id}
-            href={buildNavHref(item.blockID, pathname)}
+            href={getMenuItemHref(item)}
             className={styles.link}
           >
             {item.title}
@@ -39,6 +51,7 @@ const Header = ({ data }) => {
           onClick={() => setActiveMenu(false)}
         />
       </Link>
+
       <div className={styles.buttonsWrapper}>
         <LangSwicher className={styles.langSwitcher} />
         <Button

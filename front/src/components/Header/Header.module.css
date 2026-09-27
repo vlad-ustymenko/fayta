@@ -60,6 +60,46 @@
 }
 
 @media (width >= 768px) and (width <= 1024px) {
+  .header {
+    grid-template-columns: 15vw 1fr 7vw;
+    padding: 2vw 6vw;
+    font-size: 5vw;
+  }
+
+  .menu {
+    display: none;
+  }
+
+  .link:hover {
+    transform: scale(1);
+    color: var(--background);
+  }
+
+  .logo {
+    width: 10vw;
+    height: 6.5vw;
+  }
+
+  .logo:hover {
+    transform: scale(1);
+  }
+
+  .buttonsWrapper {
+    margin-right: 6vw;
+    justify-self: flex-end;
+  }
+
+  .langSwitcher {
+    order: 2;
+  }
+
+  .button {
+    order: 1;
+  }
+
+  .burger {
+    display: block;
+  }
 }
 
 @media (width <= 767px) {

@@ -1,12 +1,9 @@
-import Link from "next/link";
 import qs from "qs";
-import ReactMarkdown from "react-markdown";
-import remarkBreaks from "remark-breaks";
 import { notFound } from "next/navigation";
-import { BiChevronsLeft } from "react-icons/bi";
 import BuildingCardsList from "@/src/components/BuildingCardsList/BuildingCardsList";
 import Feedback from "@/src/sections/Home/Feedback/Feedback";
 import Image from "next/image";
+import BuildingAnimatedHeader from "@/src/components/BuildingAnimatedHeader/BuildingAnimatedHeader";
 import styles from "./page.module.css";
 
 async function getHomeData(locale) {
@@ -105,25 +102,14 @@ export default async function Home({ params }) {
 
   return (
     <main className={styles.main}>
-      <div className={styles.titleWrapper}>
-        <ReactMarkdown
-          remarkPlugins={[remarkBreaks]}
-          components={{
-            p: ({ children }) => <h2 className={styles.title}>{children}</h2>,
-            strong: ({ children }) => (
-              <span className={styles.strong}>{children}</span>
-            ),
-          }}
-        >
-          {strapiData.title}
-        </ReactMarkdown>
-        <Link href={locale === "en" ? "/en" : "/"} className={styles.back}>
-          <BiChevronsLeft className={styles.iconBack} />
-          <p>{strapiData.backText}</p>
-        </Link>
-      </div>
+      <BuildingAnimatedHeader
+        title={strapiData.title}
+        backText={strapiData.backText}
+        locale={locale}
+      />
 
       <BuildingCardsList
+        initialCount={strapiData.initialCount}
         cards={strapiData.building_cards}
         locale={locale}
         moreButton={strapiData.moreButton}
@@ -135,14 +121,13 @@ export default async function Home({ params }) {
           <Image
             src="/logo.svg"
             fill
-            // sizes="(max-width: 768px) 100vw, (min-width: 768px) and (max-width: 1023px) 100vw, 100vw"
             alt="block title icon"
             className={styles.icon}
           />
         </div>
         <span className={styles.line}></span>
       </div>
-      <Feedback data={feedback} />
+      <Feedback data={feedback} className={styles.feedback} />
     </main>
   );
 }

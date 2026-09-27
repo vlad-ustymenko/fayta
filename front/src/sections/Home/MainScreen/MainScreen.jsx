@@ -20,8 +20,8 @@ const MainScreen = ({ data }) => {
 
       <div className={styles.overlay}></div>
       <div className={styles.content}>
-        <h2 className={styles.subTitle}>{data.subTitle}</h2>
         <h1 className={styles.title}>{data.title}</h1>
+        <h2 className={styles.subTitle}>{data.subTitle}</h2>
       </div>
       <div className={styles.socialWrapper}>
         {data.socialIcons?.map((icon) => {
@@ -36,7 +36,13 @@ const MainScreen = ({ data }) => {
               rel="noopener noreferrer"
               className={styles.socialLink}
             >
-              <Icon className={styles.icon} />
+              <Icon
+                className={
+                  icon.title === "facebook" || icon.title === "telegram"
+                    ? `${styles.icon} ${styles.iconfacebook}`
+                    : styles.icon
+                }
+              />
             </a>
           );
         })}

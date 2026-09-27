@@ -15,11 +15,14 @@ gsap.registerPlugin(ScrollTrigger);
 const Developer = ({ data }) => {
   const blockTitleRef = useRef(null);
   const imageRef = useRef(null);
+  const statsWrapperRef = useRef(null);
+  const statItemsRef = useRef([]);
 
   const titleRefs = useRef([]);
   const textRefs = useRef([]);
 
-  // helpers
+  statItemsRef.current = [];
+
   const addToTitleRefs = (el) => {
     if (el && !titleRefs.current.includes(el)) {
       titleRefs.current.push(el);
@@ -32,6 +35,12 @@ const Developer = ({ data }) => {
     }
   };
 
+  const addToStatRefs = (el) => {
+    if (el && !statItemsRef.current.includes(el)) {
+      statItemsRef.current.push(el);
+    }
+  };
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
@@ -41,11 +50,11 @@ const Developer = ({ data }) => {
           scale: 1,
           opacity: 1,
           duration: 1,
-          ease: "power3.out",
+          ease: "power2.out",
           scrollTrigger: {
             trigger: imageRef.current,
             start: "top bottom",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
           },
         },
       );
@@ -57,11 +66,11 @@ const Developer = ({ data }) => {
           x: 0,
           opacity: 1,
           duration: 1,
-          ease: "power3.out",
+          ease: "power2.out",
           scrollTrigger: {
             trigger: blockTitleRef.current,
             start: "top bottom",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
           },
         },
       );
@@ -74,11 +83,11 @@ const Developer = ({ data }) => {
             x: 0,
             opacity: 1,
             duration: 1,
-            ease: "power3.out",
+            ease: "power2.out",
             scrollTrigger: {
               trigger: el,
               start: "top bottom",
-              toggleActions: "play none none reverse",
+              toggleActions: "play none none none",
             },
           },
         );
@@ -91,16 +100,35 @@ const Developer = ({ data }) => {
           {
             y: 0,
             opacity: 1,
-            duration: 0.8,
+            duration: 1,
             ease: "power3.out",
             scrollTrigger: {
               trigger: el,
               start: "top 100%",
-              toggleActions: "play none none reverse",
+              toggleActions: "play none none none",
             },
           },
         );
       });
+
+      if (statItemsRef.current.length) {
+        gsap.fromTo(
+          statItemsRef.current,
+          { x: 60, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.7,
+            ease: "power2.out",
+            stagger: 0.15,
+            scrollTrigger: {
+              trigger: statsWrapperRef.current,
+              start: "top bottom",
+              toggleActions: "play none none none",
+            },
+          },
+        );
+      }
     });
 
     return () => {
@@ -170,9 +198,13 @@ const Developer = ({ data }) => {
             {data.description}
           </ReactMarkdown>
           <span className={styles.line}></span>
-          <div className={styles.statsWrapper}>
+          <div className={styles.statsWrapper} ref={statsWrapperRef}>
             {data.stats.map((item) => (
-              <div key={item.bigText} className={styles.stat}>
+              <div
+                key={item.bigText}
+                className={styles.stat}
+                ref={addToStatRefs}
+              >
                 <p className={styles.bigText}>{item.bigText}</p>
                 <p className={styles.smallText}>{item.smallText}</p>
               </div>
