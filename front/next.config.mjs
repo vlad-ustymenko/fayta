@@ -1,20 +1,25 @@
 /** @type {import('next').NextConfig} */
+
+const strapiUrl = new URL(
+  process.env.NEXT_PUBLIC_STRAPI_BASE_URL || "http://localhost:1337"
+);
+
 const nextConfig = {
-  allowedDevOrigins: ["192.168.0.102"],
+  allowedDevOrigins: [strapiUrl.hostname],
+
   images: {
     formats: ["image/avif", "image/webp"],
 
-    // domains: ["localhost"],
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "192.168.0.102", // заміни на реальний домен з STRAPI_BASE_URL
-        port: "1337",
+        protocol: strapiUrl.protocol.replace(":", ""),
+        hostname: strapiUrl.hostname,
+        port: strapiUrl.port,
         pathname: "/uploads/**/*",
       },
       {
         protocol: "https",
-        hostname: "placehold.co", // заміни на реальний домен з STRAPI_BASE_URL
+        hostname: "placehold.co",
       },
     ],
     dangerouslyAllowLocalIP: true,
