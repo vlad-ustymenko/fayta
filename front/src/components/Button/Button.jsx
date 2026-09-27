@@ -17,12 +17,12 @@ const Button = ({
   if (link) {
     return (
       <div className={`${styles.linkWrapper} ${styles.button} ${className}`}>
-        <Link
+        <a
           href={href}
           className={`${styles.title} ${small && styles.smallTitle}`}
         >
           {title}
-        </Link>
+        </a>
         {icon && (
           <Image
             src={`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${icon}`}

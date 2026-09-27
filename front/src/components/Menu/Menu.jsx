@@ -67,14 +67,14 @@ const Menu = ({ data }) => {
     <div className={styles.menu} ref={menuRef}>
       <nav className={styles.nav}>
         {data.map((item) => (
-          <Link
+          <a
             href={buildNavHref(item.blockID, pathname)}
             key={item.id}
             className={styles.link}
             onClick={() => setActiveMenu(false)}
           >
             {item.title}
-          </Link>
+          </a>
         ))}
       </nav>
 

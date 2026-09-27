@@ -33,16 +33,12 @@ const Header = ({ data }) => {
     <header className={styles.header}>
       <nav className={styles.menu}>
         {data.menuLinks.map((item) => (
-          <Link
-            key={item.id}
-            href={getMenuItemHref(item)}
-            className={styles.link}
-          >
+          <a key={item.id} href={getMenuItemHref(item)} className={styles.link}>
             {item.title}
-          </Link>
+          </a>
         ))}
       </nav>
-      <Link href={homeHref} className={styles.logo}>
+      <a href={homeHref} className={styles.logo}>
         <Image
           src={`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${data.logo.url}`}
           fill
@@ -50,7 +46,7 @@ const Header = ({ data }) => {
           className={styles.image}
           onClick={() => setActiveMenu(false)}
         />
-      </Link>
+      </a>
 
       <div className={styles.buttonsWrapper}>
         <LangSwicher className={styles.langSwitcher} />
