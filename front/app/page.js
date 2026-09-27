@@ -93,6 +93,9 @@ async function getData(path) {
                 image: {
                   fields: ["url"],
                 },
+                genplanMarkers: {
+                  populate: "*",
+                },
               },
             },
             "blocks.feedback": {

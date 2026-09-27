@@ -12,6 +12,11 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "genplanMarkers": {
+      "type": "component",
+      "component": "components.genplan-markers",
+      "repeatable": true
     }
   },
   "config": {}

@@ -180,6 +180,10 @@ export interface BlocksGenplan extends Struct.ComponentSchema {
     displayName: 'Genplan';
   };
   attributes: {
+    genplanMarkers: Schema.Attribute.Component<
+      'components.genplan-markers',
+      true
+    >;
     image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
   };
 }
@@ -431,6 +435,18 @@ export interface ComponentsFormInput extends Struct.ComponentSchema {
   };
 }
 
+export interface ComponentsGenplanMarkers extends Struct.ComponentSchema {
+  collectionName: 'components_components_genplan_markers';
+  info: {
+    displayName: 'genplanMarkers';
+  };
+  attributes: {
+    title: Schema.Attribute.String;
+    x: Schema.Attribute.Decimal;
+    y: Schema.Attribute.Decimal;
+  };
+}
+
 export interface ComponentsHomePlace extends Struct.ComponentSchema {
   collectionName: 'components_components_home_places';
   info: {
@@ -617,6 +633,7 @@ declare module '@strapi/strapi' {
       'components.contacts-info': ComponentsContactsInfo;
       'components.faq-item': ComponentsFaqItem;
       'components.form-input': ComponentsFormInput;
+      'components.genplan-markers': ComponentsGenplanMarkers;
       'components.home-place': ComponentsHomePlace;
       'components.image-slider': ComponentsImageSlider;
       'components.investment-list': ComponentsInvestmentList;

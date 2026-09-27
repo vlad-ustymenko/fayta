@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_components_genplan_markers",
+  "info": {
+    "displayName": "genplanMarkers"
+  },
+  "options": {},
+  "attributes": {
+    "x": {
+      "type": "decimal"
+    },
+    "y": {
+      "type": "decimal"
+    },
+    "title": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}
