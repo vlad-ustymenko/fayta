@@ -1,0 +1,20 @@
+name: Deploy Faytanova
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.FAYTANOVA_HOST }}
+          username: ${{ secrets.FAYTANOVA_USER }}
+          key: ${{ secrets.FAYTANOVA_SSH_KEY }}
+          script: |
+            /home/progroupdev/scripts/deploy-faytanova.sh
