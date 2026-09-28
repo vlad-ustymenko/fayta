@@ -40,7 +40,7 @@ export default function AboutAnimatedContent({ data }) {
           scrollTrigger: {
             trigger: titleRef.current,
             start: "top bottom",
-            toggleActions: "play none none none",
+            toggleActions: "play none none reverse",
           },
         });
       }
@@ -76,7 +76,7 @@ export default function AboutAnimatedContent({ data }) {
                   scrollTrigger: {
                     trigger: card,
                     start: "top bottom",
-                    toggleActions: "play none none none",
+                    toggleActions: "play none none reverse",
                   },
                 },
               );
@@ -94,7 +94,7 @@ export default function AboutAnimatedContent({ data }) {
                 scrollTrigger: {
                   trigger: charactersWrapperRef.current,
                   start: "top bottom",
-                  toggleActions: "play none none none",
+                  toggleActions: "play none none reverse",
                 },
               },
             );
@@ -114,7 +114,7 @@ export default function AboutAnimatedContent({ data }) {
             scrollTrigger: {
               trigger: blockTitleRef.current,
               start: "top bottom",
-              toggleActions: "play none none none",
+              toggleActions: "play none none reverse",
             },
           },
         );

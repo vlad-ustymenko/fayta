@@ -25,7 +25,7 @@ const Documentation = ({ data }) => {
       const commonTrigger = {
         trigger: rootRef.current,
         start: "top bottom",
-        toggleActions: "play none none none",
+        toggleActions: "play none none reverse",
       };
 
       // 1. BlockTitle — зліва направо + opacity
@@ -99,7 +99,7 @@ const Documentation = ({ data }) => {
                   scrollTrigger: {
                     trigger: item,
                     start: "top bottom",
-                    toggleActions: "play none none none",
+                    toggleActions: "play none none reverse",
                   },
                 },
               );

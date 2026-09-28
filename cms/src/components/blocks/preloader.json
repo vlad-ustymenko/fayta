@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_blocks_preloaders",
+  "info": {
+    "displayName": "Preloader"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

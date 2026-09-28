@@ -1,11 +1,11 @@
 .main {
-  width: 100%;
+  width: 100.5vw;
   height: 100svh;
   position: relative;
 }
 
 .imageWrapper {
-  width: 100%;
+  width: 100vw;
   height: 100svh;
 }
 
@@ -22,6 +22,47 @@
   top: 0;
   left: 0;
   background-color: rgb(0 0 0 / 60%);
+}
+
+.buildingWrapper {
+  width: fit-content;
+  margin-right: 4vw;
+  position: absolute;
+  top: 40%;
+  right: 0;
+  transform: translateY(-50%);
+  color: var(--background);
+  background-color: rgb(47 43 40 / 30%);
+  backdrop-filter: blur(10px);
+  padding: 0.5vw;
+  border-radius: 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buildingImageWrapper {
+  width: 3vw;
+  height: 3vw;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.buildingImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.buildingText {
+  font-family: var(--font-roboto), sans-serif;
+  margin-left: 1vw;
+  font-size: 1vw;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--background);
+  max-width: 20vw;
 }
 
 .content {
@@ -87,6 +128,29 @@
 }
 
 @media (width >= 768px) and (width <= 1024px) {
+  .buildingWrapper {
+    margin-left: 4vw;
+    top: 85%;
+    left: 0;
+    padding: 3vw;
+    border-radius: 10vw;
+    z-index: 5;
+  }
+
+  .buildingImageWrapper {
+    width: 8vw;
+    height: 8vw;
+  }
+
+  .buildingText {
+    font-family: var(--font-roboto), sans-serif;
+    margin-left: 4vw;
+    font-size: 3vw;
+    line-height: 1.2;
+    font-weight: 400;
+    max-width: 60vw;
+  }
+
   .content {
     width: 95vw;
     top: 30vw;
@@ -131,6 +195,29 @@
 }
 
 @media (width <= 767px) {
+  .buildingWrapper {
+    margin-left: 4vw;
+    top: 85%;
+    left: 0;
+    padding: 3vw;
+    border-radius: 10vw;
+    z-index: 5;
+  }
+
+  .buildingImageWrapper {
+    width: 8vw;
+    height: 8vw;
+  }
+
+  .buildingText {
+    font-family: var(--font-roboto), sans-serif;
+    margin-left: 4vw;
+    font-size: 3vw;
+    line-height: 1.2;
+    font-weight: 400;
+    max-width: 60vw;
+  }
+
   .content {
     width: 95vw;
     top: 50vw;

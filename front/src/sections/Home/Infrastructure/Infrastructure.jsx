@@ -22,7 +22,7 @@ const AnimatedIntro = memo(function AnimatedIntro({ blockTitle, title }) {
       const commonTrigger = {
         trigger: rootRef.current,
         start: "top bottom",
-        toggleActions: "play none none none",
+        toggleActions: "play none none reverse",
       };
 
       let blockTitleTween;
@@ -375,7 +375,7 @@ export default function InfrastructureWidget({ data }) {
       const commonTrigger = {
         trigger: rootRef.current,
         start: "top bottom",
-        toggleActions: "play none none none",
+        toggleActions: "play none none reverse",
       };
 
       if (tabsRef.current) {

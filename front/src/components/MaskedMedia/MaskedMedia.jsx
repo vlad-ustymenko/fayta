@@ -1,33 +1,33 @@
-// components/MaskedMedia/MaskedMedia.jsx
 "use client";
+
 import React, { forwardRef } from "react";
 import Image from "next/image";
 import styles from "./MaskedMedia.module.css";
 
-// src - URL зображення або відео (з CMS)
-// type - "image" або "video"
-// logoSrc - URL SVG-логотипу, який буде маскою
-// poster - постер для відео (опційно)
-// alt - alt-текст для зображення
-// className - додатковий клас для контейнера (задає width/height ззовні)
-
 const MaskedMedia = forwardRef(function MaskedMedia(
-  { src, type = "image", logoSrc, poster, alt = "", className = "" },
+  { src, mime, logoSrc, poster, alt = "", className = "" },
   ref,
 ) {
+  const baseUrl = process.env.NEXT_PUBLIC_STRAPI_BASE_URL;
+
+  const mediaUrl = `${baseUrl}${src}`;
+  const logoUrl = `${baseUrl}${logoSrc}`;
+
+  const isVideo = mime?.startsWith("video/");
+
   const maskStyle = {
-    WebkitMaskImage: `url(${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${logoSrc})`,
-    maskImage: `url(${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${logoSrc})`,
+    WebkitMaskImage: `url(${logoUrl})`,
+    maskImage: `url(${logoUrl})`,
   };
 
   return (
     <div ref={ref} className={`${styles.container} ${className}`}>
-      {type === "video" ? (
+      {isVideo ? (
         <video
           className={styles.maskedMedia}
           style={maskStyle}
-          src={`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${src}`}
-          // poster={poster}
+          src={mediaUrl}
+          poster={poster ? `${baseUrl}${poster}` : undefined}
           autoPlay
           muted
           loop
@@ -35,10 +35,10 @@ const MaskedMedia = forwardRef(function MaskedMedia(
         />
       ) : (
         <Image
-          src={`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${src}`}
+          src={mediaUrl}
           alt={alt}
           fill
-          sizes="(max-width: 768px) 100vw, (min-width: 768px) and (max-width: 1023px) 100vw, 100vw"
+          sizes="100vw"
           className={styles.maskedMedia}
           style={maskStyle}
         />

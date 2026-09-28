@@ -822,6 +822,7 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
         'blocks.advantages',
         'blocks.apartment',
         'blocks.contacts',
+        'blocks.preloader',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{

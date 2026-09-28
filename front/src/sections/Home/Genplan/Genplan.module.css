@@ -1,3 +1,18 @@
+.title {
+  margin-bottom: 3vw;
+  margin-left: 7vw;
+  margin-right: 7vw;
+  font-family: var(--font-roboto), sans-serif;
+  font-size: var(--titleDesc);
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+}
+
+.strong {
+  font-family: var(--font-sofia), sans-serif;
+}
+
 .masterplan {
   position: relative;
   width: 100%;
@@ -111,6 +126,11 @@
 }
 
 @media (max-width: 1024px) {
+  .title {
+    margin: 0 7.4vw 3vw;
+    font-size: 6vw;
+  }
+
   .masterplan {
     width: 100%;
     overflow: hidden;

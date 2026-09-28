@@ -28,7 +28,7 @@ const Building = ({ data, locale }) => {
       const commonTrigger = {
         trigger: rootRef.current,
         start: "top bottom",
-        toggleActions: "play none none none",
+        toggleActions: "play none none reverse",
       };
 
       // 1. BlockTitle — зліва направо + opacity
@@ -120,7 +120,7 @@ const Building = ({ data, locale }) => {
                   scrollTrigger: {
                     trigger: card,
                     start: "top bottom",
-                    toggleActions: "play none none none",
+                    toggleActions: "play none none reverse",
                   },
                 },
               );

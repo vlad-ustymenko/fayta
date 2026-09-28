@@ -32,7 +32,7 @@ const Concept = ({ data }) => {
       const commonTrigger = {
         trigger: rootRef.current,
         start: "top bottom",
-        toggleActions: "play none none none",
+        toggleActions: "play none none reverse",
       };
 
       function splitAndAnimate(element, { delay = 0, scrollTrigger } = {}) {
@@ -143,10 +143,10 @@ const Concept = ({ data }) => {
       if (maskedMediaRef.current) {
         gsap.fromTo(
           maskedMediaRef.current,
-          { opacity: 0, x: 100 },
+          { opacity: 0 },
           {
             opacity: 1,
-            x: 0,
+
             duration: 2,
             ease: "power4.out",
             scrollTrigger: {
@@ -235,6 +235,7 @@ const Concept = ({ data }) => {
         </div>
 
         <MaskedMedia
+          mime={data.maskedImage.backgroundImage.mime}
           ref={maskedMediaRef}
           src={data.maskedImage.backgroundImage.url}
           type="image"

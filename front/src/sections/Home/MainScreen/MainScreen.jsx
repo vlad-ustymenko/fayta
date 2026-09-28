@@ -1,11 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import { getSocialIcon } from "../../../utils/socialIcons";
+import Link from "next/link";
 import styles from "./MainScreen.module.css";
-const MainScreen = ({ data }) => {
+const MainScreen = ({ data, locale }) => {
   const mediaUrl = `${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${data.image.url}`;
   const isVideo = data.image.mime?.startsWith("video/");
-  console.log(data);
   return (
     <div className={styles.main}>
       <div className={styles.imageWrapper}>
@@ -23,12 +23,25 @@ const MainScreen = ({ data }) => {
             src={mediaUrl}
             fill
             alt="main image"
-            style={{ objectFit: "cover" }}
             className={styles.image}
           />
         )}
       </div>
       <div className={styles.overlay}></div>
+      <Link
+        className={styles.buildingWrapper}
+        href={`${locale === "en" ? "/en" : ""}/building/${data.building_card.slug}`}
+      >
+        <div className={styles.buildingImageWrapper}>
+          <Image
+            src={`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${data.building_card.images[0].url}`}
+            fill
+            alt="building image"
+            className={styles.buildingImage}
+          ></Image>
+        </div>
+        <p className={styles.buildingText}>{data.building_card.title}</p>
+      </Link>
       <div className={styles.content}>
         <h1 className={styles.title}>{data.title}</h1>
         <h2 className={styles.subTitle}>{data.subTitle}</h2>

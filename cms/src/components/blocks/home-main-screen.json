@@ -26,6 +26,11 @@
       "type": "component",
       "component": "components.social-icon",
       "repeatable": true
+    },
+    "building_card": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::building-card.building-card"
     }
   },
   "config": {}

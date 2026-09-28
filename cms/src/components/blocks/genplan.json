@@ -17,6 +17,9 @@
       "type": "component",
       "component": "components.genplan-markers",
       "repeatable": true
+    },
+    "title": {
+      "type": "richtext"
     }
   },
   "config": {}

@@ -35,7 +35,7 @@ const AnimatedHeader = memo(function AnimatedHeader({
       const commonTrigger = {
         trigger: rootRef.current,
         start: "top bottom",
-        toggleActions: "play none none none",
+        toggleActions: "play none none reverse",
       };
 
       if (blockTitleRef.current) {
@@ -176,7 +176,7 @@ const News = ({ data, locale }) => {
             scrollTrigger: {
               trigger: card,
               start: "top bottom",
-              toggleActions: "play none none none",
+              toggleActions: "play none none reverse",
             },
           },
         );
@@ -215,7 +215,7 @@ const News = ({ data, locale }) => {
             scrollTrigger: {
               trigger: categoriesWrapperRef.current,
               start: "top bottom",
-              toggleActions: "play none none none",
+              toggleActions: "play none none reverse",
             },
           },
         );
@@ -268,7 +268,7 @@ const News = ({ data, locale }) => {
                 scrollTrigger: {
                   trigger: cardsWrapperRef.current,
                   start: "top bottom",
-                  toggleActions: "play none none none",
+                  toggleActions: "play none none reverse",
                 },
               },
             );

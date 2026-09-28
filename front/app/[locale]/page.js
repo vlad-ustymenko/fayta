@@ -15,6 +15,7 @@ import Developer from "@/src/sections/Home/Developer/Developer";
 import News from "@/src/sections/Home/News/News";
 import Advantages from "@/src/sections/Home/Advantages/Advantages";
 import Contacts from "@/src/sections/Home/Contacts/Contacts";
+import Preloader from "@/src/components/Preloader/Preloader";
 import styles from "./page.module.css";
 async function getData(path, locale) {
   const baseUrl = process.env.STRAPI_BASE_URL;
@@ -25,6 +26,9 @@ async function getData(path, locale) {
       populate: {
         blocks: {
           on: {
+            "blocks.preloader": {
+              populate: "*",
+            },
             "blocks.home-main-screen": {
               fields: ["title", "subTitle"],
 
@@ -33,7 +37,15 @@ async function getData(path, locale) {
                   populate: "*",
                 },
                 image: {
-                  fields: ["url"],
+                  fields: ["url", "mime"],
+                },
+                building_card: {
+                  populate: {
+                    button: { populate: { icon: { fields: ["url"] } } },
+                    images: {
+                      fields: ["url"],
+                    },
+                  },
                 },
               },
             },
@@ -53,10 +65,10 @@ async function getData(path, locale) {
                 maskedImage: {
                   populate: {
                     maskImage: {
-                      fields: ["url"],
+                      fields: ["url", "mime"],
                     },
                     backgroundImage: {
-                      fields: ["url"],
+                      fields: ["url", "mime"],
                     },
                   },
                 },
@@ -85,6 +97,9 @@ async function getData(path, locale) {
               populate: {
                 image: {
                   fields: ["url"],
+                },
+                genplanMarkers: {
+                  populate: "*",
                 },
               },
             },
@@ -262,8 +277,10 @@ async function getData(path, locale) {
 
 function blockRendered(block, locale) {
   switch (block.__component) {
+    case "blocks.preloader":
+      return <Preloader key={block.id} data={block} />;
     case "blocks.home-main-screen":
-      return <MainScreen key={block.id} data={block} />;
+      return <MainScreen key={block.id} data={block} locale={locale} />;
     case "blocks.concept":
       return <Concept key={block.id} data={block} />;
     case "blocks.galery":

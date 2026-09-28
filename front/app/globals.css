@@ -21,9 +21,17 @@
   --containerPaddingMobile: 18vw 0;
 }
 
+:global(.split-line) {
+  display: block;
+  opacity: 0;
+  transform: translateY(100%);
+}
+
 html {
   height: 100%;
   overflow-x: hidden;
+  width: 100%;
+  scrollbar-gutter: auto;
 }
 
 html,
@@ -90,9 +98,9 @@ button {
   background: var(--color-primary, #000);
 }
 
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 0;
-} */
+}
 
 @media (width >= 768px) and (width <= 1024px) {
 }

@@ -54,7 +54,7 @@ const Developer = ({ data }) => {
           scrollTrigger: {
             trigger: imageRef.current,
             start: "top bottom",
-            toggleActions: "play none none none",
+            toggleActions: "play none none reverse",
           },
         },
       );
@@ -70,7 +70,7 @@ const Developer = ({ data }) => {
           scrollTrigger: {
             trigger: blockTitleRef.current,
             start: "top bottom",
-            toggleActions: "play none none none",
+            toggleActions: "play none none reverse",
           },
         },
       );
@@ -87,7 +87,7 @@ const Developer = ({ data }) => {
             scrollTrigger: {
               trigger: el,
               start: "top bottom",
-              toggleActions: "play none none none",
+              toggleActions: "play none none reverse",
             },
           },
         );
@@ -105,7 +105,7 @@ const Developer = ({ data }) => {
             scrollTrigger: {
               trigger: el,
               start: "top 100%",
-              toggleActions: "play none none none",
+              toggleActions: "play none none reverse",
             },
           },
         );
@@ -124,7 +124,7 @@ const Developer = ({ data }) => {
             scrollTrigger: {
               trigger: statsWrapperRef.current,
               start: "top bottom",
-              toggleActions: "play none none none",
+              toggleActions: "play none none reverse",
             },
           },
         );

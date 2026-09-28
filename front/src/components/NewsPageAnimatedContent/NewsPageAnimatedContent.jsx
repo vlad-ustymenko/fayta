@@ -35,7 +35,7 @@ export default function NewsPageAnimatedContent({ news, locale }) {
     const ctx = gsap.context(() => {
       const commonTrigger = {
         start: "top bottom",
-        toggleActions: "play none none none",
+        toggleActions: "play none none reverse",
       };
 
       function splitAndAnimate(element, delay) {

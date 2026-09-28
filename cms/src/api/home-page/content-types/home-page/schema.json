@@ -41,7 +41,8 @@
         "blocks.news",
         "blocks.advantages",
         "blocks.apartment",
-        "blocks.contacts"
+        "blocks.contacts",
+        "blocks.preloader"
       ]
     }
   }

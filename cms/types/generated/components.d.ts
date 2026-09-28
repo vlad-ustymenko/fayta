@@ -185,6 +185,7 @@ export interface BlocksGenplan extends Struct.ComponentSchema {
       true
     >;
     image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    title: Schema.Attribute.RichText;
   };
 }
 
@@ -206,6 +207,10 @@ export interface BlocksHomeMainScreen extends Struct.ComponentSchema {
     displayName: 'HomeMainScreen';
   };
   attributes: {
+    building_card: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::building-card.building-card'
+    >;
     image: Schema.Attribute.Media<'images' | 'videos'> &
       Schema.Attribute.Required;
     socialIcons: Schema.Attribute.Component<'components.social-icon', true>;
@@ -272,6 +277,17 @@ export interface BlocksNews extends Struct.ComponentSchema {
       true
     >;
     title: Schema.Attribute.RichText;
+  };
+}
+
+export interface BlocksPreloader extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_preloaders';
+  info: {
+    displayName: 'Preloader';
+  };
+  attributes: {
+    subtitle: Schema.Attribute.String;
+    title: Schema.Attribute.String;
   };
 }
 
@@ -621,6 +637,7 @@ declare module '@strapi/strapi' {
       'blocks.investment': BlocksInvestment;
       'blocks.menu': BlocksMenu;
       'blocks.news': BlocksNews;
+      'blocks.preloader': BlocksPreloader;
       'blocks.sidebar': BlocksSidebar;
       'blocks.terms-of-purchase': BlocksTermsOfPurchase;
       'components.about-character': ComponentsAboutCharacter;

@@ -75,7 +75,7 @@ const NewsCardsList = ({
             scrollTrigger: {
               trigger: categoriesWrapperRef.current,
               start: "top bottom",
-              toggleActions: "play none none none",
+              toggleActions: "play none none reverse",
             },
           },
         );
@@ -132,7 +132,7 @@ const NewsCardsList = ({
                   scrollTrigger: {
                     trigger: card,
                     start: "top bottom",
-                    toggleActions: "play none none none",
+                    toggleActions: "play none none reverse",
                   },
                 },
               );
@@ -150,7 +150,7 @@ const NewsCardsList = ({
                 scrollTrigger: {
                   trigger: cardsWrapperRef.current,
                   start: "top bottom",
-                  toggleActions: "play none none none",
+                  toggleActions: "play none none reverse",
                 },
               },
             );
@@ -170,7 +170,7 @@ const NewsCardsList = ({
             scrollTrigger: {
               trigger: loadMoreButtonRef.current,
               start: "top bottom",
-              toggleActions: "play none none none",
+              toggleActions: "play none none reverse",
             },
           },
         );

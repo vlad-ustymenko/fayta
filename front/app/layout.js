@@ -10,7 +10,6 @@ import Menu from "@/src/components/Menu/Menu";
 import FooterWithKey from "@/src/components/Footer/FooterWithKey";
 import ScrollToHash from "@/src/components/ScrollToHash/ScrollToHash";
 import { GoogleTagManager } from "@next/third-parties/google";
-import Preloader from "@/src/components/Preloader/Preloader";
 import "./globals.css";
 
 const roboto = Roboto({
@@ -119,7 +118,6 @@ export default async function RootLayout({ children }) {
         <LenisProvider>
           <MenuProvider>
             <SidebarProvider>
-              {/* <Preloader /> */}
               <ScrollToHash />
               <Header data={header} />
               {children}

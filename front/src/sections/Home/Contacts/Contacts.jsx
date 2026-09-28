@@ -26,7 +26,7 @@ const Contacts = ({ data }) => {
       const commonTrigger = {
         trigger: rootRef.current,
         start: "top bottom",
-        toggleActions: "play none none none",
+        toggleActions: "play none none reverse",
       };
 
       if (blockTitleRef.current) {
@@ -75,7 +75,7 @@ const Contacts = ({ data }) => {
                   scrollTrigger: {
                     trigger: item,
                     start: "top bottom",
-                    toggleActions: "play none none none",
+                    toggleActions: "play none none reverse",
                   },
                 },
               );

@@ -39,7 +39,7 @@ const Footer = ({ data }) => {
       const commonTrigger = {
         trigger: rootRef.current,
         start: "top bottom",
-        toggleActions: "play none none none",
+        toggleActions: "play none none reverse",
       };
 
       function splitAndAnimate(element, delay) {

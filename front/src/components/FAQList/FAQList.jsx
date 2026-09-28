@@ -50,7 +50,7 @@ const FAQList = ({ data }) => {
                   scrollTrigger: {
                     trigger: tab,
                     start: "top bottom",
-                    toggleActions: "play none none none",
+                    toggleActions: "play none none reverse",
                   },
                 },
               );
@@ -68,7 +68,7 @@ const FAQList = ({ data }) => {
                 scrollTrigger: {
                   trigger: listRef.current,
                   start: "top bottom",
-                  toggleActions: "play none none none",
+                  toggleActions: "play none none reverse",
                 },
               },
             );

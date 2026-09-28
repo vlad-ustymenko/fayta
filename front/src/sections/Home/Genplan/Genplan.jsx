@@ -1,6 +1,8 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkBreaks from "remark-breaks";
 import styles from "./Genplan.module.css";
 const markers = [
   { id: 1, x: 15.6, y: 45, title: "Наземний паркінг" },
@@ -50,52 +52,67 @@ const Genplan = ({ data }) => {
     setHoveredMarker(null);
   };
   return (
-    <section className={styles.masterplan}>
-      <div className={styles.viewport}>
-        <div className={styles.plan}>
-          <Image
-            src={`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${data.image.url}`}
-            alt="genplan"
-            width={3840}
-            height={2160}
-            priority
-            sizes="100vw"
-            className={styles.image}
-          />
-          <div className={styles.markers}>
-            {data.genplanMarkers.map((marker) => {
-              const isActive = isMobile
-                ? activeMarker === marker.id
-                : hoveredMarker === marker.id;
-              return (
-                <div
-                  key={marker.id}
-                  className={styles.marker}
-                  style={{ left: `${marker.x}%`, top: `${marker.y}%` }}
-                  onMouseEnter={() => handleMouseEnter(marker.id)}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <button
-                    type="button"
-                    className={`${styles.markerButton} ${isActive ? styles.markerButtonActive : ""}`}
-                    onClick={() => handleMarkerClick(marker.id)}
-                    aria-label={marker.title}
-                    aria-expanded={isActive}
+    <>
+      <ReactMarkdown
+        remarkPlugins={[remarkBreaks]}
+        components={{
+          p: ({ children }) => <h2 className={styles.title}>{children}</h2>,
+          strong: ({ children }) => (
+            <span className={styles.strong}>{children}</span>
+          ),
+        }}
+      >
+        {data.title}
+      </ReactMarkdown>
+      <div className={styles.masterplan}>
+        <div className={styles.viewport}>
+          <div className={styles.plan}>
+            <Image
+              src={`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${data.image.url}`}
+              alt="genplan"
+              width={3840}
+              height={2160}
+              priority
+              sizes="100vw"
+              className={styles.image}
+            />
+            <div className={styles.markers}>
+              {data.genplanMarkers.map((marker) => {
+                const isActive = isMobile
+                  ? activeMarker === marker.id
+                  : hoveredMarker === marker.id;
+                return (
+                  <div
+                    key={marker.id}
+                    className={styles.marker}
+                    style={{ left: `${marker.x}%`, top: `${marker.y}%` }}
+                    onMouseEnter={() => handleMouseEnter(marker.id)}
+                    onMouseLeave={handleMouseLeave}
                   >
-                    <span className={styles.markerDot} />
-                  </button>
-                  {isActive && (
-                    <div className={styles.tooltip}>
-                      <div className={styles.tooltipTitle}>{marker.title}</div>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+                    <button
+                      type="button"
+                      className={`${styles.markerButton} ${isActive ? styles.markerButtonActive : ""}`}
+                      onClick={() => handleMarkerClick(marker.id)}
+                      aria-label={marker.title}
+                      aria-expanded={isActive}
+                    >
+                      <span className={styles.markerDot} />
+                    </button>
+                    {isActive && (
+                      <div className={styles.tooltip}>
+                        <div className={styles.tooltipTitle}>
+                          {marker.title}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </>
   );
 };
 export default Genplan;

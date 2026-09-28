@@ -8,7 +8,7 @@ import styles from "./Preloader.module.css";
 
 gsap.registerPlugin(SplitText);
 
-const Preloader = () => {
+const Preloader = ({ data }) => {
   const titleRef = useRef(null);
   const subTitleRef = useRef(null);
   const wrapperRef = useRef(null);
@@ -18,9 +18,23 @@ const Preloader = () => {
   const lenis = useLenis();
 
   useLayoutEffect(() => {
-    // Блокуємо скрол на час анімації
-    lenis?.stop();
-    document.body.style.overflow = "hidden";
+    if (!lenis) return;
+
+    const html = document.documentElement;
+    const body = document.body;
+
+    // Запам'ятовуємо поточний стан
+    const previousHtmlOverflow = html.style.overflow;
+    const previousBodyOverflow = body.style.overflow;
+    const previousBodyHeight = body.style.height;
+
+    // Блокуємо Lenis
+    lenis.stop();
+
+    // Блокуємо нативний скрол
+    html.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+    body.style.height = "100%";
 
     const ctx = gsap.context(() => {
       let titleSplit;
@@ -28,17 +42,19 @@ const Preloader = () => {
 
       const tl = gsap.timeline({
         onComplete: () => {
-          // Анімація тексту завершена — чекаємо трохи і починаємо зникнення
           const fadeTl = gsap.timeline({
             onComplete: () => {
-              // opacity дійшло до 0 — тепер різко ховаємо вгору
               gsap.to(wrapperRef.current, {
                 yPercent: -100,
                 duration: 0.01,
                 onComplete: () => {
-                  // Розблоковуємо скрол і прибираємо компонент з DOM
-                  document.body.style.overflow = "";
-                  lenis?.start();
+                  // Відновлюємо scroll
+                  html.style.overflow = previousHtmlOverflow;
+                  body.style.overflow = previousBodyOverflow;
+                  body.style.height = previousBodyHeight;
+
+                  lenis.start();
+
                   setIsVisible(false);
                 },
               });
@@ -47,7 +63,7 @@ const Preloader = () => {
 
           fadeTl.to(wrapperRef.current, {
             opacity: 0,
-            duration: 1.5,
+            duration: 1,
             ease: "power2.out",
             delay: 0.3,
           });
@@ -61,12 +77,44 @@ const Preloader = () => {
           mask: "lines",
         });
 
-        gsap.set(titleSplit.lines, { yPercent: 100, opacity: 0 });
+        gsap.set(titleRef.current, {
+          visibility: "visible",
+        });
+
+        gsap.set(titleSplit.lines, {
+          yPercent: 100,
+          opacity: 0,
+        });
 
         tl.to(titleSplit.lines, {
           yPercent: 0,
           opacity: 1,
-          duration: 1.5,
+          duration: 1,
+          stagger: 0.1,
+          ease: "power3.out",
+        });
+      }
+
+      if (titleRef.current) {
+        titleSplit = new SplitText(titleRef.current, {
+          type: "lines",
+          linesClass: "split-line",
+          mask: "lines",
+        });
+
+        gsap.set(titleRef.current, {
+          visibility: "visible",
+        });
+
+        gsap.set(titleSplit.lines, {
+          yPercent: 100,
+          opacity: 0,
+        });
+
+        tl.to(titleSplit.lines, {
+          yPercent: 0,
+          opacity: 1,
+          duration: 1,
           stagger: 0.1,
           ease: "power3.out",
         });
@@ -79,14 +127,21 @@ const Preloader = () => {
           mask: "lines",
         });
 
-        gsap.set(subTitleSplit.lines, { yPercent: 100, opacity: 0 });
+        gsap.set(subTitleRef.current, {
+          visibility: "visible",
+        });
+
+        gsap.set(subTitleSplit.lines, {
+          yPercent: 100,
+          opacity: 0,
+        });
 
         tl.to(
           subTitleSplit.lines,
           {
             yPercent: 0,
             opacity: 1,
-            duration: 1.5,
+            duration: 1,
             stagger: 0.1,
             ease: "power3.out",
           },
@@ -95,19 +150,19 @@ const Preloader = () => {
       }
 
       return () => {
-        if (titleSplit) {
-          titleSplit.revert();
-        }
-        if (subTitleSplit) {
-          subTitleSplit.revert();
-        }
+        titleSplit?.revert();
+        subTitleSplit?.revert();
       };
     });
 
     return () => {
       ctx.revert();
-      document.body.style.overflow = "";
-      lenis?.start();
+
+      html.style.overflow = previousHtmlOverflow;
+      body.style.overflow = previousBodyOverflow;
+      body.style.height = previousBodyHeight;
+
+      lenis.start();
     };
   }, [lenis]);
 
@@ -119,10 +174,11 @@ const Preloader = () => {
     <div className={styles.main} ref={wrapperRef}>
       <div className={styles.content}>
         <h1 className={styles.title} ref={titleRef}>
-          FAYTA NOVA
+          {data.title}
         </h1>
+
         <h2 className={styles.subTitle} ref={subTitleRef}>
-          cвій квартал
+          {data.subtitle}
         </h2>
       </div>
     </div>

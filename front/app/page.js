@@ -1,15 +1,9 @@
-import Image from "next/image";
 import qs from "qs";
 import MainScreen from "@/src/sections/Home/MainScreen/MainScreen";
-import Header from "@/src/components/Header/Header";
-import Sidebar from "@/src/components/Sidebar/Sidebar";
-import Menu from "@/src/components/Menu/Menu";
 import { notFound } from "next/navigation";
-import ImageSlider from "@/src/components/ImageSlider/ImageSlider";
 import Concept from "@/src/sections/Home/Concept/Concept";
 import Galery from "@/src/sections/Home/Galery/Galery";
 import Investment from "@/src/sections/Home/Investment/Investment";
-import Footer from "@/src/components/Footer/Footer";
 import Feedback from "@/src/sections/Home/Feedback/Feedback";
 import Genplan from "@/src/sections/Home/Genplan/Genplan";
 import Infrastructure from "@/src/sections/Home/Infrastructure/Infrastructure";
@@ -21,6 +15,7 @@ import Developer from "@/src/sections/Home/Developer/Developer";
 import News from "@/src/sections/Home/News/News";
 import Advantages from "@/src/sections/Home/Advantages/Advantages";
 import Contacts from "@/src/sections/Home/Contacts/Contacts";
+import Preloader from "@/src/components/Preloader/Preloader";
 import styles from "./page.module.css";
 
 async function getData(path) {
@@ -42,7 +37,18 @@ async function getData(path) {
                 image: {
                   fields: ["url", "mime"],
                 },
+                building_card: {
+                  populate: {
+                    button: { populate: { icon: { fields: ["url"] } } },
+                    images: {
+                      fields: ["url"],
+                    },
+                  },
+                },
               },
+            },
+            "blocks.preloader": {
+              populate: "*",
             },
             "blocks.concept": {
               populate: {
@@ -60,10 +66,10 @@ async function getData(path) {
                 maskedImage: {
                   populate: {
                     maskImage: {
-                      fields: ["url"],
+                      fields: ["url", "mime"],
                     },
                     backgroundImage: {
-                      fields: ["url"],
+                      fields: ["url", "mime"],
                     },
                   },
                 },
@@ -272,8 +278,10 @@ async function getData(path) {
 
 function blockRendered(block) {
   switch (block.__component) {
+    case "blocks.preloader":
+      return <Preloader key={block.id} data={block} />;
     case "blocks.home-main-screen":
-      return <MainScreen key={block.id} data={block} />;
+      return <MainScreen key={block.id} data={block} locale="uk" />;
     case "blocks.concept":
       return <Concept key={block.id} data={block} />;
     case "blocks.galery":
@@ -323,6 +331,7 @@ export default async function Home() {
   }
 
   const { blocks } = strapiData;
+
   return (
     <>
       <main className={styles.main}>
