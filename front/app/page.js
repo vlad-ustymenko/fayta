@@ -40,7 +40,7 @@ async function getData(path) {
                   populate: "*",
                 },
                 image: {
-                  fields: ["url"],
+                  fields: ["url", "mime"],
                 },
               },
             },

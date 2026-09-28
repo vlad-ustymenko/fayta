@@ -206,7 +206,8 @@ export interface BlocksHomeMainScreen extends Struct.ComponentSchema {
     displayName: 'HomeMainScreen';
   };
   attributes: {
-    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images' | 'videos'> &
+      Schema.Attribute.Required;
     socialIcons: Schema.Attribute.Component<'components.social-icon', true>;
     subTitle: Schema.Attribute.String & Schema.Attribute.Required;
     title: Schema.Attribute.String & Schema.Attribute.Required;

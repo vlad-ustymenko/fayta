@@ -1,23 +1,33 @@
 import React from "react";
 import Image from "next/image";
 import { getSocialIcon } from "../../../utils/socialIcons";
-
 import styles from "./MainScreen.module.css";
-
 const MainScreen = ({ data }) => {
+  const mediaUrl = `${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${data.image.url}`;
+  const isVideo = data.image.mime?.startsWith("video/");
+  console.log(data);
   return (
     <div className={styles.main}>
       <div className={styles.imageWrapper}>
-        <Image
-          src={`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${data.image.url}`}
-          fill
-          // sizes="(max-width: 768px) 100vw, (min-width: 768px) and (max-width: 1023px) 100vw, 100vw"
-          alt="main image"
-          style={{ objectFit: "cover" }}
-          className={styles.image}
-        />
+        {isVideo ? (
+          <video
+            src={mediaUrl}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className={styles.image}
+          />
+        ) : (
+          <Image
+            src={mediaUrl}
+            fill
+            alt="main image"
+            style={{ objectFit: "cover" }}
+            className={styles.image}
+          />
+        )}
       </div>
-
       <div className={styles.overlay}></div>
       <div className={styles.content}>
         <h1 className={styles.title}>{data.title}</h1>
@@ -27,7 +37,6 @@ const MainScreen = ({ data }) => {
         {data.socialIcons?.map((icon) => {
           const Icon = getSocialIcon(icon.title);
           if (!Icon) return null;
-
           return (
             <a
               key={icon.id}
@@ -50,5 +59,4 @@ const MainScreen = ({ data }) => {
     </div>
   );
 };
-
 export default MainScreen;
