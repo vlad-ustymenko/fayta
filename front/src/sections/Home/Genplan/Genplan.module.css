@@ -113,13 +113,11 @@
 @media (max-width: 1024px) {
   .masterplan {
     width: 100%;
-    height: 100vh;
     overflow: hidden;
   }
 
   .viewport {
     width: 100%;
-    height: 100vh;
 
     overflow-x: auto;
     overflow-y: hidden;

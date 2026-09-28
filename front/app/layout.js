@@ -9,6 +9,7 @@ import Sidebar from "@/src/components/Sidebar/Sidebar";
 import Menu from "@/src/components/Menu/Menu";
 import FooterWithKey from "@/src/components/Footer/FooterWithKey";
 import ScrollToHash from "@/src/components/ScrollToHash/ScrollToHash";
+import { GoogleTagManager } from "@next/third-parties/google";
 import Preloader from "@/src/components/Preloader/Preloader";
 import "./globals.css";
 
@@ -129,6 +130,7 @@ export default async function RootLayout({ children }) {
           </MenuProvider>
         </LenisProvider>
       </body>
+      <GoogleTagManager gtmId="GTM-T29TVZS2" />
     </html>
   );
 }
