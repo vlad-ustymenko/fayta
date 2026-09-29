@@ -169,7 +169,6 @@ const Footer = ({ data }) => {
     }, rootRef);
 
     return () => {
-      console.log("Footer effect cleanup", { pathname });
       ctx.revert();
     };
   }, [data]);

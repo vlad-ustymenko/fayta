@@ -17,6 +17,7 @@ import Advantages from "@/src/sections/Home/Advantages/Advantages";
 import Contacts from "@/src/sections/Home/Contacts/Contacts";
 import Preloader from "@/src/components/Preloader/Preloader";
 import styles from "./page.module.css";
+import { getSeo, createMetadata } from "@/src/utils/seo";
 
 async function getData(path) {
   const baseUrl = process.env.STRAPI_BASE_URL;
@@ -25,6 +26,13 @@ async function getData(path) {
     {
       locale: "uk",
       populate: {
+        seo: {
+          populate: {
+            ogImage: {
+              fields: ["url", "width", "height", "alternativeText"],
+            },
+          },
+        },
         blocks: {
           on: {
             "blocks.home-main-screen": {
@@ -310,17 +318,12 @@ function blockRendered(block) {
       return <Apartments key={block.id} data={block} locale="uk" />;
     case "blocks.contacts":
       return <Contacts key={block.id} data={block} />;
-    // case "blocks.advantages":
-    //   return <Advantages key={block.id} data={block} />;
-    // case "blocks.faq":
-    //   return <FAQ key={block.id} data={block} categories={faqCategories} />;
-    // case "blocks.news":
-    //   return <News key={block.id} data={block} />;
-    // case "blocks.contacts":
-    //   return <Contacts key={block.id} data={block} />;
-    // case "blocks.footer":
-    //   return <Footer key={block.id} data={block} />;
   }
+}
+
+export async function generateMetadata() {
+  const seo = await getSeo(process.env.HOME_URL, "uk");
+  return createMetadata({ seo, path: "/", locale: "uk", alternatePath: "/en" });
 }
 
 export default async function Home() {

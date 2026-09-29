@@ -44,6 +44,16 @@
         "blocks.contacts",
         "blocks.preloader"
       ]
+    },
+    "seo": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "components.seo",
+      "repeatable": false
     }
   }
 }

@@ -568,6 +568,19 @@ export interface ComponentsPlaces extends Struct.ComponentSchema {
   };
 }
 
+export interface ComponentsSeo extends Struct.ComponentSchema {
+  collectionName: 'components_components_seos';
+  info: {
+    displayName: 'seo';
+  };
+  attributes: {
+    metaDescription: Schema.Attribute.Text;
+    metaTitle: Schema.Attribute.Text;
+    noIndex: Schema.Attribute.Boolean;
+    ogImage: Schema.Attribute.Media<'images'>;
+  };
+}
+
 export interface ComponentsSocialIcon extends Struct.ComponentSchema {
   collectionName: 'components_components_social_icons';
   info: {
@@ -660,6 +673,7 @@ declare module '@strapi/strapi' {
       'components.menu-link': ComponentsMenuLink;
       'components.news-categorie': ComponentsNewsCategorie;
       'components.places': ComponentsPlaces;
+      'components.seo': ComponentsSeo;
       'components.social-icon': ComponentsSocialIcon;
       'components.social-links': ComponentsSocialLinks;
       'components.stats': ComponentsStats;
