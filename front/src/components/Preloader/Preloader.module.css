@@ -1,9 +1,9 @@
 .main {
   width: 100%;
   height: 100svh;
-  background-color: var(--black);
   position: absolute;
   z-index: 100;
+  background-color: var(--black);
   opacity: 1;
 }
 

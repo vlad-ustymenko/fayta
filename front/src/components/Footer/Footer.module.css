@@ -167,8 +167,8 @@
     width: 30vw;
     height: 20vw;
     position: relative;
-    place-self: center center;
     grid-area: logo;
+    place-self: center center;
   }
 
   .socialText {
@@ -244,8 +244,8 @@
     width: 30vw;
     height: 20vw;
     position: relative;
-    place-self: center center;
     grid-area: logo;
+    place-self: center center;
   }
 
   .socialText {

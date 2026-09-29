@@ -18,8 +18,10 @@
       "component": "components.genplan-markers",
       "repeatable": true
     },
-    "title": {
-      "type": "richtext"
+    "blockTitle": {
+      "type": "component",
+      "component": "components.block-title",
+      "repeatable": false
     }
   },
   "config": {}

@@ -1,36 +1,24 @@
-.title {
-  margin-bottom: 3vw;
-  margin-left: 7vw;
-  margin-right: 7vw;
-  font-family: var(--font-roboto), sans-serif;
-  font-size: var(--titleDesc);
-  font-weight: 700;
-  line-height: 1;
-  text-align: center;
-}
-
-.strong {
-  font-family: var(--font-sofia), sans-serif;
+.blockTitle {
+  padding: 0 7.4vw 3vw;
 }
 
 .masterplan {
-  position: relative;
   width: 100%;
+  position: relative;
 }
 
 .viewport {
-  position: relative;
   width: 100%;
+  position: relative;
 }
 
 .plan {
-  position: relative;
   width: 100%;
+  position: relative;
 }
 
 .image {
   display: block;
-
   width: 100% !important;
   height: auto !important;
 }
@@ -42,93 +30,70 @@
 
 .marker {
   position: absolute;
-
   transform: translate(-50%, -50%);
-
   pointer-events: none;
 }
 
 .markerButton {
-  position: relative;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   width: 3.3vw;
   height: 3.3vw;
-
   padding: 0;
-
   border: 0;
   border-radius: 50%;
+  position: relative;
   cursor: pointer;
   pointer-events: auto;
 }
 
 .markerDot {
   display: block;
-
   width: 4vw;
   height: 4.4vw;
-
   border-radius: 50%;
 }
 
 .tooltip {
-  position: absolute;
-  left: 50%;
-  bottom: calc(100% + 14px);
   width: max-content;
   max-width: 15vw;
   padding: 1vw 2vw;
-  background: var(--black);
-  color: var(--background);
-  font-family: var(--font-sofia), sans-serif;
-  border-radius: 5vw;
   border: 0.2vw solid var(--background);
+  border-radius: 5vw;
+  position: absolute;
+  bottom: calc(100% + 14px);
+  left: 50%;
   transform: translateX(-50%);
-  pointer-events: auto;
   z-index: 10;
+  font-family: var(--font-sofia), sans-serif;
+  color: var(--background);
+  background: var(--black);
+  pointer-events: auto;
 }
 
 .tooltipTitle {
   position: relative;
   z-index: 1;
   font-size: 1vw;
-  line-height: 1.2;
   font-weight: 700;
+  line-height: 1.2;
 }
 
 .tooltip::after {
-  content: "";
-
-  position: absolute;
-
-  left: 50%;
-  bottom: -0.2vw;
-
   width: 0.5vw;
   height: 0.5vw;
-
-  background: var(--black);
-
+  position: absolute;
+  bottom: -0.2vw;
+  left: 50%;
   transform: translateX(-50%) rotate(45deg);
+  background: var(--black);
+  content: "";
 }
 
-.tooltipTitle {
-  position: relative;
-  z-index: 1;
-
-  font-size: 1vw;
-  line-height: 1.2;
-  font-weight: 700;
-}
-
-@media (max-width: 1024px) {
-  .title {
-    margin: 0 7.4vw 3vw;
-    font-size: 6vw;
+@media (width <= 1024px) {
+  .blockTitle {
+    padding: 0 9vw 8vw;
   }
 
   .masterplan {
@@ -138,14 +103,10 @@
 
   .viewport {
     width: 100%;
-
-    overflow-x: auto;
-    overflow-y: hidden;
-
-    scrollbar-width: none;
-
+    overflow: auto hidden;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-x: contain;
+    scrollbar-width: none;
   }
 
   .viewport::-webkit-scrollbar {
@@ -153,34 +114,28 @@
   }
 
   .plan {
-    position: relative;
-
     width: auto;
-    height: 110vh;
-
     min-width: max-content;
     max-width: none;
+    height: 110vh;
+    position: relative;
   }
 
   .image {
-    position: relative !important;
-
     display: block;
-
     width: auto !important;
-    height: 110vh !important;
-
     max-width: none !important;
-
+    height: 110vh !important;
+    position: relative !important;
     object-fit: contain;
     object-position: left top;
   }
 
   .markers {
-    position: absolute;
-    inset: 0;
     width: 100%;
     height: 100%;
+    position: absolute;
+    inset: 0;
   }
 
   .markerButton {
@@ -204,11 +159,11 @@
   }
 
   .tooltip::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: -0.2vw;
     width: 6vw;
     height: 6vw;
+    position: absolute;
+    bottom: -0.2vw;
+    left: 50%;
+    content: "";
   }
 }

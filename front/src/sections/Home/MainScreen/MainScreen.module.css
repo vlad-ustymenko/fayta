@@ -25,8 +25,13 @@
 }
 
 .buildingWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: fit-content;
+  padding: 0.5vw;
   margin-right: 4vw;
+  border-radius: 5vw;
   position: absolute;
   top: 40%;
   right: 0;
@@ -34,18 +39,13 @@
   color: var(--background);
   background-color: rgb(47 43 40 / 30%);
   backdrop-filter: blur(10px);
-  padding: 0.5vw;
-  border-radius: 5vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .buildingImageWrapper {
   width: 3vw;
   height: 3vw;
-  position: relative;
   border-radius: 50%;
+  position: relative;
   overflow: hidden;
 }
 
@@ -56,13 +56,13 @@
 }
 
 .buildingText {
-  font-family: var(--font-roboto), sans-serif;
+  max-width: 20vw;
   margin-left: 1vw;
+  font-family: var(--font-roboto), sans-serif;
   font-size: 1vw;
   font-weight: 400;
   line-height: 1;
   color: var(--background);
-  max-width: 20vw;
 }
 
 .content {
@@ -129,11 +129,11 @@
 
 @media (width >= 768px) and (width <= 1024px) {
   .buildingWrapper {
+    padding: 3vw;
     margin-left: 4vw;
+    border-radius: 10vw;
     top: 85%;
     left: 0;
-    padding: 3vw;
-    border-radius: 10vw;
     z-index: 5;
   }
 
@@ -143,12 +143,12 @@
   }
 
   .buildingText {
-    font-family: var(--font-roboto), sans-serif;
-    margin-left: 4vw;
-    font-size: 3vw;
-    line-height: 1.2;
-    font-weight: 400;
     max-width: 60vw;
+    margin-left: 4vw;
+    font-family: var(--font-roboto), sans-serif;
+    font-size: 3vw;
+    font-weight: 400;
+    line-height: 1.2;
   }
 
   .content {
@@ -196,11 +196,11 @@
 
 @media (width <= 767px) {
   .buildingWrapper {
+    padding: 3vw;
     margin-left: 4vw;
+    border-radius: 10vw;
     top: 85%;
     left: 0;
-    padding: 3vw;
-    border-radius: 10vw;
     z-index: 5;
   }
 
@@ -210,12 +210,12 @@
   }
 
   .buildingText {
-    font-family: var(--font-roboto), sans-serif;
-    margin-left: 4vw;
-    font-size: 3vw;
-    line-height: 1.2;
-    font-weight: 400;
     max-width: 60vw;
+    margin-left: 4vw;
+    font-family: var(--font-roboto), sans-serif;
+    font-size: 3vw;
+    font-weight: 400;
+    line-height: 1.2;
   }
 
   .content {

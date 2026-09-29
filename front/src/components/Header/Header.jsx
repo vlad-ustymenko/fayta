@@ -22,7 +22,7 @@ const Header = ({ data }) => {
   const isEnglish = pathname.startsWith("/en");
 
   function getMenuItemHref(item) {
-    if (ABOUT_TITLES.includes(item.title)) {
+    if (item.blockID === "aboutPage") {
       return isEnglish ? "/en/about" : "/about";
     }
 

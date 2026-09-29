@@ -103,6 +103,7 @@ async function getData(path, locale) {
             },
             "blocks.genplan": {
               populate: {
+                blockTitle: { populate: { image: { fields: ["url"] } } },
                 image: {
                   fields: ["url"],
                 },

@@ -116,14 +116,14 @@
   }
 
   .buttonMore {
-    margin: 0 auto;
-    position: absolute;
-    left: 0;
-    bottom: 0;
     display: flex;
     justify-content: center;
     width: 100%;
+    margin: 0 auto;
     margin-bottom: 18vw;
+    position: absolute;
+    bottom: 0;
+    left: 0;
   }
 }
 
@@ -167,13 +167,13 @@
   }
 
   .buttonMore {
-    margin: 0 auto;
-    position: absolute;
-    left: 0;
-    bottom: 0;
     display: flex;
     justify-content: center;
     width: 100%;
+    margin: 0 auto;
     margin-bottom: 18vw;
+    position: absolute;
+    bottom: 0;
+    left: 0;
   }
 }

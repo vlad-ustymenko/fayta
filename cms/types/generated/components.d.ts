@@ -180,12 +180,12 @@ export interface BlocksGenplan extends Struct.ComponentSchema {
     displayName: 'Genplan';
   };
   attributes: {
+    blockTitle: Schema.Attribute.Component<'components.block-title', false>;
     genplanMarkers: Schema.Attribute.Component<
       'components.genplan-markers',
       true
     >;
     image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
-    title: Schema.Attribute.RichText;
   };
 }
 
@@ -538,6 +538,7 @@ export interface ComponentsMenuLink extends Struct.ComponentSchema {
         'termsOfPurchese',
         'building',
         'genplan',
+        'aboutPage',
       ]
     >;
     title: Schema.Attribute.String;
