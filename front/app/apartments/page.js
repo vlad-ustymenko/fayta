@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import styles from "./page.module.css";
 import TermsOfPurchase from "../../src/sections/Home/TermsOfPurchase/TermsOfPurchase";
 import ApartmentsRoomFilter from "@/src/components/ApartmentsRoomFilter/ApartmentsRoomFilter";
+import { createMetadata } from "@/src/utils/seo";
 import ApartmentsAnimatedHeader from "@/src/components/ApartmentsAnimatedHeader/ApartmentsAnimatedHeader";
 
 async function getHomeData() {
@@ -67,6 +68,13 @@ async function getData(path) {
           },
         },
         apartmentCategories: { populate: "*" },
+        seo: {
+          populate: {
+            ogImage: {
+              fields: ["url", "width", "height", "alternativeText"],
+            },
+          },
+        },
       },
     },
     { encodeValuesOnly: true },
@@ -86,6 +94,23 @@ async function getData(path) {
     const data = await res.json();
     return data.data;
   } catch {}
+}
+
+export async function generateMetadata() {
+  const data = await getData(process.env.APARTMENTS_URL, "uk");
+
+  return createMetadata({
+    seo: data?.seo || null,
+
+    path: "/apartments",
+
+    locale: "uk",
+
+    alternatePaths: {
+      uk: "/apartments",
+      en: "/en/apartments",
+    },
+  });
 }
 
 export default async function Home() {

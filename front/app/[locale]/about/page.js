@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import ImageSlider from "@/src/components/ImageSlider/ImageSlider";
 import FAQList from "@/src/components/FAQList/FAQList";
 import AboutAnimatedContent from "@/src/components/AboutAnimatedContent/AboutAnimatedContent";
+import { createMetadata } from "@/src/utils/seo";
 import styles from "./page.module.css";
 async function getHomeData(locale) {
   const baseUrl = process.env.STRAPI_BASE_URL;
@@ -69,6 +70,13 @@ async function getData(path, locale) {
         faqList: {
           populate: "*",
         },
+        seo: {
+          populate: {
+            ogImage: {
+              fields: ["url", "width", "height", "alternativeText"],
+            },
+          },
+        },
       },
     },
     { encodeValuesOnly: true },
@@ -88,6 +96,23 @@ async function getData(path, locale) {
     const data = await res.json();
     return data.data;
   } catch {}
+}
+
+export async function generateMetadata() {
+  const data = await getData(process.env.ABOUT_URL, "en");
+
+  return createMetadata({
+    seo: data?.seo || null,
+
+    path: "/en/about",
+
+    locale: "en",
+
+    alternatePaths: {
+      uk: "/about",
+      en: "/en/about",
+    },
+  });
 }
 
 export default async function Home({ params }) {

@@ -3,6 +3,7 @@ import qs from "qs";
 import Feedback from "@/src/sections/Home/Feedback/Feedback";
 import Image from "next/image";
 import styles from "./page.module.css";
+import { createMetadata } from "@/src/utils/seo";
 import NewsPageAnimatedContent from "@/src/components/NewsPageAnimatedContent/NewsPageAnimatedContent";
 
 async function getHomeData() {
@@ -53,6 +54,17 @@ async function getNews(slug) {
 
   const json = await res.json();
   return json.data?.[0] ?? null;
+}
+
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const news = await getNews(slug, "uk");
+  return createMetadata({
+    seo: news?.seo || null,
+    path: `/news/${slug}`,
+    locale: "uk",
+    alternatePaths: { uk: `/news/${slug}`, en: `/en/news/${slug}` },
+  });
 }
 
 export default async function NewsPage({ params }) {

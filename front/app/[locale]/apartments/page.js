@@ -1,13 +1,10 @@
 import React from "react";
-import Link from "next/link";
 import qs from "qs";
 import { notFound } from "next/navigation";
-import ReactMarkdown from "react-markdown";
-import remarkBreaks from "remark-breaks";
-import { BiChevronsLeft } from "react-icons/bi";
 import styles from "./page.module.css";
 import TermsOfPurchase from "../../../src/sections/Home/TermsOfPurchase/TermsOfPurchase";
 import ApartmentsRoomFilter from "@/src/components/ApartmentsRoomFilter/ApartmentsRoomFilter";
+import { createMetadata } from "@/src/utils/seo";
 import ApartmentsAnimatedHeader from "@/src/components/ApartmentsAnimatedHeader/ApartmentsAnimatedHeader";
 
 async function getHomeData(locale) {
@@ -71,6 +68,13 @@ async function getData(path, locale) {
           },
         },
         apartmentCategories: { populate: "*" },
+        seo: {
+          populate: {
+            ogImage: {
+              fields: ["url", "width", "height", "alternativeText"],
+            },
+          },
+        },
       },
     },
     { encodeValuesOnly: true },
@@ -92,6 +96,22 @@ async function getData(path, locale) {
   } catch {}
 }
 
+export async function generateMetadata() {
+  const data = await getData(process.env.APARTMENTS_URL, "en");
+
+  return createMetadata({
+    seo: data?.seo || null,
+
+    path: "/en/apartments",
+
+    locale: "en",
+
+    alternatePaths: {
+      uk: "/apartments",
+      en: "/en/apartments",
+    },
+  });
+}
 export default async function Home({ params }) {
   const { locale } = await params;
   const apartmentData = await getData(process.env.APARTMENTS_URL, locale);

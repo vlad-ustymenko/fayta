@@ -17,7 +17,7 @@ import Advantages from "@/src/sections/Home/Advantages/Advantages";
 import Contacts from "@/src/sections/Home/Contacts/Contacts";
 import Preloader from "@/src/components/Preloader/Preloader";
 import styles from "./page.module.css";
-import { getSeo, createMetadata } from "@/src/utils/seo";
+import { createMetadata } from "@/src/utils/seo";
 
 async function getData(path) {
   const baseUrl = process.env.STRAPI_BASE_URL;
@@ -322,8 +322,20 @@ function blockRendered(block) {
 }
 
 export async function generateMetadata() {
-  const seo = await getSeo(process.env.HOME_URL, "uk");
-  return createMetadata({ seo, path: "/", locale: "uk", alternatePath: "/en" });
+  const data = await getData(process.env.HOME_URL);
+
+  return createMetadata({
+    seo: data?.seo || null,
+
+    path: "/",
+
+    locale: "uk",
+
+    alternatePaths: {
+      uk: "/",
+      en: "/en",
+    },
+  });
 }
 
 export default async function Home() {

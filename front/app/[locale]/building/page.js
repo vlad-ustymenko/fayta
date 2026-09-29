@@ -4,6 +4,7 @@ import BuildingCardsList from "@/src/components/BuildingCardsList/BuildingCardsL
 import Feedback from "@/src/sections/Home/Feedback/Feedback";
 import Image from "next/image";
 import BuildingAnimatedHeader from "@/src/components/BuildingAnimatedHeader/BuildingAnimatedHeader";
+import { createMetadata } from "@/src/utils/seo";
 import styles from "./page.module.css";
 
 async function getHomeData(locale) {
@@ -66,6 +67,13 @@ async function getData(path, locale) {
             },
           },
         },
+        seo: {
+          populate: {
+            ogImage: {
+              fields: ["url", "width", "height", "alternativeText"],
+            },
+          },
+        },
       },
     },
     { encodeValuesOnly: true },
@@ -85,6 +93,23 @@ async function getData(path, locale) {
     const data = await res.json();
     return data.data;
   } catch {}
+}
+
+export async function generateMetadata() {
+  const data = await getData(process.env.BUILDING_URL, "en");
+
+  return createMetadata({
+    seo: data?.seo || null,
+
+    path: "/en/building",
+
+    locale: "en",
+
+    alternatePaths: {
+      uk: "/building",
+      en: "/en/building",
+    },
+  });
 }
 
 export default async function Home({ params }) {

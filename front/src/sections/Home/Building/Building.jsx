@@ -6,7 +6,6 @@ import BlockTitle from "../../../components/BlockTitle/BlockTitle";
 import React, { useLayoutEffect, useRef } from "react";
 import Button from "../../../components/Button/Button";
 import Image from "next/image";
-import Link from "next/link";
 import styles from "./Building.module.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -195,7 +194,7 @@ const Building = ({ data, locale }) => {
       </div>
       <div className={styles.cardsWrapper} ref={cardsWrapperRef}>
         {data.building_cards.slice(0, 3).map((item) => (
-          <Link
+          <a
             className={styles.card}
             key={item.slug}
             href={`${locale === "en" ? "/en" : ""}/building/${item.slug}`}
@@ -220,7 +219,7 @@ const Building = ({ data, locale }) => {
               </div>
               <div className={styles.cardTitle}>{item.title}</div>
             </div>
-          </Link>
+          </a>
         ))}
       </div>
     </div>

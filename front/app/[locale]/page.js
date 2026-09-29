@@ -16,6 +16,7 @@ import News from "@/src/sections/Home/News/News";
 import Advantages from "@/src/sections/Home/Advantages/Advantages";
 import Contacts from "@/src/sections/Home/Contacts/Contacts";
 import Preloader from "@/src/components/Preloader/Preloader";
+import { createMetadata } from "@/src/utils/seo";
 import styles from "./page.module.css";
 async function getData(path, locale) {
   const baseUrl = process.env.STRAPI_BASE_URL;
@@ -24,6 +25,13 @@ async function getData(path, locale) {
     {
       locale: locale,
       populate: {
+        seo: {
+          populate: {
+            ogImage: {
+              fields: ["url", "width", "height", "alternativeText"],
+            },
+          },
+        },
         blocks: {
           on: {
             "blocks.preloader": {
@@ -310,6 +318,23 @@ function blockRendered(block, locale) {
     case "blocks.contacts":
       return <Contacts key={block.id} data={block} />;
   }
+}
+
+export async function generateMetadata() {
+  const data = await getData(process.env.HOME_URL, "en");
+
+  return createMetadata({
+    seo: data?.seo || null,
+
+    path: "/en",
+
+    locale: "en",
+
+    alternatePaths: {
+      uk: "/",
+      en: "/en",
+    },
+  });
 }
 
 export default async function Home({ params }) {

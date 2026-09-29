@@ -5,13 +5,15 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { getYoutubeEmbedUrl } from "@/src/utils/youtube";
 import BuildingAnimatedContent from "@/src/components/BuildingAnimatedContent/BuildingAnimatedContent";
+import { createMetadata } from "@/src/utils/seo";
 
 async function getHomeData(locale) {
   const baseUrl = process.env.STRAPI_BASE_URL;
 
   const query = qs.stringify(
     {
-      locale: locale,
+      locale,
+
       populate: {
         blocks: {
           on: {
@@ -29,7 +31,9 @@ async function getHomeData(locale) {
   url.search = query;
 
   try {
-    const res = await fetch(url.href, { next: { revalidate: 60 } });
+    const res = await fetch(url.href, {
+      next: { revalidate: 60 },
+    });
 
     if (!res.ok) {
       console.error(`Strapi error: ${res.status} ${res.statusText}`);
@@ -37,31 +41,99 @@ async function getHomeData(locale) {
     }
 
     const data = await res.json();
+
     return data.data;
   } catch (error) {
     console.error(error);
+
     return null;
   }
 }
 
 async function getBuilding(slug, locale) {
-  const res = await fetch(
-    `${process.env.STRAPI_BASE_URL}/api/building-cards?filters[slug][$eq]=${slug}&locale=${locale}&populate=*`,
-    { next: { revalidate: 60 } },
+  const query = qs.stringify(
+    {
+      locale,
+
+      filters: {
+        slug: {
+          $eq: slug,
+        },
+      },
+
+      populate: {
+        images: {
+          populate: "*",
+        },
+
+        socialIcons: {
+          populate: "*",
+        },
+
+        youtubeLink: {
+          populate: "*",
+        },
+
+        seo: {
+          populate: {
+            ogImage: {
+              fields: ["url", "width", "height", "alternativeText"],
+            },
+          },
+        },
+      },
+    },
+    { encodeValuesOnly: true },
   );
 
-  if (!res.ok) throw new Error("Failed to fetch building");
+  const url = new URL("/api/building-cards", process.env.STRAPI_BASE_URL);
+
+  url.search = query;
+
+  const res = await fetch(url.href, {
+    next: { revalidate: 60 },
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch building");
+  }
 
   const json = await res.json();
+
   return json.data?.[0] ?? null;
+}
+
+export async function generateMetadata({ params }) {
+  const { slug, locale } = await params;
+
+  const building = await getBuilding(slug, locale);
+
+  const isEnglish = locale === "en";
+
+  return createMetadata({
+    seo: building?.seo || null,
+
+    path: isEnglish ? `/en/building/${slug}` : `/building/${slug}`,
+
+    locale,
+
+    alternatePaths: {
+      uk: `/building/${slug}`,
+      en: `/en/building/${slug}`,
+    },
+  });
 }
 
 export default async function BuildingPage({ params }) {
   const { slug, locale } = await params;
+
   const building = await getBuilding(slug, locale);
+
   const feedbackData = await getHomeData(locale);
 
-  if (!building) notFound();
+  if (!building) {
+    notFound();
+  }
 
   const feedback = feedbackData?.blocks.find(
     (block) => block.__component === "blocks.feedback",
@@ -79,6 +151,7 @@ export default async function BuildingPage({ params }) {
         locale={locale}
         shortsEmbedUrl={shortsEmbedUrl}
       />
+
       <div className={styles.blokTitleWrapper}>
         <div className={styles.iconWrapper}>
           <Image
@@ -88,8 +161,10 @@ export default async function BuildingPage({ params }) {
             className={styles.blockTitleicon}
           />
         </div>
+
         <span className={styles.line}></span>
       </div>
+
       <Feedback data={feedback} />
     </main>
   );

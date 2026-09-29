@@ -1,8 +1,7 @@
 import Link from "next/link";
 import qs from "qs";
-
 import { notFound } from "next/navigation";
-
+import { createMetadata } from "@/src/utils/seo";
 import NewsCardsList from "@/src/components/NewsCardsList/NewsCardsList";
 import Feedback from "@/src/sections/Home/Feedback/Feedback";
 import Image from "next/image";
@@ -71,6 +70,13 @@ async function getData(path, locale) {
             },
           },
         },
+        seo: {
+          populate: {
+            ogImage: {
+              fields: ["url", "width", "height", "alternativeText"],
+            },
+          },
+        },
       },
     },
     { encodeValuesOnly: true },
@@ -90,6 +96,23 @@ async function getData(path, locale) {
     const data = await res.json();
     return data.data;
   } catch {}
+}
+
+export async function generateMetadata() {
+  const data = await getData(process.env.NEWS_URL, "en");
+
+  return createMetadata({
+    seo: data?.seo || null,
+
+    path: "/en/news",
+
+    locale: "en",
+
+    alternatePaths: {
+      uk: "/news",
+      en: "/en/news",
+    },
+  });
 }
 
 export default async function Home({ params }) {

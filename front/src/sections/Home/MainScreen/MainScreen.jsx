@@ -28,7 +28,7 @@ const MainScreen = ({ data, locale }) => {
         )}
       </div>
       <div className={styles.overlay}></div>
-      <Link
+      <a
         className={styles.buildingWrapper}
         href={`${locale === "en" ? "/en" : ""}/building/${data.building_card.slug}`}
       >
@@ -41,7 +41,7 @@ const MainScreen = ({ data, locale }) => {
           ></Image>
         </div>
         <p className={styles.buildingText}>{data.building_card.title}</p>
-      </Link>
+      </a>
       <div className={styles.content}>
         <h1 className={styles.title}>{data.title}</h1>
         <h2 className={styles.subTitle}>{data.subTitle}</h2>
