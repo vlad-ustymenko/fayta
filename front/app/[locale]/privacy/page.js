@@ -13,6 +13,7 @@ async function getData(path, locale) {
         seo: {
           populate: {
             ogImage: { fields: ["url", "width", "height", "alternativeText"] },
+            
           },
         },
         button: { populate: "*" },
@@ -38,12 +39,12 @@ async function getData(path, locale) {
 }
 
 export async function generateMetadata() {
-  const data = await getData(process.env.PRIVACY_URL, "uk");
+  const data = await getData(process.env.PRIVACY_URL, "en");
 
   return createMetadata({
     seo: data?.seo || null,
 
-    path: "en/privacy",
+    path: "/en/privacy",
 
     locale: "en",
 

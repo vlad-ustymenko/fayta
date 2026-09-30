@@ -240,7 +240,7 @@ export default async function BuildingPage({ params }) {
         <span className={styles.line}></span>
       </div>
 
-      <Feedback data={feedback} className={styles.feedback} />
+      <Feedback data={feedback} className={styles.feedback} locale={locale} />
     </main>
   );
 }

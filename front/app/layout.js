@@ -136,7 +136,7 @@ export default async function RootLayout({ children }) {
                 <Header data={header} />
                 {children}
                 <FooterWithKey data={footer} />
-                <Sidebar data={sidebar} />
+                <Sidebar data={sidebar} locale={locale} />
                 <Menu data={menu?.menuLinks} />
                 <Modal data={modal}></Modal>
               </ModalProvider>

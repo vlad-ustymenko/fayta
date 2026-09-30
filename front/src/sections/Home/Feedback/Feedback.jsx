@@ -11,7 +11,7 @@ import { SplitText } from "gsap/SplitText";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
-const Feedback = ({ data, className }) => {
+const Feedback = ({ data, className, locale }) => {
   const rootRef = useRef(null);
   const leftBlockNameRef = useRef(null);
   const leftBlockTitleRef = useRef(null);
@@ -228,6 +228,7 @@ const Feedback = ({ data, className }) => {
         <h2 className={styles.rightBlockTitle}>{data.rightBlockTitle}</h2>
 
         <Form
+          locale={locale}
           loaderText={data.loaderText}
           form={data.form}
           button={data.button}

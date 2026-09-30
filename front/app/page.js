@@ -300,7 +300,7 @@ function blockRendered(block) {
     case "blocks.genplan":
       return <Genplan key={block.id} data={block} />;
     case "blocks.feedback":
-      return <Feedback key={block.id} data={block} />;
+      return <Feedback key={block.id} data={block} locale="uk" />;
     case "blocks.infrastructure":
       return <Infrastructure key={block.id} data={block} />;
     case "blocks.terms-of-purchase":
@@ -318,7 +318,7 @@ function blockRendered(block) {
     case "blocks.apartment":
       return <Apartments key={block.id} data={block} locale="uk" />;
     case "blocks.contacts":
-      return <Contacts key={block.id} data={block} />;
+      return <Contacts key={block.id} data={block} locale="uk" />;
   }
 }
 

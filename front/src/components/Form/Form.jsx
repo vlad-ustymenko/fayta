@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import IMask from "imask";
 import { useRef, useEffect } from "react";
@@ -9,21 +10,6 @@ import remarkBreaks from "remark-breaks";
 import ReactMarkdown from "react-markdown";
 import { useModal } from "@/context/ModalContext";
 
-// const data = [
-//   {
-//     title: "name",
-//     placeholder: "Name",
-//     emptyDataErr: "*введіть ім'я",
-//     unvalidDataErr: "*має містити тільки букви",
-//   },
-//   {
-//     title: "phone",
-//     placeholder: "Phone",
-//     emptyDataErr: "Введіть телефон",
-//     unvalidDataErr: "*введіть коректний номер телефону",
-//   },
-// ];
-
 const Form = ({
   form,
   button,
@@ -31,6 +17,7 @@ const Form = ({
   feedback,
   className,
   loaderText,
+  locale,
 }) => {
   const phoneInputRef = useRef(null);
   const { openModal, setSending, setIsForm } = useModal();
@@ -68,30 +55,16 @@ const Form = ({
   const onSubmit = async (data) => {
     openModal({ loaderText });
     setSending(true);
+
     setTimeout(() => {
       console.log("Form sending finished");
       setSending(false);
       reset();
     }, 3000);
-    // try {
-    //   setSending(true);
-    //   const response = await fetch("/api/sendMail", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify({
-    //       name: data.name,
-    //       phone: data.phone,
-    //     }),
-    //   });
-    //   if (response.ok) {
-    //     reset();
-    //     setActiveCheckbox(false);
-    //     setDepartmentOpen(false);
-    //   }
-    // } finally {
-    //   setSending(false);
-    // }
   };
+
+  const privacyUrl = locale === "en" ? "/en/privacy" : "/privacy";
+
   return (
     <div className={styles.wrapper}>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -126,16 +99,18 @@ const Form = ({
                   id={item.type}
                   ref={(el) => {
                     field.ref(el);
+
                     if (item.type === "phone") {
                       phoneInputRef.current = el;
                     }
                   }}
                   style={{
-                    borderBottom: errors[item.title] ? "2px solid red" : "",
+                    borderBottom: errors[item.type] ? "2px solid red" : "",
                     color: feedback ? "var(--black)" : "",
                     WebkitTextFillColor: "white",
                   }}
                 />
+
                 <label
                   htmlFor={item.type}
                   className={styles.floatingLabel}
@@ -145,6 +120,7 @@ const Form = ({
                 >
                   {item.placeholder}
                 </label>
+
                 <p className={styles.errorMessage}>
                   {errors[item.type]?.message || "\u00A0"}
                 </p>
@@ -152,28 +128,23 @@ const Form = ({
             )}
           />
         ))}
+
         <Button
           title={button}
           form
           className={feedback ? styles.feedbackButton : styles.button}
-        ></Button>
+        />
+
         <ReactMarkdown
           remarkPlugins={[remarkBreaks]}
           components={{
-            p: ({ children }) => (
-              <p
-                className={styles.subtitle}
-                // style={{ fontSize: feedback ? "1vw" : "" }}
-              >
-                {children}
-              </p>
-            ),
+            p: ({ children }) => <p className={styles.subtitle}>{children}</p>,
             strong: ({ children }) => (
               <a
-                href="#"
+                href={privacyUrl}
                 className={styles.link}
                 style={{
-                  borderBottom: feedback ? `0.1vw solid var(--secondary)` : "",
+                  borderBottom: feedback ? "0.1vw solid var(--secondary)" : "",
                   color: feedback ? "var(--secondary)" : "",
                   fontFamily: "var(--font-sofia), sans-serif",
                 }}

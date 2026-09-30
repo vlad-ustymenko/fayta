@@ -11,7 +11,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Contacts = ({ data }) => {
+const Contacts = ({ data, locale }) => {
   const rootRef = useRef(null);
   const blockTitleRef = useRef(null);
   const leftBlockRef = useRef(null);
@@ -247,6 +247,7 @@ const Contacts = ({ data }) => {
           </div>
           <h2 className={styles.rightBlockTitle}>{data.rightBlockTitle}</h2>
           <Form
+            locale={locale}
             loaderText={data.loaderText}
             form={data.form}
             button={data.button}

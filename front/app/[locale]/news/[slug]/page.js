@@ -95,7 +95,7 @@ export default async function NewsPage({ params }) {
         </div>
         <span className={styles.line}></span>
       </div>
-      <Feedback data={feedback} />
+      <Feedback data={feedback} locale={locale} />
     </main>
   );
 }

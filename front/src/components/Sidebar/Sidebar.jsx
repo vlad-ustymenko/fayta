@@ -11,7 +11,7 @@ import { IoClose } from "react-icons/io5";
 import Form from "../Form/Form";
 import styles from "./Sidebar.module.css";
 
-export default function Sidebar({ data }) {
+export default function Sidebar({ data, locale }) {
   const { openSidebar, setOpenSidebar } = useSidebarContext();
   const [isMounted, setIsMounted] = useState(openSidebar);
   const lenis = useLenis();
@@ -73,6 +73,7 @@ export default function Sidebar({ data }) {
         />
         <h2 className={styles.title}>{data.title}</h2>
         <Form
+          locale={locale}
           form={data.form}
           button={data.button}
           confidentialText={data.confidentialText}

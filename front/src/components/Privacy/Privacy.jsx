@@ -6,6 +6,7 @@ import Button from "../Button/Button";
 import styles from "./Privacy.module.css";
 
 const Privacy = ({ data }) => {
+  console.log(data);
   return (
     <div className={styles.privacy}>
       <ReactMarkdown
@@ -24,9 +25,9 @@ const Privacy = ({ data }) => {
         <Button
           title={data.button.title}
           link
-          href={data.button.href}
+          href={data.button.link}
           className={styles.button}
-        ></Button>
+        />
       </div>
     </div>
   );
