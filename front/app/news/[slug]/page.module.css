@@ -111,7 +111,7 @@
 .rightBlock {
   width: 50%;
   height: 100%;
-  position: relative; /* потрібно для коректної роботи дочірніх елементів з fill */
+  position: relative;
 }
 
 .imageWrapper {

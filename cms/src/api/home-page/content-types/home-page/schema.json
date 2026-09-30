@@ -42,7 +42,8 @@
         "blocks.advantages",
         "blocks.apartment",
         "blocks.contacts",
-        "blocks.preloader"
+        "blocks.preloader",
+        "blocks.modal"
       ]
     },
     "seo": {

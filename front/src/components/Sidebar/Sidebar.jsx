@@ -4,7 +4,6 @@ import {
   enableBodyScroll,
   clearAllBodyScrollLocks,
 } from "body-scroll-lock";
-
 import { useEffect, useState, useRef } from "react";
 import { useSidebarContext } from "@/context/SidebarContext";
 import { useLenis } from "@/context/LenisContext";
@@ -33,8 +32,7 @@ export default function Sidebar({ data }) {
         if (target) {
           disableBodyScroll(target);
         }
-        // ДОДАНО: зупиняємо Lenis - без цього body-scroll-lock не діє на
-        // скрол, яким керує Lenis (він не спирається на overflow:hidden)
+
         lenis?.stop();
       }, 100);
 
@@ -59,11 +57,9 @@ export default function Sidebar({ data }) {
   useEffect(() => {
     return () => {
       clearAllBodyScrollLocks();
-      // ДОДАНО: підстраховка, якщо компонент розмонтується, поки сайдбар
-      // ще був відкритий - Lenis не мав би лишитись "заблокованим" назавжди
+
       lenis?.start();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!isMounted) return null;

@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_blocks_modals",
+  "info": {
+    "displayName": "Modal"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "richtext"
+    },
+    "socialText": {
+      "type": "string"
+    },
+    "socialIcons": {
+      "type": "component",
+      "component": "components.social-icon",
+      "repeatable": true
+    },
+    "loaderText": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

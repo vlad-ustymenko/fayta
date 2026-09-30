@@ -336,7 +336,7 @@
 
 @media (width <= 767px) {
   .apartments {
-    padding-top: 6vw;
+    padding-top: 17vw;
   }
 
   .titleWrapper {
@@ -449,6 +449,9 @@
 
   .buttonMore {
     margin: 0 auto;
-    margin-top: 4vw;
+    position: absolute;
+    right: 0;
+    bottom: -7vw;
+    left: 0;
   }
 }

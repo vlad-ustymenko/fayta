@@ -247,6 +247,7 @@ const Contacts = ({ data }) => {
           </div>
           <h2 className={styles.rightBlockTitle}>{data.rightBlockTitle}</h2>
           <Form
+            loaderText={data.loaderText}
             form={data.form}
             button={data.button}
             confidentialText={data.confidentialText}

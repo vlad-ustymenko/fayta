@@ -21,7 +21,7 @@
   --containerPaddingMobile: 18vw 0;
 }
 
-:global(.split-line) {
+::global(.split-line) {
   display: block;
   transform: translateY(100%);
   opacity: 0;

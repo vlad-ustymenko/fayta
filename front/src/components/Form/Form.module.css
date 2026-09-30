@@ -11,6 +11,7 @@
   font-size: 1vw;
   color: var(--background);
   box-sizing: border-box;
+  -webkit-text-size-adjust: 100%;
 }
 
 .floatingLabel {
@@ -69,15 +70,10 @@
 .input:-webkit-autofill:hover,
 .input:-webkit-autofill:focus,
 .input:-webkit-autofill:active {
-  /* "фон" через inset box-shadow, бо background-color браузер ігнорує */
-
-  box-shadow: 0 0 0 1000px var(--black) inset;
-
-  /* прибираємо затримку переходу, щоб не блимало жовтим на долю секунди */
+  font-family: Roboto, sans-serif;
+  box-shadow: 0 0 0 1000px transparent inset;
   transition: background-color 5000s ease-in-out 0s;
-
-  /* колір тексту теж треба міняти через -webkit-text-fill-color */
-  -webkit-text-fill-color: var(--background);
+  -webkit-text-fill-color: var(--black);
 }
 
 .button {

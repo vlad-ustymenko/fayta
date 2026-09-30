@@ -1,0 +1,222 @@
+.modal,
+.sending {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 999;
+  background: rgb(0 0 0 / 70%);
+  inset: 0;
+}
+
+.modal {
+  cursor: default;
+}
+
+.sending {
+  pointer-events: none;
+}
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2vw;
+  width: fit-content;
+  max-width: 70vw;
+  padding: 4vw;
+  border-radius: 1.5vw;
+  position: relative;
+  background-color: white;
+}
+
+.title {
+  margin: 0;
+  font-family: MontserratBold, sans-serif;
+  font-size: 2vw;
+  line-height: 1.1;
+  text-align: center;
+  color: var(--accent);
+}
+
+.formContent {
+  margin: 0;
+  font-family: MontserratRegular, sans-serif;
+  font-size: 1.5vw;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--black);
+}
+
+.socialTitle {
+  margin: 0;
+  font-family: MontserratBold, sans-serif;
+  font-size: 1.5vw;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--black);
+}
+
+.socialWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7vw;
+  padding: 0.5vw;
+  border-radius: 5vw;
+  background-color: var(--black);
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5vw;
+  height: 2.5vw;
+  padding: 0.4vw;
+  border-radius: 50%;
+  color: var(--black);
+  background-color: var(--background);
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.socialLink:hover {
+  transform: scale(1.1);
+  color: var(--accent);
+}
+
+.socialIcon {
+  width: 100%;
+  height: 100%;
+}
+
+.iconfacebook {
+  width: 90%;
+  height: 90%;
+}
+
+.closeButton {
+  width: 1.8vw;
+  height: 1.8vw;
+  position: absolute;
+  top: 0.7vw;
+  right: 0.7vw;
+  z-index: 3;
+  transition: transform 0.2s ease-out;
+  cursor: pointer;
+  fill: var(--secondaryColor);
+}
+
+.closeButton:hover {
+  transform: rotate(-90deg);
+  transition: transform 0.2s ease-out;
+}
+
+@media (width >= 768px) and (width <= 1024px) {
+  .formWrapper {
+    gap: 5vw;
+    width: calc(100% - 10vw);
+    max-width: none;
+    padding: 8vw 5vw;
+    border-radius: var(--borderRadiusMobile);
+  }
+
+  .title {
+    font-size: 7vw;
+  }
+
+  .formContent {
+    font-size: 4vw;
+  }
+
+  .socialTitle {
+    font-size: 5vw;
+  }
+
+  .socialWrapper {
+    gap: 4vw;
+    padding: 2vw;
+    border-radius: 10vw;
+  }
+
+  .socialLink {
+    width: 10vw;
+    height: 10vw;
+    padding: 1vw;
+  }
+
+  .socialLink:hover {
+    transform: scale(1);
+    color: var(--background);
+  }
+
+  .socialIcon {
+    width: 100%;
+    height: 100%;
+  }
+
+  .closeButton {
+    width: 8vw;
+    height: 8vw;
+    border-radius: 50%;
+    top: 2.5vw;
+    right: 2.5vw;
+  }
+}
+
+@media (width <= 767px) {
+  .formWrapper {
+    gap: 5vw;
+    width: calc(100% - 10vw);
+    max-width: none;
+    padding: 8vw 5vw;
+    border-radius: var(--borderRadiusMobile);
+  }
+
+  .title {
+    font-size: 7vw;
+  }
+
+  .formContent {
+    font-size: 4vw;
+  }
+
+  .socialTitle {
+    font-size: 5vw;
+  }
+
+  .socialWrapper {
+    gap: 4vw;
+    padding: 2vw;
+    border-radius: 10vw;
+  }
+
+  .socialLink {
+    width: 10vw;
+    height: 10vw;
+    padding: 1vw;
+  }
+
+  .socialLink:hover {
+    transform: scale(1);
+    color: var(--background);
+  }
+
+  .socialIcon {
+    width: 100%;
+    height: 100%;
+  }
+
+  .closeButton {
+    width: 8vw;
+    height: 8vw;
+    border-radius: 50%;
+    top: 2.5vw;
+    right: 2.5vw;
+  }
+}

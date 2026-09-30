@@ -131,7 +131,7 @@
 
 @media (width <= 767px) {
   .termsOfPurchase {
-    padding: var(--pbm);
+    padding: 25vw 9vw 17vw;
   }
 
   .title {

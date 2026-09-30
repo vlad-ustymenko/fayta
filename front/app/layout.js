@@ -4,12 +4,14 @@ import { headers } from "next/headers";
 import { SidebarProvider } from "@/context/SidebarContext";
 import { MenuProvider } from "@/context/MenuContext";
 import { LenisProvider } from "@/context/LenisContext";
+import { ModalProvider } from "@/context/ModalContext";
 import Header from "@/src/components/Header/Header";
 import Sidebar from "@/src/components/Sidebar/Sidebar";
 import Menu from "@/src/components/Menu/Menu";
 import FooterWithKey from "@/src/components/Footer/FooterWithKey";
 import ScrollToHash from "@/src/components/ScrollToHash/ScrollToHash";
 import { GoogleTagManager } from "@next/third-parties/google";
+import Modal from "@/src/components/Modal/Modal";
 import "./globals.css";
 
 const roboto = Roboto({
@@ -46,6 +48,13 @@ async function getLayoutData(locale) {
             },
             "blocks.sidebar": { populate: "*" },
             "blocks.menu": { populate: "*" },
+            "blocks.modal": {
+              populate: {
+                socialIcons: {
+                  populate: "*",
+                },
+              },
+            },
             "blocks.footer": {
               populate: {
                 leftBlock: {
@@ -112,18 +121,25 @@ export default async function RootLayout({ children }) {
     (block) => block.__component === "blocks.footer",
   );
 
+  const modal = strapiData?.blocks.find(
+    (block) => block.__component === "blocks.modal",
+  );
+
   return (
     <html lang={locale} className={`${roboto.variable} ${sofia.variable}`}>
       <body>
         <LenisProvider>
           <MenuProvider>
             <SidebarProvider>
-              <ScrollToHash />
-              <Header data={header} />
-              {children}
-              <FooterWithKey data={footer} />
-              <Sidebar data={sidebar} />
-              <Menu data={menu?.menuLinks} />
+              <ModalProvider>
+                <ScrollToHash />
+                <Header data={header} />
+                {children}
+                <FooterWithKey data={footer} />
+                <Sidebar data={sidebar} />
+                <Menu data={menu?.menuLinks} />
+                <Modal data={modal}></Modal>
+              </ModalProvider>
             </SidebarProvider>
           </MenuProvider>
         </LenisProvider>

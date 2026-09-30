@@ -143,7 +143,7 @@ const AnimatedHeader = memo(function AnimatedHeader({
         >
           {title}
         </ReactMarkdown>
-        <div ref={buttonMoreRef}>
+        <div ref={buttonMoreRef} className={styles.buttonMore}>
           <Button
             title={button.title}
             link
@@ -246,10 +246,6 @@ const Apartments = ({ data, locale }) => {
     });
   }, [index, positionsByOffset, getOffset, total, activeCategory]);
 
-  // Анімація категорій — знизу вгору, opacity, по черзі.
-  // Прив'язана лише до [data], тому спрацьовує один раз при вході
-  // в зону видимості (перемикання activeCategory просто змінює
-  // className активного елемента, не чіпаючи GSAP-стилі transform/opacity).
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       if (categoriesWrapperRef.current) {

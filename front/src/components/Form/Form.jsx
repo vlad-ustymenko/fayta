@@ -7,6 +7,7 @@ import Button from "../Button/Button";
 import styles from "./Form.module.css";
 import remarkBreaks from "remark-breaks";
 import ReactMarkdown from "react-markdown";
+import { useModal } from "@/context/ModalContext";
 
 // const data = [
 //   {
@@ -23,8 +24,16 @@ import ReactMarkdown from "react-markdown";
 //   },
 // ];
 
-const Form = ({ form, button, confidentialText, feedback, className }) => {
+const Form = ({
+  form,
+  button,
+  confidentialText,
+  feedback,
+  className,
+  loaderText,
+}) => {
   const phoneInputRef = useRef(null);
+  const { openModal, setSending, setIsForm } = useModal();
 
   const {
     control,
@@ -57,6 +66,13 @@ const Form = ({ form, button, confidentialText, feedback, className }) => {
   }, [setValue]);
 
   const onSubmit = async (data) => {
+    openModal({ loaderText });
+    setSending(true);
+    setTimeout(() => {
+      console.log("Form sending finished");
+      setSending(false);
+      reset();
+    }, 3000);
     // try {
     //   setSending(true);
     //   const response = await fetch("/api/sendMail", {
@@ -117,6 +133,7 @@ const Form = ({ form, button, confidentialText, feedback, className }) => {
                   style={{
                     borderBottom: errors[item.title] ? "2px solid red" : "",
                     color: feedback ? "var(--black)" : "",
+                    WebkitTextFillColor: "white",
                   }}
                 />
                 <label

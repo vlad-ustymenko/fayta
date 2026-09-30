@@ -260,6 +260,20 @@ export interface BlocksMenu extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksModal extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_modals';
+  info: {
+    displayName: 'Modal';
+  };
+  attributes: {
+    loaderText: Schema.Attribute.String;
+    socialIcons: Schema.Attribute.Component<'components.social-icon', true>;
+    socialText: Schema.Attribute.String;
+    text: Schema.Attribute.RichText;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface BlocksNews extends Struct.ComponentSchema {
   collectionName: 'components_blocks_news';
   info: {
@@ -650,6 +664,7 @@ declare module '@strapi/strapi' {
       'blocks.infrastructure': BlocksInfrastructure;
       'blocks.investment': BlocksInvestment;
       'blocks.menu': BlocksMenu;
+      'blocks.modal': BlocksModal;
       'blocks.news': BlocksNews;
       'blocks.preloader': BlocksPreloader;
       'blocks.sidebar': BlocksSidebar;
