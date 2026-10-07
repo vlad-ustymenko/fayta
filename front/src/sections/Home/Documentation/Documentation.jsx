@@ -164,12 +164,17 @@ const Documentation = ({ data }) => {
 
       <div className={styles.docGrid} ref={docGridRef}>
         {data.doc.map((item) => (
-          <div key={item.title} className={styles.docItemWrapper}>
+          <a
+            href={item.link}
+            key={item.title}
+            className={styles.docItemWrapper}
+            target="_blank"
+          >
             <div className={styles.docItemInner}>
               <div className={styles.docItemText}>{item.title}</div>
               <AiFillEye className={styles.icon} />
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </div>
