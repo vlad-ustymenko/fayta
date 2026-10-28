@@ -7,12 +7,12 @@ import ApartmentsRoomFilter from "@/src/components/ApartmentsRoomFilter/Apartmen
 import { createMetadata } from "@/src/utils/seo";
 import ApartmentsAnimatedHeader from "@/src/components/ApartmentsAnimatedHeader/ApartmentsAnimatedHeader";
 
-async function getHomeData(locale) {
+async function getHomeData() {
   const baseUrl = process.env.STRAPI_BASE_URL;
 
   const query = qs.stringify(
     {
-      locale: locale,
+      locale: "uk",
       populate: {
         blocks: {
           on: {
@@ -52,12 +52,12 @@ async function getHomeData(locale) {
   }
 }
 
-async function getData(path, locale) {
+async function getData(path) {
   const baseUrl = process.env.STRAPI_BASE_URL;
 
   const query = qs.stringify(
     {
-      locale: locale,
+      locale: "uk",
       populate: {
         apartment_cards: {
           populate: {
@@ -97,14 +97,14 @@ async function getData(path, locale) {
 }
 
 export async function generateMetadata() {
-  const data = await getData(process.env.APARTMENTS_URL, "en");
+  const data = await getData(process.env.APARTMENTS_URL, "uk");
 
   return createMetadata({
     seo: data?.seo || null,
 
-    path: "/en/apartments",
+    path: "/apartments",
 
-    locale: "en",
+    locale: "uk",
 
     alternatePaths: {
       uk: "/apartments",
@@ -112,35 +112,35 @@ export async function generateMetadata() {
     },
   });
 }
-export default async function Home({ params }) {
-  const { locale } = await params;
-  const apartmentData = await getData(process.env.APARTMENTS_URL, locale);
-  const termsData = await getHomeData(locale);
 
-  const oneRoom = apartmentData.apartment_cards.filter(
-    (card) => card.category === "one-room",
-  );
+export default async function Home() {
+  const apartmentData = await getData(process.env.APARTMENTS_URL);
+  const termsData = await getHomeData();
 
-  const twoRoom = apartmentData.apartment_cards.filter(
-    (card) => card.category === "two-room",
-  );
-  const threeRoom = apartmentData.apartment_cards.filter(
+  if (!apartmentData) {
+    console.error("APARTMENT DATA IS EMPTY");
+    notFound();
+  }
+
+  const apartmentCards = apartmentData.apartment_cards || [];
+
+  const oneRoom = apartmentCards.filter((card) => card.category === "one-room");
+
+  const twoRoom = apartmentCards.filter((card) => card.category === "two-room");
+
+  const threeRoom = apartmentCards.filter(
     (card) => card.category === "three-room",
   );
-  const fourRoom = apartmentData.apartment_cards.filter(
+
+  const fourRoom = apartmentCards.filter(
     (card) => card.category === "four-room",
   );
-  const fiveRoom = apartmentData.apartment_cards.filter(
+
+  const fiveRoom = apartmentCards.filter(
     (card) => card.category === "five-room",
   );
 
-  const terms = termsData?.blocks.find(
-    (block) => block.__component === "blocks.terms-of-purchase",
-  );
-
-  if (!apartmentData) {
-    notFound();
-  }
+  const locale = "uk";
 
   return (
     <main className={styles.main}>
@@ -182,7 +182,7 @@ export default async function Home({ params }) {
       {apartmentData.flatShow && (
         <div className={styles.flatShow}>flatShow</div>
       )}
-      <TermsOfPurchase data={terms}></TermsOfPurchase>
+      <TermsOfPurchase data={termsData.blocks[0]}></TermsOfPurchase>
     </main>
   );
 }

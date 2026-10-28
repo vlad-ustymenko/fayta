@@ -12,7 +12,7 @@ import { getSocialIcon } from "@/src/utils/socialIcons";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
-import styles from "@/app/news/[slug]/page.module.css";
+import styles from "@/app/(main)/news/[slug]/page.module.css";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 

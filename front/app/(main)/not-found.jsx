@@ -2,7 +2,7 @@
 import styles from "./not-found.module.css";
 import { usePathname } from "next/navigation";
 import Button from "@/src/components/Button/Button";
-import "../app/globals.css";
+import "../../app/globals.css";
 
 export default function NotFound() {
   const pathname = usePathname();

@@ -2,17 +2,17 @@ import React from "react";
 import qs from "qs";
 import { notFound } from "next/navigation";
 import styles from "./page.module.css";
-import TermsOfPurchase from "../../src/sections/Home/TermsOfPurchase/TermsOfPurchase";
+import TermsOfPurchase from "../../../../src/sections/Home/TermsOfPurchase/TermsOfPurchase";
 import ApartmentsRoomFilter from "@/src/components/ApartmentsRoomFilter/ApartmentsRoomFilter";
 import { createMetadata } from "@/src/utils/seo";
 import ApartmentsAnimatedHeader from "@/src/components/ApartmentsAnimatedHeader/ApartmentsAnimatedHeader";
 
-async function getHomeData() {
+async function getHomeData(locale) {
   const baseUrl = process.env.STRAPI_BASE_URL;
 
   const query = qs.stringify(
     {
-      locale: "uk",
+      locale: locale,
       populate: {
         blocks: {
           on: {
@@ -52,12 +52,12 @@ async function getHomeData() {
   }
 }
 
-async function getData(path) {
+async function getData(path, locale) {
   const baseUrl = process.env.STRAPI_BASE_URL;
 
   const query = qs.stringify(
     {
-      locale: "uk",
+      locale: locale,
       populate: {
         apartment_cards: {
           populate: {
@@ -97,14 +97,14 @@ async function getData(path) {
 }
 
 export async function generateMetadata() {
-  const data = await getData(process.env.APARTMENTS_URL, "uk");
+  const data = await getData(process.env.APARTMENTS_URL, "en");
 
   return createMetadata({
     seo: data?.seo || null,
 
-    path: "/apartments",
+    path: "/en/apartments",
 
-    locale: "uk",
+    locale: "en",
 
     alternatePaths: {
       uk: "/apartments",
@@ -112,35 +112,35 @@ export async function generateMetadata() {
     },
   });
 }
+export default async function Home({ params }) {
+  const { locale } = await params;
+  const apartmentData = await getData(process.env.APARTMENTS_URL, locale);
+  const termsData = await getHomeData(locale);
 
-export default async function Home() {
-  const apartmentData = await getData(process.env.APARTMENTS_URL);
-  const termsData = await getHomeData();
+  const oneRoom = apartmentData.apartment_cards.filter(
+    (card) => card.category === "one-room",
+  );
 
-  if (!apartmentData) {
-    console.error("APARTMENT DATA IS EMPTY");
-    notFound();
-  }
-
-  const apartmentCards = apartmentData.apartment_cards || [];
-
-  const oneRoom = apartmentCards.filter((card) => card.category === "one-room");
-
-  const twoRoom = apartmentCards.filter((card) => card.category === "two-room");
-
-  const threeRoom = apartmentCards.filter(
+  const twoRoom = apartmentData.apartment_cards.filter(
+    (card) => card.category === "two-room",
+  );
+  const threeRoom = apartmentData.apartment_cards.filter(
     (card) => card.category === "three-room",
   );
-
-  const fourRoom = apartmentCards.filter(
+  const fourRoom = apartmentData.apartment_cards.filter(
     (card) => card.category === "four-room",
   );
-
-  const fiveRoom = apartmentCards.filter(
+  const fiveRoom = apartmentData.apartment_cards.filter(
     (card) => card.category === "five-room",
   );
 
-  const locale = "uk";
+  const terms = termsData?.blocks.find(
+    (block) => block.__component === "blocks.terms-of-purchase",
+  );
+
+  if (!apartmentData) {
+    notFound();
+  }
 
   return (
     <main className={styles.main}>
@@ -182,7 +182,7 @@ export default async function Home() {
       {apartmentData.flatShow && (
         <div className={styles.flatShow}>flatShow</div>
       )}
-      <TermsOfPurchase data={termsData.blocks[0]}></TermsOfPurchase>
+      <TermsOfPurchase data={terms}></TermsOfPurchase>
     </main>
   );
 }

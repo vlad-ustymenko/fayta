@@ -8,7 +8,7 @@ import BlockTitle from "@/src/components/BlockTitle/BlockTitle";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
-import styles from "@/app/about/page.module.css";
+import styles from "@/app/(main)/about/page.module.css";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 

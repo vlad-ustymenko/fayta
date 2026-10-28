@@ -9,7 +9,7 @@ import { BiChevronsLeft } from "react-icons/bi";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
-import styles from "../../../app/apartments/page.module.css";
+import styles from "../../../app/(main)/apartments/page.module.css";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
