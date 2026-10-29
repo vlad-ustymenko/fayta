@@ -12,44 +12,48 @@ const Page = () => {
     const iframeDocument = iframe.contentDocument;
     if (!iframeDocument) return;
 
-    const REQUEST_URL =
-      "https://pro-api.flat.show/api/complex/website/index_html";
+    iframeDocument.open();
+    iframeDocument.write(`
+      <script>
+        const REQUEST_URL = 'https://pro-api.flat.show/api/complex/website/index_html';
+        let clientPageUrl = encodeURIComponent(window.parent.location.href);
 
-    const clientPageUrl = encodeURIComponent(window.location.href);
+        ;(() => {
+          rewriteDocument('');
 
-    let retryTimeout;
+          document.addEventListener("DOMContentLoaded", () => {
+            rewriteDocument('');
+            getCurrentPage();
+          });
+        })();
 
-    const getCurrentPage = async () => {
-      try {
-        const response = await fetch(
-          `${REQUEST_URL}?clientPageUrl=${clientPageUrl}`,
-        );
+        function getCurrentPage() {
+          let xhr = new XMLHttpRequest();
 
-        if (!response.ok) {
-          iframeDocument.open();
-          iframeDocument.write(`<h1>${response.status}</h1>`);
-          iframeDocument.close();
+          xhr.onerror = xhr.onload = function() {
+            let html = this.responseText;
 
-          retryTimeout = setTimeout(getCurrentPage, 10000);
-          return;
+            if (this.status !== 200) {
+              html = '<h1>' + this.status + '</h1>';
+              setTimeout(getCurrentPage, 10000);
+            }
+
+            rewriteDocument('');
+            rewriteDocument(html);
+          };
+
+          xhr.open('GET', REQUEST_URL + '?clientPageUrl=' + clientPageUrl);
+          xhr.send();
         }
 
-        const html = await response.text();
-
-        iframeDocument.open();
-        iframeDocument.write(html);
-        iframeDocument.close();
-      } catch (error) {
-        console.error("Не вдалося завантажити сторінку:", error);
-        retryTimeout = setTimeout(getCurrentPage, 10000);
-      }
-    };
-
-    getCurrentPage();
-
-    return () => {
-      clearTimeout(retryTimeout);
-    };
+        function rewriteDocument(body) {
+          document.open();
+          document.write(body);
+          document.close();
+        }
+      <\/script>
+    `);
+    iframeDocument.close();
   }, []);
 
   return (
@@ -57,10 +61,12 @@ const Page = () => {
       ref={iframeRef}
       title="Flat Show"
       style={{
-        display: "block",
+        position: "fixed",
+        inset: 0,
         width: "100%",
-        height: "100vh",
+        height: "100%",
         border: "none",
+        display: "block",
       }}
     />
   );
