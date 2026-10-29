@@ -59,6 +59,10 @@ export default async function sitemap() {
       priority: 0.8,
     },
     {
+      path: "/all-apartments",
+      priority: 0.8,
+    },
+    {
       path: "/en",
       priority: 1,
     },
