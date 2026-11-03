@@ -453,5 +453,6 @@
     right: 0;
     bottom: -7vw;
     left: 0;
+    z-index: 5;
   }
 }

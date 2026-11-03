@@ -20,12 +20,12 @@
   --containerPaddingTablet: 12vw 0;
   --containerPaddingMobile: 18vw 0;
 }
-
+/* 
 ::global(.split-line) {
   display: block;
   transform: translateY(100%);
   opacity: 0;
-}
+} */
 
 html {
   width: 100%;
