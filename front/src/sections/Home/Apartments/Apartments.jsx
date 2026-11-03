@@ -147,7 +147,7 @@ const AnimatedHeader = memo(function AnimatedHeader({
           <Button
             title={button.title}
             link
-            href={`${locale === "en" ? "/en" : ""}${button.href}`}
+            href={`${button.href}`}
             small
             icon={button.icon.url}
             className={styles.buttonMore}
