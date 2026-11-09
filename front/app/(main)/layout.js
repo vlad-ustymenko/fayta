@@ -4,7 +4,7 @@ import { SidebarProvider } from "@/context/SidebarContext";
 import { MenuProvider } from "@/context/MenuContext";
 import { LenisProvider } from "@/context/LenisContext";
 import { ModalProvider } from "@/context/ModalContext";
-
+import UTMCookieSaver from "@/src/components/UTMCookieSaver/UTMCookieSaver";
 import Header from "@/src/components/Header/Header";
 import Sidebar from "@/src/components/Sidebar/Sidebar";
 import Menu from "@/src/components/Menu/Menu";
@@ -131,6 +131,7 @@ export default async function MainLayout({ children }) {
 
   return (
     <>
+      <UTMCookieSaver />
       <LenisProvider>
         <MenuProvider>
           <SidebarProvider>
@@ -152,7 +153,6 @@ export default async function MainLayout({ children }) {
           </SidebarProvider>
         </MenuProvider>
       </LenisProvider>
-
       <GoogleTagManager gtmId="GTM-T29TVZS2" />
     </>
   );

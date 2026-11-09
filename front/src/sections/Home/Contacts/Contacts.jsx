@@ -192,10 +192,7 @@ const Contacts = ({ data, locale }) => {
                 return (
                   <div key={item.id} className={styles.infoWrapper}>
                     <div className={styles.infoTitle}>{item.title}</div>
-                    <a
-                      href={`mailto:info@${item.text}`}
-                      className={styles.infoText}
-                    >
+                    <a href={`mailto:${item.text}`} className={styles.infoText}>
                       {item.text}
                     </a>
                   </div>

@@ -36,20 +36,64 @@ const Form = ({
   });
 
   useEffect(() => {
-    if (!phoneInputRef.current) return;
+    const input = phoneInputRef.current;
+    if (!input) return;
 
-    const mask = IMask(phoneInputRef.current, {
-      mask: "+38 (000) 000-00-00",
-    });
+    let mask = null;
 
-    mask.on("accept", () => {
-      setValue("phone", mask.value, {
-        shouldValidate: true,
-        shouldDirty: true,
-      });
-    });
+    const handleInput = () => {
+      if (mask) {
+        if (!mask.unmaskedValue) {
+          mask.destroy();
+          mask = null;
 
-    return () => mask.destroy();
+          input.value = "";
+
+          setValue("phone", "", {
+            shouldValidate: true,
+            shouldDirty: true,
+          });
+        }
+
+        return;
+      }
+
+      const digits = input.value.replace(/\D/g, "");
+
+      if (digits.length && (digits[0] === "0" || digits[0] === "3")) {
+        const firstDigit = digits[0];
+
+        mask = IMask(input, {
+          mask: "+38 (000) 000-00-00",
+          lazy: false,
+        });
+
+        mask.on("accept", () => {
+          setValue("phone", mask.value, {
+            shouldValidate: true,
+            shouldDirty: true,
+          });
+        });
+
+        mask.value = `+38 (${firstDigit}`;
+
+        setValue("phone", mask.value, {
+          shouldValidate: true,
+          shouldDirty: true,
+        });
+
+        requestAnimationFrame(() => {
+          input.setSelectionRange(6, 6);
+        });
+      }
+    };
+
+    input.addEventListener("input", handleInput);
+
+    return () => {
+      input.removeEventListener("input", handleInput);
+      if (mask) mask.destroy();
+    };
   }, [setValue]);
 
   const getUtmParams = () => {
@@ -91,6 +135,37 @@ const Form = ({
 
     openModal({ loaderText });
 
+    // ОКРЕМИЙ ЗАПИТ ДО CRM
+    fetch("/api/crm", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: data.name,
+        phone: data.phone,
+        lang: locale === "en" ? "en" : "ua",
+        utm_source: utm.utm_source,
+        utm_medium: utm.utm_medium,
+        utm_campaign: utm.utm_campaign,
+        utm_term: utm.utm_term,
+        utm_content: utm.utm_content,
+      }),
+    })
+      .then(async (response) => {
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+          throw new Error(result.message || "CRM API error");
+        }
+
+        console.log("CRM: form successfully sent");
+      })
+      .catch((error) => {
+        console.error("CRM error:", error);
+      });
+
+    // ВІДПРАВЛЕННЯ В TELEGRAM — БЕЗ ЗМІН
     try {
       const response = await fetch("/api/telegram", {
         method: "POST",
@@ -147,17 +222,14 @@ const Form = ({
                   ? (value) =>
                       /^[\p{L}\s'-]+$/u.test(value.trim()) ||
                       item.unvalidDataErr
-                  : item.type === "phone"
-                    ? (value) =>
-                        /^\+38 \(\d{3}\) \d{3}-\d{2}-\d{2}$/.test(value) ||
-                        item.unvalidDataErr
-                    : undefined,
+                  : undefined,
             }}
             render={({ field }) => (
               <div className={styles.inputWrapper}>
                 <input
                   {...field}
                   type={item.type === "phone" ? "tel" : "text"}
+                  autoComplete="off"
                   className={styles.input}
                   placeholder=" "
                   id={item.type}
@@ -171,7 +243,6 @@ const Form = ({
                   style={{
                     borderBottom: errors[item.type] ? "2px solid red" : "",
                     color: feedback ? "var(--black)" : "",
-                    // WebkitTextFillColor: "white",
                   }}
                 />
 
